@@ -9,6 +9,7 @@
         <version>1.0</version>
     </parent>
 
+    <packaging>war</packaging>
     <artifactId>backend</artifactId>
 
     <properties>
@@ -44,17 +45,23 @@
     <build>
         <finalName>PokeCare</finalName>
 
-        <resources>
-            <resource>
-                <directory>../frontend/dist</directory>
-                <targetPath>static</targetPath>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>../frontend/dist</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
