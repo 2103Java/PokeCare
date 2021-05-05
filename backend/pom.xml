@@ -15,6 +15,8 @@
         <main.basedir>${project.parent.basedir}</main.basedir>
     </properties>
 
+
+    <!-- HIBERNATE DEPENDENCIES -->
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -35,6 +37,9 @@
             <version>42.2.19</version>
         </dependency>
 
+
+
+        <!-- SPRING FRAMEWORK DEPENDENCIES -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -58,6 +63,24 @@
             <artifactId>spring-aspects</artifactId>
             <version>5.3.6</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>5.3.5</version>
+        </dependency>
+
+
+
+        <!-- LOG4J DEPENDENCY -->
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
     </dependencies>
 
     <build>

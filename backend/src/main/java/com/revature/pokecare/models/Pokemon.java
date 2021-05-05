@@ -11,7 +11,7 @@ public class Pokemon
     @Column(name = "id")
     private int id;
 
-    @OneToOne
+
     @Column(name = "trainer_id")
     private int trainer_id;
 
@@ -24,8 +24,8 @@ public class Pokemon
     @Column(name = "fatigue")
     private int fatigue;
 
-    @Column(name = "growth")
-    private int growth;
+    @Column(name = "experience")
+    private int experience;
 
     @Column(name = "pkmn_name")
     private String name;
@@ -34,13 +34,13 @@ public class Pokemon
         super();
     }
 
-    public Pokemon(int id, int trainer_id, int happiness, int hunger, int fatigue, int growth, String name) {
+    public Pokemon(int id, int trainer_id, int happiness, int hunger, int fatigue, int experience, String name) {
         this.id = id;
         this.trainer_id = trainer_id;
         this.happiness = happiness;
         this.hunger = hunger;
         this.fatigue = fatigue;
-        this.growth = growth;
+        this.experience = experience;
         this.name = name;
     }
 
@@ -84,12 +84,12 @@ public class Pokemon
         this.fatigue = fatigue;
     }
 
-    public int getGrowth() {
-        return growth;
+    public int getExperience() {
+        return experience;
     }
 
-    public void setGrowth(int growth) {
-        this.growth = growth;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     public String getName() {

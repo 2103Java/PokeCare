@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
 
     @Column(unique = true, nullable = false)
@@ -28,6 +29,12 @@ public class Trainer {
 
     @OneToMany
     private List<Pokemon> pokeList = new ArrayList<>();
+
+    @Column
+    private String email;
+
+    @Column
+    private int currency;
 
     public Trainer() {}
 
@@ -84,5 +91,41 @@ public class Trainer {
 
     public List<Pokemon> getPokeList() {
         return pokeList;
+    }
+
+    public byte[] getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(byte[] passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
+    public void setPokeList(List<Pokemon> pokeList) {
+        this.pokeList = pokeList;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(int currency) {
+        this.currency = currency;
     }
 }
