@@ -73,3 +73,4 @@ From your profile page, simply click the "Add Pokemon" and fill out the form in 
 
 - [Bryan Wise](https://github.com/Coach-BWise)
 - [Seoung-David Nhem](https://github.com/dnhem27)
+- [Dante Pizzini](https://github.com/DanPizzini)
