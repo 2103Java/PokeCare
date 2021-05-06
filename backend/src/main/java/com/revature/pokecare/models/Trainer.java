@@ -38,7 +38,8 @@ public class Trainer {
     @Column
     private int currency;
 
-    public Trainer() {}
+    public Trainer() {
+    }
 
     @Autowired
     public Trainer(String username, String password) {

@@ -41,6 +41,10 @@ public class TrainerRepository {
         return sf.getCurrentSession().get(Trainer.class, pkTrainer_id);
     }
 
+    public Trainer findTrainerByUsername(String pkTrainer_username) {
+        return sf.getCurrentSession().get(Trainer.class, pkTrainer_username);
+    }
+
     public List<Trainer> getAllTrainers() {
         TypedQuery<Trainer> query = sf.getCurrentSession().createQuery("FROM poketrainer", Trainer.class);
         return query.getResultList();
