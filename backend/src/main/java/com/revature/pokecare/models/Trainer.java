@@ -1,5 +1,7 @@
 package com.revature.pokecare.models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -38,6 +40,7 @@ public class Trainer {
 
     public Trainer() {}
 
+    @Autowired
     public Trainer(String username, String password) {
         this.username = username;
         this.passwordHash = hashPassword(password, salt = genSalt());

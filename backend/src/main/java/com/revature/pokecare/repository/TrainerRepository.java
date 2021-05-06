@@ -1,4 +1,4 @@
-package com.revature.pokecare.dao;
+package com.revature.pokecare.repository;
 
 import com.revature.pokecare.models.Trainer;
 import org.hibernate.Session;
@@ -9,27 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
-
 import java.util.List;
 
 @Repository("TrainerDatabase")
-@Transactional
-public class TrainerDatabase {
+public class TrainerRepository {
 
     @Autowired
     private SessionFactory sf;
 
     //INSERT METHOD
-    public Boolean insertTrainer(Trainer pkTrainer) {
-        Session newSession = sf.openSession();
-        Transaction tx = newSession.beginTransaction();
+    public boolean insertTrainer(Trainer pkTrainer) {
+        Transaction tx = null;
+        try (Session nSession = sf.openSession()) {
 
-        System.out.println("Inserting a new trainer");
+            tx = nSession.beginTransaction();
+            nSession.save(pkTrainer);
+            nSession.flush();
 
-        newSession.save(pkTrainer);
-        tx.commit();
-        newSession.close();
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) tx.rollback();
+            return false;
+        }
+
         return true;
 
     }
