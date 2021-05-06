@@ -1,7 +1,5 @@
 package com.revature.pokecare;
 
-import com.revature.pokecare.dao.TrainerDatabase;
-import com.revature.pokecare.models.Trainer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -27,7 +25,5 @@ public class Application {
                 System.setProperty(setting[0], setting[1]);
             }
         }
-
-        new TrainerDatabase().insertTrainer(new Trainer("pkt77", "pkt77"));
     }
 }
