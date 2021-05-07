@@ -20,4 +20,9 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/</location>
+    </error-page>
 </web-app>
