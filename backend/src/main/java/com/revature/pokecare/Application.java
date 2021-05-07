@@ -1,29 +1,37 @@
 package com.revature.pokecare;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
+import javax.servlet.ServletContextEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Application {
-    private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("autowire.xml");
+public class Application extends org.springframework.web.context.ContextLoaderListener {
+    //private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("auth.properties"));
-        String line;
+    @Override
+    public void contextInitialized(ServletContextEvent event) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("auth.properties"));
+            String line;
 
-        while ((line = reader.readLine()) != null) {
-            if (line.startsWith("#")) {
-                continue;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("#")) {
+                    continue;
+                }
+
+                String[] setting = line.split("=");
+
+                if (setting.length > 1) {
+                    System.setProperty(setting[0], setting[1]);
+                }
             }
-
-            String[] setting = line.split("=");
-
-            if (setting.length > 1) {
-                System.setProperty(setting[0], setting[1]);
-            }
+        } catch (IOException e) {
+            System.out.println("No auth.properties file found in current directory: " + new File("").getAbsolutePath());
+            e.printStackTrace();
+            return;
         }
+
+        super.contextInitialized(event);
     }
 }

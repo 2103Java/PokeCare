@@ -15,7 +15,7 @@
     border-radius: 12px 12px 0 0;
     content: "";
     bottom: -26px;
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55ffff', endColorstr='#00ffffff',GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#55ffff', endColorstr='#00ffffff', GradientType=0);
 }
 
 :host:hover {
@@ -42,7 +42,7 @@
     z-index: 2;
     transform: skew(45deg, 0deg) translateX(150px);
 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55ffff', endColorstr='#00ffffff',GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#55ffff', endColorstr='#00ffffff', GradientType=0);
 }
 
 .text-container {
@@ -75,8 +75,9 @@ img {
     max-height: 330px;
     padding: 40px 30px;
 }
-#id{
-position: relative;
+
+#id {
+    position: relative;
     display: flex;
     height: initial;
     width: auto;
@@ -90,16 +91,16 @@ p {
     margin: 5px 0;
 }
 
-#playBtn{
-   color: white;
+#playBtn {
+    color: white;
     background-color: green;
 }
 
-.button-container{
+.button-container {
     position: absolute;
     right: 1px
 }
-.actions{
 
+.actions {
     margin: 2px;
 }

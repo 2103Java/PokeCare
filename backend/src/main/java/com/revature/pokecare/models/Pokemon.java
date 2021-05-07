@@ -4,15 +4,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "pokemon")
-public class Pokemon
-{
+public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
+    @Column(name = "poke_number")
+    private int number;
 
-    @Column(name = "trainer_id")
+	@Column(name = "trainer_id")
     private int trainer_id;
 
     @Column(name = "happiness")
@@ -27,21 +28,17 @@ public class Pokemon
     @Column(name = "experience")
     private int experience;
 
-    @Column(name = "pkmn_name")
-    private String name;
-
     public Pokemon() {
         super();
     }
 
-    public Pokemon(int id, int trainer_id, int happiness, int hunger, int fatigue, int experience, String name) {
-        this.id = id;
+    public Pokemon(int trainer_id, int happiness, int hunger, int fatigue, int experience, int number) {
         this.trainer_id = trainer_id;
         this.happiness = happiness;
         this.hunger = hunger;
         this.fatigue = fatigue;
         this.experience = experience;
-        this.name = name;
+        this.number = number;
     }
 
     public int getId() {
@@ -51,6 +48,14 @@ public class Pokemon
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
     public int getTrainer_id() {
         return trainer_id;
@@ -92,11 +97,4 @@ public class Pokemon
         this.experience = experience;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
