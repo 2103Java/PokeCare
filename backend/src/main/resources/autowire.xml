@@ -2,10 +2,62 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-           http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
+    <!-- We don't manually define any more beans in xml -->
+
+    <!-- This will turn on our annotations -->
     <context:annotation-config/>
+
+    <!-- This will scan every package inside of com/revature/... folders  -->
+    <context:component-scan base-package="com.revature.pokecare"/>
+
+    <aop:aspectj-autoproxy/>
+
+    <!--
+        What do we need to know to persist information to our database
+        URL
+        Username and Password
+        Dialect
+        Driver
+        hbm2ddl
+     -->
+
+    <!-- DATASOURCE
+            This bean is a JDBC instance
+            Datasource is an object that holds all the necessary attributes to connect to our database
+     -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="#{systemProperties['url']}"></property>
+        <property name="username" value="#{systemProperties['username']}"></property>
+        <property name="password" value="#{systemProperties['password']}"></property>
+        <property name="driverClassName" value="org.postgresql.Driver"></property>
+    </bean>
+
+    <!-- SESSIONFACTORY
+            This bean is a Hibernate instance
+            Session factory is an object that is responsible for creating the Hibernate session
+     -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="packagesToScan" value="com.revature.pokecare.models"></property>
+        <property name = "hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="TrainerDatabase" class="com.revature.pokecare.repository.TrainerRepository"></bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
 </beans>

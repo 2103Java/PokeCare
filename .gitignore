@@ -352,3 +352,4 @@ speed-measure-plugin*.json
 /libpeerconnection.log
 yarn-error.log
 /typings
+auth.properties
