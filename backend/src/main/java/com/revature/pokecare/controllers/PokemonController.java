@@ -10,34 +10,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("pokeCare/Pokemon")
+@RequestMapping("/pokemon")
 public class PokemonController {
 
-    private final SessionFactory sf;
+    private final SessionFactory sessionFactory;
 
     private final PokemonService ps;
 
 
     @Autowired
-    public PokemonController(SessionFactory sf, PokemonService ps) {
-        this.sf = sf;
+    public PokemonController(SessionFactory sessionFactory, PokemonService ps) {
+        this.sessionFactory = sessionFactory;
         this.ps = ps;
     }
 
     //get a pokemon from the DB based on their unique id assigned by the DB
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public @ResponseBody Pokemon findMyPokemon(@PathVariable("id") int id) {
-        if(sf.getCurrentSession().isOpen()) return ps.findMyPokemon(id);
+        if(sessionFactory.getCurrentSession().isOpen()) return ps.findMyPokemon(id);
         return null;
     }
 
     //delete a pokemon based on their unique ID
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deletePokemon(@PathVariable("id") int id) {
-        if (sf.getCurrentSession().isOpen()) {
+        if (sessionFactory.getCurrentSession().isOpen()) {
             boolean pkDeleted = ps.deletePokemon(id);
             if (pkDeleted) {
-                sf.getCurrentSession().close();
+                sessionFactory.getCurrentSession().close();
                 return new ResponseEntity<String>(HttpStatus.ACCEPTED);
             } else {
                 return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
@@ -49,7 +49,7 @@ public class PokemonController {
     //use a post method call to update pokemon
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseEntity<String> postPokemon(@RequestBody Pokemon pk){
-        if(sf.getCurrentSession().isOpen()) {
+        if(sessionFactory.getCurrentSession().isOpen()) {
             boolean update = ps.updatePokemon(pk);
             if(update){
                 return new ResponseEntity<String>(HttpStatus.ACCEPTED);
@@ -65,7 +65,7 @@ public class PokemonController {
     //Unsure how we actually associate the new pk with current session trainer
     @RequestMapping(value = "/new", method = RequestMethod.PUT)
     public void newPokemon(){
-        if(sf.getCurrentSession().isOpen()){
+        if(sessionFactory.getCurrentSession().isOpen()){
             Pokemon newRandom = ps.getNewPokemon();
         }
 

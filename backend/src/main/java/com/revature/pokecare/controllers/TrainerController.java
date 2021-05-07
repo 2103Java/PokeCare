@@ -11,17 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("pokeCare/Trainer")
+@RequestMapping("/api/trainer")
 public class TrainerController {
 
 
-    private final SessionFactory sf;
+    private final SessionFactory sessionFactory;
 
     private final TrainerService ts;
 
     @Autowired
-    public TrainerController(SessionFactory sf, TrainerService ts) {
-        this.sf = sf;
+    public TrainerController(SessionFactory sessionFactory, TrainerService ts) {
+        this.sessionFactory = sessionFactory;
         this.ts = ts;
     }
 
@@ -34,9 +34,8 @@ public class TrainerController {
         if (trainerCheck == null) {
             return;
         }
-
-        if (trainerCheck.correctPassword(password)) {
-            Session loginSession = sf.openSession();
+        else{
+            Session loginSession = sessionFactory.openSession();
         }
     }
 
@@ -56,10 +55,10 @@ public class TrainerController {
     @RequestMapping(value = "/delete")
     public ResponseEntity<String> deleteTrainer(@RequestBody Trainer dTrainer) {
 
-        if (sf.getCurrentSession().isOpen()) {
+        if (sessionFactory.getCurrentSession().isOpen()) {
             boolean trDeleted = ts.deleteTrainer(dTrainer);
             if (trDeleted) {
-                sf.getCurrentSession().close();
+                sessionFactory.getCurrentSession().close();
                 return new ResponseEntity<String>(HttpStatus.ACCEPTED);
             } else {
                 return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
@@ -71,7 +70,8 @@ public class TrainerController {
     //lougout ping closes the session
     @RequestMapping(value = "/logout")
     public void logout() {
-        if (sf.getCurrentSession().isOpen()) sf.getCurrentSession().close();
+        System.out.println("Hitting Logout");
+        if (sessionFactory.getCurrentSession().isOpen()) sessionFactory.getCurrentSession().close();
     }
 
 
