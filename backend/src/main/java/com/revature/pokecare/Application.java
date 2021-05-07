@@ -2,6 +2,7 @@ package com.revature.pokecare;
 
 import javax.servlet.ServletContextEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -26,7 +27,9 @@ public class Application extends org.springframework.web.context.ContextLoaderLi
                 }
             }
         } catch (IOException e) {
+            System.out.println("No auth.properties file found in current directory: " + new File("").getAbsolutePath());
             e.printStackTrace();
+            return;
         }
 
         super.contextInitialized(event);
