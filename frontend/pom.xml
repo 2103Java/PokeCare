@@ -38,16 +38,16 @@
                     </execution>
 
                     <execution>
-                        <id>npm run build (compile)</id>
+                        <id>ng build (compile)</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <phase>compile</phase>
                         <configuration>
-                            <executable>npm</executable>
+                            <executable>ng</executable>
                             <arguments>
-                                <argument>run</argument>
                                 <argument>build</argument>
+                                <argument>--prod</argument>
                             </arguments>
                         </configuration>
                     </execution>
