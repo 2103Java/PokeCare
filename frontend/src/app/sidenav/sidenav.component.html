@@ -1,0 +1,20 @@
+<mat-sidenav-container hasBackdrop="false">
+    <mat-sidenav mode="over" #sidenav [(opened)]="opened" (mouseleave)="opened=!opened">
+        <!--        <div class="arrow-right" id="triangleButton" (click)="opened=!opened">-->
+        <!--            <div class="inner-triangle" id="innerTri"></div></div>-->
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="container">
+            <div class="row">
+        <div class=" arrow-right" (click)="opened=!opened">
+            <div class="inner-triangle">
+
+            </div>
+        </div>
+            </div>
+            <app-carousel class="col-8"></app-carousel>
+
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

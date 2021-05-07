@@ -3,6 +3,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import {AppComponent} from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
+import {SidenavComponent} from "./sidenav/sidenav.component";
+import {MaterialModule} from "./material/material.module";
+import { CardComponent } from './card/card.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import {MatIconModule} from "@angular/material/icon";
 import { AppRoutingModule } from './app.routing';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,6 +54,9 @@ import { RegisterComponent } from './register/register.component';
 @NgModule({
     declarations: [
         AppComponent,
+        SidenavComponent,
+        CardComponent,
+        CarouselComponent,
         LoginComponent,
         RegisterComponent
     ],
@@ -117,6 +130,12 @@ import { RegisterComponent } from './register/register.component';
         MatRadioModule,
         MatDatepickerModule,
         MatTooltipModule
+        BrowserModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        FormsModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent],

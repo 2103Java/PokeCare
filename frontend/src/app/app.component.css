@@ -1,0 +1,15 @@
+:host {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.carousel {
+    position: relative;
+    width: 96%;
+    margin: 30px auto;
+    height: 800px;
+    background-color: #f2f6ff;
+}
