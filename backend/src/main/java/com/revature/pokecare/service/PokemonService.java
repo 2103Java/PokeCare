@@ -6,6 +6,8 @@ import com.revature.pokecare.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -32,7 +34,18 @@ public class PokemonService {
         return false;
     }
 
-    public Pokemon getNewPokemon() {
+    public Pokemon getNewPokemon(int trainerID) {
+    	Pokemon newPoke;
+    	Random rand = new Random();
+    	
+    	int num = rand.nextInt(898);
+    	int happiness = rand.nextInt(50);    	
+    	
+    	if (num <= 0) {num = 1;}
+    	
+    	//We'll need to pass in a trainer ID here so we can associate it with a user, but for now this is fine.
+    	newPoke = new Pokemon(trainerID, happiness, 0, 0, 0, num);
+    	
     	
     	
         return null;

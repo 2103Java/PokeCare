@@ -1,6 +1,7 @@
 package com.revature.pokecare.controllers;
 
 import com.revature.pokecare.models.Pokemon;
+import com.revature.pokecare.models.Trainer;
 import com.revature.pokecare.service.PokemonService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +64,11 @@ public class PokemonController {
 
 
     //Unsure how we actually associate the new pk with current session trainer
+    //Easy! We get our trainer ID from the session and throw it in the constructor. I hope this works!
     @RequestMapping(value = "/new", method = RequestMethod.PUT)
-    public void newPokemon(){
+    public void newPokemon(@RequestBody Trainer trainer){
         if(sessionFactory.getCurrentSession().isOpen()){
-            Pokemon newRandom = ps.getNewPokemon();
+            Pokemon newRandom = ps.getNewPokemon(trainer.getId());
         }
 
     }
