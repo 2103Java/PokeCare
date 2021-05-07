@@ -1,0 +1,19 @@
+:host {
+    position: relative;
+    display: flex;
+    left: 0;
+    right: 0;
+    top: 40%;
+    bottom: 0;
+}
+
+.box {
+    position: relative;
+    width: 20px;
+    height: 50px;
+    background-color: rgba(255, 0, 0, 0.3);
+    border-right: 4px solid red;
+    z-index: 300;
+    left: calc(50% - 150px);
+    top: calc(50% - 25px);
+}

@@ -1,0 +1,8 @@
+<app-card
+    #withBuilder
+    *ngFor="let item of items; let i = index"
+    [index]="i"
+    [position]="i"
+    (click)="onCardClick(i)"
+    (window:resize)="onResize($event)">
+</app-card>

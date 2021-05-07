@@ -1,0 +1,66 @@
+mat-sidenav-container{
+    height: 100%;
+    background-image: url("../../assets/body-bg.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+mat-sidenav, mat-sidenav-content{
+
+}
+mat-sidenav{
+    background-image: url("../../assets/pokedex sidebar.jpg");
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 40vh;
+    display: flex;
+    top: 15vh;
+    bottom: 25vh;
+}
+.arrow-right {
+    border-top: 32px solid transparent;
+    border-bottom: 32px solid transparent;
+    border-left: 32px solid black;
+    position: absolute;
+    left: 15px;
+    top: 45%;
+    width: 20px;
+    height: 10px;
+    cursor: pointer;
+    visibility: visible;
+}
+
+.inner-triangle {
+    position: absolute;
+    top: -30px;
+    right: 25px;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid #FFC300;
+}
+
+#triangleButton {
+    border-top: 33px solid transparent;
+    border-bottom: 33px solid transparent;
+    border-left: 33px solid black;
+    position: absolute;
+    left: 20px;
+    top: 35%;
+    width: 20px;
+    height: 10px;
+    cursor: pointer;
+    visibility: visible;
+}
+
+#innerTri {
+    position: absolute;
+    top: -30px;
+    right: 1px;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid #FFC300;
+}
