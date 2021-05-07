@@ -2,9 +2,8 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>com.revature.pokecare.Application</listener-class>
     </listener>
 
     <servlet>
@@ -21,5 +20,4 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
-
 </web-app>
