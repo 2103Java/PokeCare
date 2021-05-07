@@ -14,6 +14,7 @@
 // hue. Available color palettes: https://material.io/design/color/
 $PokeCare-primary: mat-palette($mat-indigo);
 $PokeCare-accent: mat-palette($mat-pink, A200, A100, A400);
+$PokeCare-green: mat-palette($mat-green, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $PokeCare-warn: mat-palette($mat-red);
@@ -25,6 +26,7 @@ $PokeCare-theme: mat-light-theme((
     primary: $PokeCare-primary,
     accent: $PokeCare-accent,
     warn: $PokeCare-warn,
+      green: $PokeCare-green
   )
 ));
 

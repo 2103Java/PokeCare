@@ -30,6 +30,7 @@ export class CardComponent implements OnInit {
     @Output() currentPosition: EventEmitter<number> = new EventEmitter<number>();
     @Input() position: number;
     cardName: string;
+    pokeName: string = "celebi";
 
   constructor() { }
 
