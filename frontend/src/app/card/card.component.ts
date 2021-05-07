@@ -29,8 +29,10 @@ export class CardComponent implements OnInit {
     @Input() index: string;
     @Output() currentPosition: EventEmitter<number> = new EventEmitter<number>();
     @Input() position: number;
+
     cardName: string;
-    pokeName: string = "lapras";
+    pokeName: string = "pinsir";
+
 
   constructor() { }
 
@@ -40,6 +42,7 @@ export class CardComponent implements OnInit {
     get cardPosition() {
         return this.position;
     }
+
     positionChange(position) {
         this.position = position;
         let positionsToMove = 0;
@@ -61,6 +64,7 @@ export class CardComponent implements OnInit {
             this.currentPosition.emit(positionsToMove);
         }
     }
+
 
 }
 

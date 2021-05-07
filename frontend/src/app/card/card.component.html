@@ -3,8 +3,9 @@
 
     <div id="img-wrapper">
         <img id="pokeimg"
-             src="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/{{pokeName}}.gif"
-             alt="No Img to Display">
+             [src]="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/{{pokeName}}.gif"
+             onError="this.src='https://www.serebii.net/pokemon/art/822.png'"
+             alt="">
 
     </div>
     <div class="text-container">
