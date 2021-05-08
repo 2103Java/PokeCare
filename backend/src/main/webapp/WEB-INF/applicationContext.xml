@@ -12,15 +12,15 @@
     <mvc:annotation-driven/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="url" value="#{systemProperties['url']}"></property>
-        <property name="username" value="#{systemProperties['username']}"></property>
-        <property name="password" value="#{systemProperties['password']}"></property>
-        <property name="driverClassName" value="org.postgresql.Driver"></property>
+        <property name="url" value="#{systemProperties['url']}"/>
+        <property name="username" value="#{systemProperties['username']}"/>
+        <property name="password" value="#{systemProperties['password']}"/>
+        <property name="driverClassName" value="org.postgresql.Driver"/>
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"></property>
-        <property name="packagesToScan" value="com.revature.pokecare.models"></property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.revature.pokecare.models"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
@@ -31,9 +31,26 @@
         </property>
     </bean>
 
-    <bean id="TrainerDatabase" class="com.revature.pokecare.repository.TrainerRepository"></bean>
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="#{systemProperties['smtp_host']}"/>
+        <property name="port" value="#{systemProperties['smtp_port']}"/>
+        <property name="username" value="#{systemProperties['email']}"/>
+        <property name="password" value="#{systemProperties['email_password']}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="#{systemProperties['email']}"/>
+    </bean>
+
+    <bean id="TrainerDatabase" class="com.revature.pokecare.repository.TrainerRepository"/>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 </beans>

@@ -6,17 +6,21 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping("/trainer")
 public class TrainerController {
-
-
     private final SessionFactory sessionFactory;
-
     private final TrainerService ts;
 
     @Autowired
@@ -33,22 +37,16 @@ public class TrainerController {
 
         if (trainerCheck == null) {
             return;
-        }
-        else{
+        } else {
             Session loginSession = sessionFactory.openSession();
         }
     }
 
-    //Put or Post for registration?
-    @RequestMapping(value = "/register", method = RequestMethod.PUT)
-    public ResponseEntity<String> putTrainer(@RequestBody Trainer newTrainer) {
-        boolean newTrPut = ts.putTrainer(newTrainer);
-
-        if (newTrPut) {
-            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
-        } else {
-            return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-        }
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<?> register(@RequestBody MultiValueMap<String, String> form) {
+        System.out.println(form);
+        return ts.register(new Trainer(form.getFirst("username"), form.getFirst("email"), form.getFirst("password"))) ?
+                new ResponseEntity<>(HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     //Delete a trainer based on a passed in JSON Trainer
@@ -71,8 +69,8 @@ public class TrainerController {
     @RequestMapping(value = "/logout")
     public void logout() {
         System.out.println("Hitting Logout");
-        if (sessionFactory.getCurrentSession().isOpen()) sessionFactory.getCurrentSession().close();
+        if (sessionFactory.getCurrentSession().isOpen()) {
+            sessionFactory.getCurrentSession().close();
+        }
     }
-
-
 }

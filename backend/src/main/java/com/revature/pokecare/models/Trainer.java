@@ -1,8 +1,12 @@
 package com.revature.pokecare.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -18,11 +22,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private int id;
 
     @Column(unique = true, nullable = false)
     private String username;
+
+    private String email;
 
     @Column(name = "pass_hash")
     private byte[] passwordHash;
@@ -32,18 +37,14 @@ public class Trainer {
     @OneToMany
     private List<Pokemon> pokeList = new ArrayList<>();
 
-    @Column
-    private String email;
-
-    @Column
     private int currency;
 
     public Trainer() {
     }
 
-    @Autowired
-    public Trainer(String username, String password) {
+    public Trainer(String username, String email, String password) {
         this.username = username;
+        this.email = email;
         this.passwordHash = hashPassword(password, salt = genSalt());
     }
 
