@@ -2,7 +2,6 @@ package com.revature.pokecare.controllers;
 
 import com.revature.pokecare.models.Trainer;
 import com.revature.pokecare.service.TrainerService;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,9 +12,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping("/trainer")
@@ -29,17 +25,15 @@ public class TrainerController {
         this.ts = ts;
     }
 
-    //login with a POST call, service layer verifies trainer exists and passwords match then opens a session, do we want to do more with the status code?
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.OK)
-    public void postTrainer(@RequestParam(name = "username") String username, @RequestParam("password") String password) {
-        Trainer trainerCheck = ts.login(username, password);
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<Trainer> postTrainer(@RequestBody MultiValueMap<String, String> form) {
+        Trainer trainer = ts.login(form.getFirst("username"), form.getFirst("password"));
 
-        if (trainerCheck == null) {
-            return;
-        } else {
-            Session loginSession = sessionFactory.openSession();
+        if (trainer == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+
+        return new ResponseEntity<>(trainer, HttpStatus.OK);
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository("TrainerDatabase")
@@ -37,8 +40,19 @@ public class TrainerRepository {
         return sf.getCurrentSession().get(Trainer.class, pkTrainer_id);
     }
 
-    public Trainer findTrainerByUsername(String pkTrainer_username) {
-        return sf.getCurrentSession().get(Trainer.class, pkTrainer_username);
+    public Trainer findTrainerByUsername(String username) {
+        Session session = sf.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Trainer> cq = cb.createQuery(Trainer.class);
+        Root<Trainer> root = cq.from(Trainer.class);
+
+        cq.select(root).where(cb.equal(root.get("username"), username));
+
+        Trainer trainer = session.createQuery(cq).getSingleResult();
+
+        session.close();
+
+        return trainer;
     }
 
     public List<Trainer> getAllTrainers() {

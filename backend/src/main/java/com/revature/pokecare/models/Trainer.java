@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -34,7 +34,8 @@ public class Trainer {
     @Column(name = "pass_salt")
     private byte[] salt;
 
-    @OneToMany
+    //@OneToMany  Removed temporarily
+    @Transient
     private List<Pokemon> pokeList = new ArrayList<>();
 
     private int currency;
