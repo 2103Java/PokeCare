@@ -31,6 +31,33 @@ public class PokemonController {
         if(sessionFactory.getCurrentSession().isOpen()) return ps.findMyPokemon(id);
         return null;
     }
+    //Training
+    //I don't know what the front end wants back from this? Please change as needed.
+    @RequestMapping(value = "/training")
+    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pk){
+    	if(sessionFactory.getCurrentSession().isOpen()) {
+    		ps.trainPokemon(pk);
+    		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+    	}
+    	
+			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+    }
+    //Feed your pokemon!
+    @RequestMapping(value = "/feed")
+    public void feedPokemon(@RequestBody Pokemon pk) {
+    	if(sessionFactory.getCurrentSession().isOpen()) {
+    		ps.feedPokemon(pk);
+    	}
+    }
+    
+    //Play with your pokemon
+    @RequestMapping(value = "/play")
+    public void playWithPokemon(@RequestBody Pokemon pk) {
+    	if(sessionFactory.getCurrentSession().isOpen()) {
+    		ps.playWithPokemon(pk);
+    	}
+    }
+    
 
     //delete a pokemon based on their unique ID
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

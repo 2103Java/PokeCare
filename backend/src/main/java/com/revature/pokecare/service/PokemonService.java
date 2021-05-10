@@ -84,8 +84,8 @@ public class PokemonService {
     	return null;
     }
     
-    public Pokemon trainPokemon(Pokemon pk, int amt) {
-    	pk.setExperience(pk.getExperience() + amt);
+    public Pokemon trainPokemon(Pokemon pk) {
+    	pk.setExperience(pk.getExperience() + 5);
     	pk = tirePokemon(pk);
     	updatePokemon(pk);
     	return pk;
