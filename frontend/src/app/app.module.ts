@@ -47,6 +47,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RegisterComponent} from './register/register.component';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { TrainComponent } from './train/train.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -55,7 +58,8 @@ import {RegisterComponent} from './register/register.component';
         CardComponent,
         CarouselComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        TrainComponent
     ],
     imports: [
         CommonModule,
@@ -95,6 +99,8 @@ import {RegisterComponent} from './register/register.component';
         MatTooltipModule,
         FlexLayoutModule,
         ReactiveFormsModule,
+        MatDialogModule,
+        NgbModule
     ],
     exports: [
         MatAutocompleteModule,
@@ -133,7 +139,9 @@ import {RegisterComponent} from './register/register.component';
         FormsModule,
         MatIconModule
     ],
-    providers: [],
+    providers: [
+        {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

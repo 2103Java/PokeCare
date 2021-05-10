@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CardData} from "./card.component.interface";
+import { TrainComponent } from '../train/train.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-card',
@@ -32,11 +34,11 @@ export class CardComponent implements OnInit {
     cardName: string;
     pokeName: string = "lapras";
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
-  ngOnInit(){
-      this.cardName = 'Title ' + this.index;
-  }
+    ngOnInit(){
+        this.cardName = 'Title ' + this.index;
+    }
     get cardPosition() {
         return this.position;
     }
@@ -60,6 +62,12 @@ export class CardComponent implements OnInit {
         if (positionsToMove !== 0) {
             this.currentPosition.emit(positionsToMove);
         }
+    }
+
+    openTraining() {
+        const dialogRef = this.dialog.open(TrainComponent, {
+            data: {pokeName : this.pokeName}
+        });
     }
 
 }
