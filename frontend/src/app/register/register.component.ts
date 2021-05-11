@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   passwordFormControl: FormControl;
   confirmPasswordFormControl: FormControl;
   matcher = new MyErrorStateMatcher();
-  
+
   constructor() {
     this.userNameFormControl = new FormControl('', [
       Validators.required
@@ -42,13 +42,14 @@ export class RegisterComponent implements OnInit {
   checkPasswords(group: FormGroup) {
     const password = group.get('password').value;
     const confirmPassword = group.get('confirmPassword').value;
-  
-    return password === confirmPassword ? null : { notSame: true }     
+
+    return password === confirmPassword ? null : { notSame: true }
   }
 
   submit() {
     if (this.form.valid) {
       console.log(this.emailFormControl);
+
     }
   }
 
