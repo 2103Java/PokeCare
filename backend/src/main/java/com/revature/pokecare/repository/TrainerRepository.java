@@ -36,8 +36,13 @@ public class TrainerRepository {
     }
 
     //SELECT METHODS
-    public Trainer findTrainerById(int pkTrainer_id) {
-        return sf.getCurrentSession().get(Trainer.class, pkTrainer_id);
+    public Trainer findTrainerById(int pkTrainer_id)
+    {
+        Trainer pkTrainer = null;
+        Session find = sf.openSession();
+        pkTrainer = find.get(Trainer.class, pkTrainer_id);
+        find.close();
+        return pkTrainer;
     }
 
     public Trainer findTrainerByUsername(String username) {
@@ -64,9 +69,10 @@ public class TrainerRepository {
 
     //UPDATE METHOD
     public boolean updateTrainer(Trainer pkTrainer) {
-        Transaction tx = sf.getCurrentSession().beginTransaction();
+        Transaction tx = sf.openSession().beginTransaction();
         sf.getCurrentSession().saveOrUpdate(pkTrainer);
         tx.commit();
+        sf.getCurrentSession().close();
         return true;
     }
 
