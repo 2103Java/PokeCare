@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import {HttpService, Trainer} from "../httpService/http.service";
 
 @Component({
   selector: 'app-register',
@@ -15,8 +16,9 @@ export class RegisterComponent implements OnInit {
   passwordFormControl: FormControl;
   confirmPasswordFormControl: FormControl;
   matcher = new MyErrorStateMatcher();
+    private trainer: Trainer;
 
-  constructor() {
+  constructor(private httpService: HttpService) {
     this.userNameFormControl = new FormControl('', [
       Validators.required
     ])
@@ -49,10 +51,12 @@ export class RegisterComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       console.log(this.emailFormControl);
-
+        this.httpService.registerRequest(this.userNameFormControl.value, this.emailFormControl.value, this.passwordFormControl.value).subscribe(data =>{
+            this.trainer = data;
+            console.log(this.trainer);
+        });
     }
   }
-
 }
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
