@@ -50,6 +50,8 @@ import {RegisterComponent} from './register/register.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { TrainComponent } from './train/train.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {HttpService} from "./httpService/http.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -100,7 +102,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         FlexLayoutModule,
         ReactiveFormsModule,
         MatDialogModule,
-        NgbModule
+        NgbModule,
+        HttpClientModule
     ],
     exports: [
         MatAutocompleteModule,
@@ -140,6 +143,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MatIconModule
     ],
     providers: [
+        HttpService,
         {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
     ],
     bootstrap: [AppComponent],
