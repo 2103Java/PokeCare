@@ -44,10 +44,13 @@ public class PokemonController {
     }
     //Feed your pokemon!
     @RequestMapping(value = "/feed", method = RequestMethod.PUT)
-    public void feedPokemon(@RequestBody Pokemon pk, HttpSession session) {
+    public ResponseEntity<String> feedPokemon(@RequestBody Pokemon pk, HttpSession session) {
     	if(session.getAttribute("PokeTrainer") != null) {
     		ps.feedPokemon(pk);
+            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
     	}
+        return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+
     }
     
     //Play with your pokemon

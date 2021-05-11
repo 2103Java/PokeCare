@@ -63,12 +63,13 @@ public class PokemonService {
     
     public Pokemon feedPokemon(Pokemon pk) {
     	if (pk != null) {
-    		int hungDown = ThreadLocalRandom.current().nextInt(5, 10);
-    		int newHung = pk.getHunger() - hungDown;
+//    		int hungDown = ThreadLocalRandom.current().nextInt(5, 10);
+    		
+    		int newHung = pk.getHunger() - 5;
     		if(newHung >=0) {
     			pk.setHunger(newHung);
     		}else {pk.setHunger(0);}
-    		updatePokemon(pk);
+    		pr.updatePokemon(pk);
     		return pk;
     	}
     	
