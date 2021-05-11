@@ -56,8 +56,10 @@ public class TrainerRepository {
     }
 
     public List<Trainer> getAllTrainers() {
-        TypedQuery<Trainer> query = sf.getCurrentSession().createQuery("FROM poketrainer", Trainer.class);
-        return query.getResultList();
+        TypedQuery<Trainer> query = sf.openSession().createQuery("FROM poketrainer", Trainer.class);
+        List<Trainer> trList = query.getResultList();
+        sf.getCurrentSession().close();
+        return trList;
     }
 
     //UPDATE METHOD
@@ -70,8 +72,9 @@ public class TrainerRepository {
 
     //DELETE METHOD
     public boolean deleteTrainer(int pkTrainer_id) {
-        Query query = sf.getCurrentSession().createQuery("DELETE poketrainer WHERE id = " + pkTrainer_id);
+        Query query = sf.openSession().createQuery("DELETE poketrainer WHERE id = " + pkTrainer_id);
         int result = query.executeUpdate();
+        sf.getCurrentSession().close();
 
         return result == 1;
     }

@@ -36,26 +36,35 @@ public class PokemonRepository {
 
     //SELECT METHODS
     public Pokemon findPokemonById(int pkId){
-        return sf.getCurrentSession().get(Pokemon.class, pkId);
+        Pokemon pk = null;
+        Session find = sf.openSession();
+        pk = find.get(Pokemon.class, pkId);
+        System.out.println(pk);
+        find.close();
+        return pk;
     }
     public List<Pokemon> findPokemonByTrainerId(int trainer_id){
-        TypedQuery<Pokemon> query = sf.getCurrentSession().createQuery("FROM pokemon WHERE trainer_id = " + trainer_id, Pokemon.class);
-        return (List<Pokemon>) query.getResultList();
+        TypedQuery<Pokemon> query = sf.openSession().createQuery("FROM pokemon WHERE trainer_id = " + trainer_id, Pokemon.class);
+        List<Pokemon> pkList = query.getResultList();
+        sf.getCurrentSession().close();
+        return pkList;
 
     }
 
     //UPDATE METHOD
     public boolean updatePokemon(Pokemon pk){
-        Transaction tx = sf.getCurrentSession().beginTransaction();
+        Transaction tx = sf.openSession().beginTransaction();
         sf.getCurrentSession().saveOrUpdate(pk);
         tx.commit();
+        sf.getCurrentSession().close();
         return true;
     }
 
     //DELETE METHOD
     public boolean deletePokemon(int pkId){
-        Query query = sf.getCurrentSession().createQuery("DELETE pokemon WHERE id = " + pkId);
+        Query query = sf.openSession().createQuery("DELETE pokemon WHERE id = " + pkId);
         int result = query.executeUpdate();
+        sf.getCurrentSession().close();
 
         return result == 1;
     }

@@ -14,21 +14,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/pokemon")
 public class PokemonController {
 
-    private final SessionFactory sessionFactory;
-
     private final PokemonService ps;
 
 
     @Autowired
-    public PokemonController(SessionFactory sessionFactory, PokemonService ps) {
-        this.sessionFactory = sessionFactory;
+    public PokemonController(PokemonService ps) {
         this.ps = ps;
     }
 
     //get a pokemon from the DB based on their unique id assigned by the DB
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public @ResponseBody Pokemon findMyPokemon(@PathVariable("id") int id) {
-        if(sessionFactory.getCurrentSession().isOpen()) return ps.findMyPokemon(id);
+    public @ResponseBody Pokemon findMyPokemon(@PathVariable("id") int id, HttpSession session) {
+        if(session.getAttribute("PokeTrainer") != null){
+            return ps.findMyPokemon(id);
+        }
         return null;
     }
     //Training
@@ -51,9 +50,9 @@ public class PokemonController {
     }
     
     //Play with your pokemon
-    @RequestMapping(value = "/play")
-    public void playWithPokemon(@RequestBody Pokemon pk) {
-    	if(sessionFactory.getCurrentSession().isOpen()) {
+    @RequestMapping(value = "/play", method = RequestMethod.PUT)
+    public void playWithPokemon(@RequestBody Pokemon pk, HttpSession session) {
+    	if(session.getAttribute("PokeTrainer") != null) {
     		ps.playWithPokemon(pk);
     	}
     }
@@ -61,11 +60,10 @@ public class PokemonController {
 
     //delete a pokemon based on their unique ID
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> deletePokemon(@PathVariable("id") int id) {
-        if (sessionFactory.getCurrentSession().isOpen()) {
+    public ResponseEntity<String> deletePokemon(@PathVariable("id") int id, HttpSession session) {
+        if (session.getAttribute("PokeTrainer") != null) {
             boolean pkDeleted = ps.deletePokemon(id);
             if (pkDeleted) {
-                sessionFactory.getCurrentSession().close();
                 return new ResponseEntity<String>(HttpStatus.ACCEPTED);
             } else {
                 return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
