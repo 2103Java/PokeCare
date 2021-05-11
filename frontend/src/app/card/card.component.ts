@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {CardData} from "./card.component.interface";
-import {ifStmt} from "@angular/compiler/src/output/output_ast";
+import {TrainComponent} from '../train/train.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-card',
@@ -25,7 +25,6 @@ import {ifStmt} from "@angular/compiler/src/output/output_ast";
     ]
 })
 
-
 export class CardComponent implements OnInit {
     @Input() index: string;
     @Output() currentPosition: EventEmitter<number> = new EventEmitter<number>();
@@ -36,7 +35,7 @@ export class CardComponent implements OnInit {
     pokeName: string = "sdf";
     errorHandled: boolean = false;
 
-    constructor() {
+    constructor(private dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -64,10 +63,10 @@ export class CardComponent implements OnInit {
         // error.target.style = "height:auto; width: 40%; top: 3rem"
     }
 
-
     positionChange(position) {
         this.position = position;
         let positionsToMove = 0;
+
         switch (position) {
             case 1:
                 positionsToMove = 1;
@@ -82,12 +81,15 @@ export class CardComponent implements OnInit {
                 positionsToMove = -1;
                 break;
         }
+
         if (positionsToMove !== 0) {
             this.currentPosition.emit(positionsToMove);
         }
     }
 
-
+    openTraining() {
+        const dialogRef = this.dialog.open(TrainComponent, {
+            data: {pokeName: this.pokeName}
+        });
+    }
 }
-
-
