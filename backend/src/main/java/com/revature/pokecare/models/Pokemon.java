@@ -29,7 +29,6 @@ public class Pokemon {
     private int experience;
 
     public Pokemon() {
-        super();
     }
 
     public Pokemon(int trainer_id, int happiness, int hunger, int fatigue, int experience, int number) {

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository("PokemonDatabase")
@@ -36,26 +37,38 @@ public class PokemonRepository {
 
     //SELECT METHODS
     public Pokemon findPokemonById(int pkId){
-        return sf.getCurrentSession().get(Pokemon.class, pkId);
+        Pokemon pk = null;
+        Session find = sf.openSession();
+        pk = find.get(Pokemon.class, pkId);
+        System.out.println(pk);
+        find.close();
+        return pk;
     }
     public List<Pokemon> findPokemonByTrainerId(int trainer_id){
-        TypedQuery<Pokemon> query = sf.getCurrentSession().createQuery("FROM pokemon WHERE trainer_id = " + trainer_id, Pokemon.class);
-        return (List<Pokemon>) query.getResultList();
+        Session session = sf.openSession();
+        TypedQuery<Pokemon> query = session.createQuery("FROM pokemon WHERE trainer_id = " + trainer_id, Pokemon.class);
+        List<Pokemon> pkList = query.getResultList();
+        session.close();
+        return pkList;
 
     }
 
     //UPDATE METHOD
     public boolean updatePokemon(Pokemon pk){
-        Transaction tx = sf.getCurrentSession().beginTransaction();
-        sf.getCurrentSession().saveOrUpdate(pk);
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
+        session.saveOrUpdate(pk);
         tx.commit();
+        session.close();
         return true;
     }
 
     //DELETE METHOD
     public boolean deletePokemon(int pkId){
-        Query query = sf.getCurrentSession().createQuery("DELETE pokemon WHERE id = " + pkId);
+        Session session = sf.openSession();
+        Query query = session.createQuery("DELETE pokemon WHERE id = " + pkId);
         int result = query.executeUpdate();
+        session.close();
 
         return result == 1;
     }

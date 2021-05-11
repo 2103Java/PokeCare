@@ -7,8 +7,12 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository("TrainerDatabase")
@@ -17,51 +21,69 @@ public class TrainerRepository {
     @Autowired
     private SessionFactory sf;
 
-    //INSERT METHOD
+    @Transactional
     public boolean insertTrainer(Trainer pkTrainer) {
-        Transaction tx = null;
-        try (Session nSession = sf.openSession()) {
+        try (Session session = sf.openSession()) {
+            Transaction tran = session.beginTransaction();
 
-            tx = nSession.beginTransaction();
-            nSession.save(pkTrainer);
-            nSession.flush();
-
-            tx.commit();
+            session.save(pkTrainer);
+            session.flush();
+            tran.commit();
         } catch (RuntimeException e) {
-            if (tx != null) tx.rollback();
             return false;
         }
-
         return true;
-
     }
 
     //SELECT METHODS
-    public Trainer findTrainerById(int pkTrainer_id) {
-        return sf.getCurrentSession().get(Trainer.class, pkTrainer_id);
+    public Trainer findTrainerById(int pkTrainer_id)
+    {
+        Trainer pkTrainer = null;
+        Session find = sf.openSession();
+        pkTrainer = find.get(Trainer.class, pkTrainer_id);
+        find.close();
+        return pkTrainer;
     }
 
-    public Trainer findTrainerByUsername(String pkTrainer_username) {
-        return sf.getCurrentSession().get(Trainer.class, pkTrainer_username);
+    public Trainer findTrainerByUsername(String username) {
+        Session session = sf.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Trainer> cq = cb.createQuery(Trainer.class);
+        Root<Trainer> root = cq.from(Trainer.class);
+
+        cq.select(root).where(cb.equal(root.get("username"), username));
+
+        Trainer trainer = session.createQuery(cq).getSingleResult();
+
+        session.close();
+
+        return trainer;
     }
 
     public List<Trainer> getAllTrainers() {
-        TypedQuery<Trainer> query = sf.getCurrentSession().createQuery("FROM poketrainer", Trainer.class);
-        return query.getResultList();
+        Session session = sf.openSession();
+        TypedQuery<Trainer> query = session.createQuery("FROM poketrainer", Trainer.class);
+        List<Trainer> trList = query.getResultList();
+        session.close();
+        return trList;
     }
 
     //UPDATE METHOD
     public boolean updateTrainer(Trainer pkTrainer) {
-        Transaction tx = sf.getCurrentSession().beginTransaction();
-        sf.getCurrentSession().saveOrUpdate(pkTrainer);
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
+        session.saveOrUpdate(pkTrainer);
         tx.commit();
+        session.close();
         return true;
     }
 
     //DELETE METHOD
     public boolean deleteTrainer(int pkTrainer_id) {
-        Query query = sf.getCurrentSession().createQuery("DELETE poketrainer WHERE id = " + pkTrainer_id);
+        Session session = sf.openSession();
+        Query query = session.createQuery("DELETE poketrainer WHERE id = " + pkTrainer_id);
         int result = query.executeUpdate();
+        session.close();
 
         return result == 1;
     }
