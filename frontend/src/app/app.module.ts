@@ -47,11 +47,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RegisterComponent} from './register/register.component';
-import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { TrainComponent } from './train/train.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import {TrainComponent} from './train/train.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpService} from "./httpService/http.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
