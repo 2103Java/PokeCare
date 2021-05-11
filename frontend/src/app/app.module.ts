@@ -47,6 +47,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RegisterComponent} from './register/register.component';
+import {HttpService} from "./httpService/http.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -95,6 +97,7 @@ import {RegisterComponent} from './register/register.component';
         MatTooltipModule,
         FlexLayoutModule,
         ReactiveFormsModule,
+        HttpClientModule
     ],
     exports: [
         MatAutocompleteModule,
@@ -133,7 +136,7 @@ import {RegisterComponent} from './register/register.component';
         FormsModule,
         MatIconModule
     ],
-    providers: [],
+    providers: [HttpService],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

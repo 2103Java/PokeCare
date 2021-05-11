@@ -1,5 +1,7 @@
 package com.revature.pokecare.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,9 +30,10 @@ public class Trainer {
     private String username;
 
     private String email;
-
+    @JsonIgnore
     @Column(name = "pass_hash")
     private byte[] passwordHash;
+    @JsonIgnore
     @Column(name = "pass_salt")
     private byte[] salt;
 

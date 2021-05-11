@@ -27,6 +27,7 @@ public class TrainerController {
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<Trainer> postTrainer(@RequestBody MultiValueMap<String, String> form) {
+
         Trainer trainer = ts.login(form.getFirst("username"), form.getFirst("password"));
 
         if (trainer == null) {

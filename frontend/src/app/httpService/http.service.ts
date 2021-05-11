@@ -27,22 +27,21 @@ export interface Trainer{
 })
 export class HttpService {
 
-    apiUrl = "/";
+    apiUrl = "/api/trainer/";
   constructor(private httpClient: HttpClient) { }
 
     registerRequest(data: Trainer): Observable<Trainer>{
-        this.apiUrl = "/register"
-        return this.httpClient.post<Trainer>(this.apiUrl, data); //this should prob. be a post
+
+        return this.httpClient.post<Trainer>(this.apiUrl+'register', data); //this should prob. be a post
     }
 
-    login(username, password): Observable<any> {
+    login(username, password): Observable<Trainer> {
 
-        this.apiUrl = "/login"
         const body = new HttpParams()
             .set('username', username)
             .set('password', password);
 
-        return this.httpClient.post(this.apiUrl,
+        return this.httpClient.post<Trainer>(this.apiUrl+'login',
             body.toString(),
             {
                 headers: new HttpHeaders()

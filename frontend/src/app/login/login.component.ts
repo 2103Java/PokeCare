@@ -35,8 +35,9 @@ export class LoginComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       console.log(this.emailFormControl);
-      this.httpService.login(this.emailFormControl, this.passwordFormControl).subscribe(data =>{
-        this.trainer = data.trainer;
+      this.httpService.login(this.emailFormControl.value, this.passwordFormControl.value).subscribe(data =>{
+        this.trainer = data;
+        console.log(this.trainer);
       });
     }
   }
