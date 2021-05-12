@@ -95,6 +95,12 @@
             <version>1.1.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.16.60</version>
+        </dependency>
+
         <!-- LOG4J DEPENDENCY -->
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
