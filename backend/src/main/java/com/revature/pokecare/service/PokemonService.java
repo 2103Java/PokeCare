@@ -55,7 +55,7 @@ public class PokemonService {
     		if ((newHapp + happUp) <= 100) {
     			pk.setHappiness((pk.getHappiness() + happUp));}
     		else {pk.setHappiness(100);}
-    			updatePokemon(pk);
+    			pr.updatePokemon(pk);
     			return pk;
     		}
     	return null;
@@ -79,19 +79,40 @@ public class PokemonService {
     public Pokemon tirePokemon(Pokemon pk) {
     	if (pk != null) {
     		pk.setFatigue(pk.getFatigue() + 5);
-    		updatePokemon(pk);
+    		pr.updatePokemon(pk);
     		return pk;
     	}
     	return null;
     }
     
-    public Pokemon trainPokemon(Pokemon pk) {
+    public Pokemon trainPokemon(Pokemon pk, int type) {
+
+    	switch (type){
+			case 1:
+				pk.setHunger(pk.getHunger() + 4);
+				pk.setFatigue(pk.getFatigue() + 4);
+				break;
+			case 2:
+				pk.setHunger(pk.getHunger() + 2);
+				pk.setFatigue(pk.getFatigue() + 7);
+				break;
+			case 3:
+				pk.setHunger(pk.getHunger() + 7);
+				pk.setFatigue(pk.getFatigue() + 2);
+				break;
+    	}
     	pk.setExperience(pk.getExperience() + 5);
-    	pk = tirePokemon(pk);
-    	updatePokemon(pk);
+    	pr.updatePokemon(pk);
     	return pk;
     }
-    
+
+    public Pokemon restPokemon(Pokemon pk) {
+    	if (pk != null){
+    		pk.setFatigue(pk.getFatigue() - 5);
+    		pr.updatePokemon(pk);
+		}
+    	return pk;
+	}
 
     public boolean updatePokemon(Pokemon pk) {
     	if (pk != null) {
