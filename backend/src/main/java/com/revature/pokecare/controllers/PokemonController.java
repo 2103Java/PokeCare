@@ -95,11 +95,11 @@ public class PokemonController {
     //Unsure how we actually associate the new pk with current session trainer
     //Easy! We get our trainer ID from the session and throw it in the constructor. I hope this works!
     @RequestMapping(value = "/new", method = RequestMethod.PUT)
-    public ResponseEntity<String> newPokemon(@RequestBody Trainer trainer, HttpSession session){
+    public ResponseEntity<Pokemon> newPokemon(@RequestBody Trainer trainer, HttpSession session){
         if(session.getAttribute("PokeTrainer") != null){
-            Pokemon newRandom = ps.getNewPokemon(trainer.getId());
-            return new ResponseEntity<String>("Your new Pokemon: " + newRandom, HttpStatus.ACCEPTED);
+            Pokemon newRandom = ps.getNewPokemon(trainer);
+            return new ResponseEntity<Pokemon>(newRandom, HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<String>("You do not have access to this page", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
