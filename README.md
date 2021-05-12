@@ -2,11 +2,8 @@
 
 PokeCare is a full-stack application which allows users to post trade items. Users are able to post items, as well as offer trades to other users.
 
-[Visit PokeCare!]()
+[Visit PokeCare!](http://pokecare.mooo.com/)
 
-[//]: # "below is MD structure to embed a gif/img "
-
-![img in assets]()
 
 ## Application Overview
 
