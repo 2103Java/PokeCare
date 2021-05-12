@@ -57,4 +57,10 @@ public class TrainerService {
 
         return true;
     }
+
+    public Trainer refreshTrainer(Trainer rTrainer){
+        Trainer refresh = tr.findTrainerByUsername(rTrainer.getUsername());
+        ps.findAllMyPokemon(refresh);
+        return refresh;
+    }
 }
