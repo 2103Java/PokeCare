@@ -51,7 +51,6 @@ mat-sidenav{
     width: 20px;
     height: 10px;
     cursor: pointer;
-    visibility: visible;
 }
 
 #innerTri {
@@ -63,4 +62,15 @@ mat-sidenav{
     border-top: 30px solid transparent;
     border-bottom: 30px solid transparent;
     border-left: 30px solid #FFC300;
+}
+#profileImgWrapper{
+position: relative;
+    top: 5px;
+}
+#profileImg{
+    height: 75px;
+    width: 75px;
+}
+#menuContainer{
+    color: #ffffff;
 }

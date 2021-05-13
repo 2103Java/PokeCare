@@ -32,7 +32,7 @@ export class CardComponent implements OnInit {
 
     cardName: string;
     //this is the name that defines what 3D model is returned.
-    pokeName: string = "xatu";
+    pokeName: string = "rayquaza";
     errorHandled: boolean = false;
 
     constructor(private dialog: MatDialog) {
