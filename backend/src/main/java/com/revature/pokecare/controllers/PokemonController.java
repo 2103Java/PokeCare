@@ -34,9 +34,9 @@ public class PokemonController {
     //Training
     //I don't know what the front end wants back from this? Please change as needed.
     @RequestMapping(value = "/training", method = RequestMethod.PUT)
-    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pk, HttpSession session){
+    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pk, @PathVariable int type, HttpSession session){
     	if(session.getAttribute("PokeTrainer") != null) {
-    		ps.trainPokemon(pk);
+    		ps.trainPokemon(pk, type);
     		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
     	}
     	
@@ -49,6 +49,16 @@ public class PokemonController {
     		ps.feedPokemon(pk);
             return new ResponseEntity<String>(HttpStatus.ACCEPTED);
     	}
+        return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+
+    }
+
+    @RequestMapping(value = "/rest", method = RequestMethod.PUT)
+    public ResponseEntity<String> restPokemon(@RequestBody Pokemon pk, HttpSession session) {
+        if(session.getAttribute("PokeTrainer") != null) {
+            ps.restPokemon(pk);
+            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+        }
         return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 
     }
