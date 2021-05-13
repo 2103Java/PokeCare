@@ -51,7 +51,7 @@ public class TrainerRepository {
         CriteriaQuery<Trainer> cq = cb.createQuery(Trainer.class);
         Root<Trainer> root = cq.from(Trainer.class);
 
-        cq.select(root).where(cb.equal(root.get("username"), username));
+        cq.select(root).where(cb.equal(root.get("username"), username)).where(cb.equal(root.get("email"), username));
 
         Trainer trainer = session.createQuery(cq).getSingleResult();
 

@@ -34,9 +34,9 @@ public class PokemonController {
     //Training
     //I don't know what the front end wants back from this? Please change as needed.
     @RequestMapping(value = "/training", method = RequestMethod.PUT)
-    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pk, HttpSession session){
+    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pk, @PathVariable int type, HttpSession session){
     	if(session.getAttribute("PokeTrainer") != null) {
-    		ps.trainPokemon(pk);
+    		ps.trainPokemon(pk, type);
     		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
     	}
     	
@@ -49,6 +49,16 @@ public class PokemonController {
     		ps.feedPokemon(pk);
             return new ResponseEntity<String>(HttpStatus.ACCEPTED);
     	}
+        return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+
+    }
+
+    @RequestMapping(value = "/rest", method = RequestMethod.PUT)
+    public ResponseEntity<String> restPokemon(@RequestBody Pokemon pk, HttpSession session) {
+        if(session.getAttribute("PokeTrainer") != null) {
+            ps.restPokemon(pk);
+            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+        }
         return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 
     }
@@ -95,11 +105,11 @@ public class PokemonController {
     //Unsure how we actually associate the new pk with current session trainer
     //Easy! We get our trainer ID from the session and throw it in the constructor. I hope this works!
     @RequestMapping(value = "/new", method = RequestMethod.PUT)
-    public ResponseEntity<String> newPokemon(@RequestBody Trainer trainer, HttpSession session){
+    public ResponseEntity<Pokemon> newPokemon(@RequestBody Trainer trainer, HttpSession session){
         if(session.getAttribute("PokeTrainer") != null){
-            Pokemon newRandom = ps.getNewPokemon(trainer.getId());
-            return new ResponseEntity<String>("Your new Pokemon: " + newRandom, HttpStatus.ACCEPTED);
+            Pokemon newRandom = ps.getNewPokemon(trainer);
+            return new ResponseEntity<Pokemon>(newRandom, HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<String>("You do not have access to this page", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,12 +1,8 @@
-# PokeCare
+# PokéCare
 
-PokeCare is a full-stack application which allows users to post trade items. Users are able to post items, as well as offer trades to other users.
+PokéCare is an interactive Pokémon daycare simulator in which you, the manager, take care of trainers’ Pokémon by feeding, playing, and training them. Users can also invite and help their friends, creating a small social aspect.
 
-[Visit PokeCare!]()
-
-[//]: # "below is MD structure to embed a gif/img "
-
-![img in assets]()
+[Visit PokéCare!](http://pokecare.mooo.com/)
 
 ## Application Overview
 
@@ -22,7 +18,7 @@ With PokeCare, Users can manage a Daycare and earn points (₽) based on how wel
 
 ---
 
-To sign up or login to your account, simply visit [the PokeCare Website]() and follow the instructions. Once you are logged in, you will be taken to your own personal profile page.
+To sign up or login to your account, simply visit [the PokeCare Website](http://pokecare.mooo.com/register) and follow the instructions. Once you are logged in, you will be taken to your own personal profile page.
 
 > ### Adding Pokemon to the daycare
 
@@ -75,3 +71,5 @@ From your profile page, simply click the "Add Pokemon" and fill out the form in 
 - [Bryan Wise](https://github.com/Coach-BWise)
 - [Seoung-David Nhem](https://github.com/dnhem27)
 - [Dante Pizzini](https://github.com/DanPizzini)
+- [Muhammad Abdul Moeed](https://github.com/abdulmoeedak)
+- [Ryan Maxwell](https://github.com/RMaxwell404)
