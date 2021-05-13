@@ -28,6 +28,17 @@ public class Pokemon {
     @Column(name = "experience")
     private int experience;
 
+    @Transient
+    private String pokeName;
+
+    public String getPokeName() {
+        return pokeName;
+    }
+
+    public void setPokeName(String pokeName) {
+        this.pokeName = pokeName;
+    }
+
     public Pokemon() {
     }
 

@@ -1,8 +1,8 @@
 package com.revature.pokecare.service;
 
+import com.revature.pokecare.models.Pokemon;
 import com.revature.pokecare.models.Trainer;
 import com.revature.pokecare.repository.TrainerRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,9 @@ public class TrainerService {
     TrainerRepository tr;
 
     @Autowired
+    PokemonService ps;
+
+    @Autowired
     MailService mailService;
 
     public Trainer login(String username, String password) {
@@ -24,6 +27,13 @@ public class TrainerService {
             Trainer train = tr.findTrainerByUsername(username);
             //And just in case the DAO passes us an empty trainer object.
             if (train != null && train.correctPassword(password)) {
+                if(PokemonService.pokes.isEmpty()) {
+                    ps.fillPokeMap();
+                }
+                ps.findAllMyPokemon(train);
+                for(Pokemon pk: train.getPokeList()){
+                    pk.setPokeName(PokemonService.pokes.get(pk.getNumber()));
+                }
                 return train;
             }
         }
@@ -46,5 +56,11 @@ public class TrainerService {
         }
 
         return true;
+    }
+
+    public Trainer refreshTrainer(Trainer rTrainer){
+        Trainer refresh = tr.findTrainerByUsername(rTrainer.getUsername());
+        ps.findAllMyPokemon(refresh);
+        return refresh;
     }
 }

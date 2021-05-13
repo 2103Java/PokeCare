@@ -63,4 +63,14 @@ public class TrainerController {
         session.invalidate();
         return new ResponseEntity<String>("Logout Successful.", HttpStatus.OK);
     }
+
+    @PostMapping(value = "/reload")
+    public ResponseEntity<Trainer> reloadTrainer(HttpSession session){
+        Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
+
+        if(trainer == null) return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+
+        Trainer refresh = ts.refreshTrainer(trainer);
+        return new ResponseEntity<>(refresh, HttpStatus.OK);
+    }
 }

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository("PokemonDatabase")
@@ -46,7 +45,7 @@ public class PokemonRepository {
     }
     public List<Pokemon> findPokemonByTrainerId(int trainer_id){
         Session session = sf.openSession();
-        TypedQuery<Pokemon> query = session.createQuery("FROM pokemon WHERE trainer_id = " + trainer_id, Pokemon.class);
+        TypedQuery<Pokemon> query = session.createQuery("FROM Pokemon WHERE trainer_id = " + trainer_id, Pokemon.class);
         List<Pokemon> pkList = query.getResultList();
         session.close();
         return pkList;
@@ -66,7 +65,7 @@ public class PokemonRepository {
     //DELETE METHOD
     public boolean deletePokemon(int pkId){
         Session session = sf.openSession();
-        Query query = session.createQuery("DELETE pokemon WHERE id = " + pkId);
+        Query query = session.createQuery("DELETE Pokemon WHERE id = " + pkId);
         int result = query.executeUpdate();
         session.close();
 
