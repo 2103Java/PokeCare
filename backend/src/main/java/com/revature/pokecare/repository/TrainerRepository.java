@@ -36,8 +36,7 @@ public class TrainerRepository {
     }
 
     //SELECT METHODS
-    public Trainer findTrainerById(int pkTrainer_id)
-    {
+    public Trainer findTrainerById(int pkTrainer_id) {
         Trainer pkTrainer = null;
         Session find = sf.openSession();
         pkTrainer = find.get(Trainer.class, pkTrainer_id);
@@ -47,13 +46,13 @@ public class TrainerRepository {
 
     public Trainer findTrainerByUsername(String username) {
         Session session = sf.openSession();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Trainer> cq = cb.createQuery(Trainer.class);
-        Root<Trainer> root = cq.from(Trainer.class);
+        CriteriaBuilder criteria = session.getCriteriaBuilder();
+        CriteriaQuery<Trainer> query = criteria.createQuery(Trainer.class);
+        Root<Trainer> trainers = query.from(Trainer.class);
 
-        cq.select(root).where(cb.equal(root.get("username"), username)).where(cb.equal(root.get("email"), username));
+        query.select(trainers).where(criteria.or(criteria.equal(trainers.get("username"), username), criteria.equal(trainers.get("email"), username)));
 
-        Trainer trainer = session.createQuery(cq).getSingleResult();
+        Trainer trainer = session.createQuery(query).getSingleResult();
 
         session.close();
 
