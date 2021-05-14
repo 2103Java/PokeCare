@@ -15,29 +15,27 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/trainer")
 public class TrainerController {
-
-    private final TrainerService ts;
+    private final TrainerService trainerService;
 
     @Autowired
-    public TrainerController(TrainerService ts) {
-        this.ts = ts;
+    public TrainerController(TrainerService trainerService) {
+        this.trainerService = trainerService;
     }
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<Trainer> postTrainer(@RequestBody MultiValueMap<String, String> form, HttpSession session) {
-        Trainer trainer = ts.login(form.getFirst("username"), form.getFirst("password"));
+        Trainer trainer = trainerService.login(form.getFirst("username"), form.getFirst("password"));
 
         if (trainer == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         session.setAttribute("PokeTrainer", trainer);
-        return new ResponseEntity<>(trainer, HttpStatus.OK);
+        return new ResponseEntity<>(trainer, HttpStatus.ACCEPTED);
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<?> register(@RequestBody MultiValueMap<String, String> form) {
-        System.out.println(form);
-        return ts.register(new Trainer(form.getFirst("username"), form.getFirst("email"), form.getFirst("password"))) ?
+        return trainerService.register(new Trainer(form.getFirst("username"), form.getFirst("email"), form.getFirst("password"))) ?
                 new ResponseEntity<>(HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
@@ -46,32 +44,27 @@ public class TrainerController {
     public ResponseEntity<String> deleteTrainer(@RequestBody Trainer dTrainer, HttpSession session) {
 
         if (session.getAttribute("PokeTrainer").equals(dTrainer)) {
-            boolean trDeleted = ts.deleteTrainer(dTrainer);
+            boolean trDeleted = trainerService.deleteTrainer(dTrainer);
             if (trDeleted) {
                 session.invalidate();
-                return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             } else {
-                return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
             }
         }
         return null;
     }
 
-    //logout ping closes the session
     @DeleteMapping(value = "/logout")
-    public ResponseEntity<String> logout(HttpSession session) {
+    @ResponseStatus(HttpStatus.OK)
+    public void logout(HttpSession session) {
         session.invalidate();
-        return new ResponseEntity<String>("Logout Successful.", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/reload")
-    public ResponseEntity<Trainer> reloadTrainer(HttpSession session){
+    @GetMapping
+    public ResponseEntity<Trainer> getTrainer(HttpSession session) {
         Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
 
-        if(trainer == null) return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-
-        Trainer refresh = ts.refreshTrainer(trainer);
-        System.out.println(refresh);
-        return new ResponseEntity<>(refresh, HttpStatus.OK);
+        return trainer == null ? new ResponseEntity<>(HttpStatus.FORBIDDEN) : new ResponseEntity<>(trainer, HttpStatus.OK);
     }
 }

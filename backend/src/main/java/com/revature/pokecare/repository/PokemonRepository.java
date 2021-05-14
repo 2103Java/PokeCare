@@ -11,16 +11,19 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository("PokemonDatabase")
+@Repository
 public class PokemonRepository {
+    private final SessionFactory sessionFactory;
 
     @Autowired
-    private SessionFactory sf;
+    public PokemonRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     //INSERT METHOD
-    public boolean insertPokemon(Pokemon pk){
+    public boolean insertPokemon(Pokemon pk) {
         Transaction tx = null;
-        try (Session nSession = sf.openSession()) {
+        try (Session nSession = sessionFactory.openSession()) {
 
             tx = nSession.beginTransaction();
             nSession.save(pk);
@@ -28,23 +31,24 @@ public class PokemonRepository {
 
             tx.commit();
         } catch (RuntimeException e) {
-            if (tx != null) tx.rollback();
+            if (tx != null) { tx.rollback(); }
             return false;
         }
         return true;
     }
 
     //SELECT METHODS
-    public Pokemon findPokemonById(int pkId){
+    public Pokemon findPokemonById(int pkId) {
         Pokemon pk = null;
-        Session find = sf.openSession();
+        Session find = sessionFactory.openSession();
         pk = find.get(Pokemon.class, pkId);
         System.out.println(pk);
         find.close();
         return pk;
     }
-    public List<Pokemon> findPokemonByTrainerId(int trainer_id){
-        Session session = sf.openSession();
+
+    public List<Pokemon> findPokemonByTrainerId(int trainer_id) {
+        Session session = sessionFactory.openSession();
         TypedQuery<Pokemon> query = session.createQuery("FROM Pokemon WHERE trainer_id = " + trainer_id, Pokemon.class);
         List<Pokemon> pkList = query.getResultList();
         session.close();
@@ -53,8 +57,8 @@ public class PokemonRepository {
     }
 
     //UPDATE METHOD
-    public boolean updatePokemon(Pokemon pk){
-        Session session = sf.openSession();
+    public boolean updatePokemon(Pokemon pk) {
+        Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         session.saveOrUpdate(pk);
         tx.commit();
@@ -63,8 +67,8 @@ public class PokemonRepository {
     }
 
     //DELETE METHOD
-    public boolean deletePokemon(int pkId){
-        Session session = sf.openSession();
+    public boolean deletePokemon(int pkId) {
+        Session session = sessionFactory.openSession();
         Query query = session.createQuery("DELETE Pokemon WHERE id = " + pkId);
         int result = query.executeUpdate();
         session.close();

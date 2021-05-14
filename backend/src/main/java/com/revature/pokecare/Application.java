@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Application extends org.springframework.web.context.ContextLoaderListener {
-    //private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("applicationContext.xml");
 
     @Override
     public void contextInitialized(ServletContextEvent event) {

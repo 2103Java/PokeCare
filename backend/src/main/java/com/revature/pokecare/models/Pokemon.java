@@ -1,5 +1,7 @@
 package com.revature.pokecare.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,43 +9,28 @@ import javax.persistence.*;
 public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
 
     @Column(name = "poke_number")
     private int number;
 
-	@Column(name = "trainer_id")
-    private int trainer_id;
+    @ManyToOne
+    @JoinColumn(name = "trainer_id", nullable = false)
+    @JsonIgnore
+    private Trainer trainer;
 
-    @Column(name = "happiness")
     private int happiness;
-
-    @Column(name = "hunger")
     private int hunger;
-
-    @Column(name = "fatigue")
     private int fatigue;
-
-    @Column(name = "experience")
     private int experience;
 
     @Transient
     private String pokeName;
 
-    public String getPokeName() {
-        return pokeName;
-    }
+    public Pokemon() {}
 
-    public void setPokeName(String pokeName) {
-        this.pokeName = pokeName;
-    }
-
-    public Pokemon() {
-    }
-
-    public Pokemon(int trainer_id, int happiness, int hunger, int fatigue, int experience, int number) {
-        this.trainer_id = trainer_id;
+    public Pokemon(Trainer trainer, int happiness, int hunger, int fatigue, int experience, int number) {
+        this.trainer = trainer;
         this.happiness = happiness;
         this.hunger = hunger;
         this.fatigue = fatigue;
@@ -60,19 +47,11 @@ public class Pokemon {
     }
 
     public int getNumber() {
-		return number;
-	}
-
-	public void setNumber(int number) {
-		this.number = number;
-	}
-
-    public int getTrainer_id() {
-        return trainer_id;
+        return number;
     }
 
-    public void setTrainer_id(int trainer_id) {
-        this.trainer_id = trainer_id;
+    public Trainer getTrainer() {
+        return trainer;
     }
 
     public int getHappiness() {
@@ -107,4 +86,11 @@ public class Pokemon {
         this.experience = experience;
     }
 
+    public String getPokeName() {
+        return pokeName;
+    }
+
+    public void setPokeName(String pokeName) {
+        this.pokeName = pokeName;
+    }
 }
