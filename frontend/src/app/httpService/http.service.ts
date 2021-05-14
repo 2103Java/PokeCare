@@ -46,13 +46,13 @@ export class HttpService {
         );
     }
 
-    login(username, password): Observable<Trainer> {
+    login(username, password): Observable<any> {
 
         const body = new HttpParams()
             .set('username', username)
             .set('password', password);
 
-        return this.httpClient.post<Trainer>(this.apiUrl+'login',
+        return this.httpClient.post<any>(this.apiUrl+'login',
             body.toString(),
             {
                 headers: new HttpHeaders()
@@ -60,6 +60,11 @@ export class HttpService {
             }
         );
     }
+
+    checkSessionImpl() {
+        return this.httpClient.get<boolean>(this.apiUrl + 'auth').toPromise();
+    }
+
 
 //     newPokemonRequest(data: Pokemon) {
 //         this.apiUrl = "/pokemon/new";

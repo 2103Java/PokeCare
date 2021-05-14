@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { HttpService, Trainer } from '../httpService/http.service';
 
 
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   passwordFormControl: FormControl;
   trainer: Trainer;
 
-  constructor(private httpService: HttpService ) {
+  constructor(private httpService: HttpService, private router : Router) {
     this.emailFormControl = new FormControl('', [
       Validators.required
     ]);
@@ -34,10 +36,10 @@ export class LoginComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      console.log(this.emailFormControl);
       this.httpService.login(this.emailFormControl.value, this.passwordFormControl.value).subscribe(data =>{
-        this.trainer = data;
-        console.log(this.trainer);
+        if (data.status == 200)
+          this.router.navigateByUrl("/care");
+        else Swal.fire("Oopss","Wrong Usernam or Password","error");
       });
     }
   }

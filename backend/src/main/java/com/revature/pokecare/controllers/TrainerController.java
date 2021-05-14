@@ -31,7 +31,7 @@ public class TrainerController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         session.setAttribute("PokeTrainer", trainer);
-        return new ResponseEntity<>(trainer, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -73,4 +73,10 @@ public class TrainerController {
         Trainer refresh = ts.refreshTrainer(trainer);
         return new ResponseEntity<>(refresh, HttpStatus.OK);
     }
+    
+    @GetMapping("/auth")
+	public Boolean auth(HttpSession httpSession) {
+		return (Trainer) httpSession.getAttribute("PokeTrainer") != null;
+	}
+	
 }
