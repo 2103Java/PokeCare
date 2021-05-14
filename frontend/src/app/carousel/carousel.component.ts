@@ -122,9 +122,4 @@ export class CarouselComponent implements AfterViewInit {
         }
     }
 
-    onResize($event: any) {
-        this.proportions();
-    }
-
-
 }

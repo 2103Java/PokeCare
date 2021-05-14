@@ -32,8 +32,8 @@ export class CardComponent implements OnInit {
 
     cardName: string;
     //this is the name that defines what 3D model is returned.
-    pokeName: string = "mr._rime";
-    errorHandled: boolean = false;
+    pokeName: string;
+    errorHandled: number = 0;
 
     constructor(private dialog: MatDialog) {
     }
@@ -48,13 +48,16 @@ export class CardComponent implements OnInit {
 
     //if the 3D model for the pokemon does not exist; we change the source to a static img.
     errHandler(error) {
-        console.log(error);
 
-        if (this.errorHandled) {
+        if (this.errorHandled == 1) {
             error.target.src = "https://www.pkparaiso.com/imagenes/xy/sprites/animados/" + this.pokeName + ".gif"
-        } else {
+            this.errorHandled++;
+        } else if (this.errorHandled == 0) {
             error.target.src = "https://www.pkparaiso.com/imagenes/ultra_sol_ultra_luna/sprites/animados-sinbordes-gigante/" + this.pokeName + ".gif"
-            this.errorHandled = true;
+            this.errorHandled++;
+        } else if (this.errorHandled == 2) {
+            error.target.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6at7RwZOM_yVpsUZWimO0o75bYbKAE1DaTg&usqp=CAU";
+            this.errorHandled = 0;
         }
         //error.target.src = "https://www.pkparaiso.com/imagenes/xy/sprites/animados/" + this.pokeName + ".gif"
         //If the above fails I need to use the below url. but I don't know how to tell typescript the above also failed

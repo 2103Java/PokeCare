@@ -1,8 +1,9 @@
 <app-card
     #withBuilder
-    *ngFor="let item of items; let i = index"
+    *ngFor="let item of items; let i = index; let poke of loggedTrainer.pokemon"
     [index]="i"
     [position]="i"
+    [poke]="poke"
     (click)="onCardClick(i)"
     (window:resize)="onResize($event)">
 </app-card>

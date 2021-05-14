@@ -11,6 +11,7 @@ export interface Pokemon{
     hunger: number;
     fatigue: number;
     xp: number;
+    pokeName: string;
 }
 
 export interface Trainer{
