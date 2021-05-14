@@ -57,20 +57,21 @@ public class TrainerController {
         return null;
     }
 
-    //lougout ping closes the session
-    @PostMapping(value = "/logout")
+    //logout ping closes the session
+    @DeleteMapping(value = "/logout")
     public ResponseEntity<String> logout(HttpSession session) {
         session.invalidate();
         return new ResponseEntity<String>("Logout Successful.", HttpStatus.OK);
     }
 
-    @PostMapping(value = "/reload")
+    @GetMapping(value = "/reload")
     public ResponseEntity<Trainer> reloadTrainer(HttpSession session){
         Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
 
         if(trainer == null) return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 
         Trainer refresh = ts.refreshTrainer(trainer);
+        System.out.println(refresh);
         return new ResponseEntity<>(refresh, HttpStatus.OK);
     }
 }

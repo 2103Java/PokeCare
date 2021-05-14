@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {HttpService, Trainer} from "../httpService/http.service";
 
 @Component({
     selector: 'app-sidenav',
@@ -7,12 +8,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-    constructor() {
+    trainer: Trainer;
+
+    constructor(private httpService: HttpService) {
     }
 
     ngOnInit(): void {
+        this.httpService.fetchTrainer().subscribe(data => {
+            this.trainer = data;
+            console.log(this.trainer);
+        })
     }
 
     opened = false;
 
+    logout(){
+        this.httpService.logout().subscribe(data=>{
+            console.log(data);
+        });
+    }
 }

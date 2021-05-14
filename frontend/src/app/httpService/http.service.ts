@@ -27,7 +27,9 @@ export interface Trainer{
 })
 export class HttpService {
 
-    apiUrl = "/api/trainer/";
+    trainerApiUrl = "/api/trainer/";
+    pokeApiUrl = "/api/pokemon/";
+
   constructor(private httpClient: HttpClient) { }
 
     registerRequest(username, email, password): Observable<Trainer>{
@@ -37,7 +39,7 @@ export class HttpService {
             .set('email', email)
             .set('password', password);
 
-        return this.httpClient.post<Trainer>(this.apiUrl+'register',
+        return this.httpClient.post<Trainer>(this.trainerApiUrl+'register',
             body.toString(),
             {
                 headers: new HttpHeaders()
@@ -52,7 +54,7 @@ export class HttpService {
             .set('username', username)
             .set('password', password);
 
-        return this.httpClient.post<Trainer>(this.apiUrl+'login',
+        return this.httpClient.post<Trainer>(this.trainerApiUrl+'login',
             body.toString(),
             {
                 headers: new HttpHeaders()
@@ -61,6 +63,13 @@ export class HttpService {
         );
     }
 
+    fetchTrainer(): Observable<Trainer>{
+      return this.httpClient.get<Trainer>(this.trainerApiUrl+"reload")
+    }
+
+    logout(): Observable<any>{
+      return this.httpClient.delete(this.trainerApiUrl+"logout", {responseType: "text"})
+    }
 //     newPokemonRequest(data: Pokemon) {
 //         this.apiUrl = "/pokemon/new";
 //         return this.httpClient.post<Pokemon>(this.apiUrl, data); //this should also prob. be a post
