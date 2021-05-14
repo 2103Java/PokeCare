@@ -11,27 +11,28 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class TrainerService {
+    private final TrainerRepository trainerRepo;
+    private final PokemonService pokemonService;
+    private final MailService mailService;
 
     @Autowired
-    TrainerRepository tr;
-
-    @Autowired
-    PokemonService ps;
-
-    @Autowired
-    MailService mailService;
+    public TrainerService(TrainerRepository trainerRepo, PokemonService pokemonService, MailService mailService) {
+        this.trainerRepo = trainerRepo;
+        this.pokemonService = pokemonService;
+        this.mailService = mailService;
+    }
 
     public Trainer login(String username, String password) {
         //Making sure these aren't empty strings. We don't want empty strings!
         if (username != null && password != null) {
-            Trainer train = tr.findTrainerByUsername(username);
+            Trainer train = trainerRepo.findTrainerByUsername(username);
             //And just in case the DAO passes us an empty trainer object.
             if (train != null && train.correctPassword(password)) {
-                if(PokemonService.pokes.isEmpty()) {
-                    ps.fillPokeMap();
+                if (PokemonService.pokes.isEmpty()) {
+                    pokemonService.fillPokeMap();
                 }
-                ps.findAllMyPokemon(train);
-                for(Pokemon pk: train.getPokeList()){
+
+                for (Pokemon pk : train.getPokemon()) {
                     pk.setPokeName(PokemonService.pokes.get(pk.getNumber()));
                 }
                 return train;
@@ -42,25 +43,19 @@ public class TrainerService {
     }
 
     public boolean register(Trainer newTrainer) {
-        if (tr.insertTrainer(newTrainer)) {
+        if (trainerRepo.insertTrainer(newTrainer)) {
             mailService.sendRegistration(newTrainer);
             return true;
         }
         return false;
     }
 
-    public boolean deleteTrainer(Trainer dTrainer) {
+    public boolean deleteTrainer(Trainer trainer) {
         //Probably need to check if the users is an admin before allowing this, but that's going to be a session thing and probably handled in the controller.
-        if (dTrainer != null) {
-            tr.deleteTrainer(dTrainer.getId());
+        if (trainer != null) {
+            trainerRepo.deleteTrainer(trainer.getId());
         }
 
         return true;
-    }
-
-    public Trainer refreshTrainer(Trainer rTrainer){
-        Trainer refresh = tr.findTrainerByUsername(rTrainer.getUsername());
-        ps.findAllMyPokemon(refresh);
-        return refresh;
     }
 }

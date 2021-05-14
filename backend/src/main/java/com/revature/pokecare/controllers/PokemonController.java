@@ -14,102 +14,100 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/pokemon")
 public class PokemonController {
-
-    private final PokemonService ps;
-
+    private final PokemonService pokemonService;
 
     @Autowired
-    public PokemonController(PokemonService ps) {
-        this.ps = ps;
+    public PokemonController(PokemonService pokemonService) {
+        this.pokemonService = pokemonService;
     }
 
     //get a pokemon from the DB based on their unique id assigned by the DB
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public @ResponseBody Pokemon findMyPokemon(@PathVariable("id") int id, HttpSession session) {
-        if(session.getAttribute("PokeTrainer") != null){
-            return ps.findMyPokemon(id);
+    @GetMapping(value = "/{id}")
+    public @ResponseBody
+    Pokemon findMyPokemon(@PathVariable("id") int id, HttpSession session) {
+        if (session.getAttribute("PokeTrainer") != null) {
+            return pokemonService.findMyPokemon(id);
         }
         return null;
     }
+
     //Training
     //I don't know what the front end wants back from this? Please change as needed.
-    @RequestMapping(value = "/training", method = RequestMethod.PUT)
-    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pk, @PathVariable int type, HttpSession session){
-    	if(session.getAttribute("PokeTrainer") != null) {
-    		ps.trainPokemon(pk, type);
-    		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
-    	}
-    	
-			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-    }
-    //Feed your pokemon!
-    @RequestMapping(value = "/feed", method = RequestMethod.PUT)
-    public ResponseEntity<String> feedPokemon(@RequestBody Pokemon pk, HttpSession session) {
-    	if(session.getAttribute("PokeTrainer") != null) {
-    		ps.feedPokemon(pk);
-            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
-    	}
-        return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-
-    }
-
-    @RequestMapping(value = "/rest", method = RequestMethod.PUT)
-    public ResponseEntity<String> restPokemon(@RequestBody Pokemon pk, HttpSession session) {
-        if(session.getAttribute("PokeTrainer") != null) {
-            ps.restPokemon(pk);
-            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+    @PutMapping(value = "/training")
+    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pokemon, @PathVariable int type, HttpSession session) {
+        if (session.getAttribute("PokeTrainer") != null) {
+            pokemonService.trainPokemon(pokemon, type);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    //Feed your pokemon!
+    @PutMapping(value = "/feed")
+    public ResponseEntity<String> feedPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
+        if (session.getAttribute("PokeTrainer") != null) {
+            pokemonService.feedPokemon(pokemon);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 
     }
-    
-    //Play with your pokemon
-    @RequestMapping(value = "/play", method = RequestMethod.PUT)
-    public void playWithPokemon(@RequestBody Pokemon pk, HttpSession session) {
-    	if(session.getAttribute("PokeTrainer") != null) {
-    		ps.playWithPokemon(pk);
-    	}
+
+    @PutMapping(value = "/rest")
+    public ResponseEntity<String> restPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
+        if (session.getAttribute("PokeTrainer") != null) {
+            pokemonService.restPokemon(pokemon);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+
     }
-    
+
+    //Play with your pokemon
+    @PutMapping(value = "/play")
+    public void playWithPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
+        if (session.getAttribute("PokeTrainer") != null) {
+            pokemonService.playWithPokemon(pokemon);
+        }
+    }
+
 
     //delete a pokemon based on their unique ID
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<String> deletePokemon(@PathVariable("id") int id, HttpSession session) {
         if (session.getAttribute("PokeTrainer") != null) {
-            boolean pkDeleted = ps.deletePokemon(id);
-            if (pkDeleted) {
-                return new ResponseEntity<String>(HttpStatus.ACCEPTED);
-            } else {
-                return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+            if (pokemonService.deletePokemon(id)) {
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
+
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         return null;
     }
 
-    //use a post method call to update pokemon
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ResponseEntity<String> postPokemon(@RequestBody Pokemon pk, HttpSession session){
-        if(session.getAttribute("PokeTrainer") != null) {
-            boolean update = ps.updatePokemon(pk);
-            if(update){
-                return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+    @PostMapping(value = "/update")
+    public ResponseEntity<String> postPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
+        if (session.getAttribute("PokeTrainer") != null) {
+            if (pokemonService.updatePokemon(pokemon)) {
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
-            else{
-                return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-            }
+
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         return null;
     }
 
+    @PutMapping(value = "/new")
+    public ResponseEntity<Pokemon> newPokemon(HttpSession session) {
+        Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
 
-    //Unsure how we actually associate the new pk with current session trainer
-    //Easy! We get our trainer ID from the session and throw it in the constructor. I hope this works!
-    @RequestMapping(value = "/new", method = RequestMethod.PUT)
-    public ResponseEntity<Pokemon> newPokemon(@RequestBody Trainer trainer, HttpSession session){
-        if(session.getAttribute("PokeTrainer") != null){
-            Pokemon newRandom = ps.getNewPokemon(trainer);
-            return new ResponseEntity<Pokemon>(newRandom, HttpStatus.ACCEPTED);
+        if (trainer == null) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        Pokemon newRandom = pokemonService.getNewPokemon(trainer);
+
+        return new ResponseEntity<>(newRandom, HttpStatus.OK);
     }
 }

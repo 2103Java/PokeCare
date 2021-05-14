@@ -1,18 +1,19 @@
 package com.revature.pokecare.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -27,8 +28,9 @@ public class Trainer {
 
     @Column(unique = true, nullable = false)
     private String username;
-
+    @Column(unique = true, nullable = false)
     private String email;
+
     @JsonIgnore
     @Column(name = "pass_hash")
     private byte[] passwordHash;
@@ -36,14 +38,12 @@ public class Trainer {
     @Column(name = "pass_salt")
     private byte[] salt;
 
-    //@OneToMany  Removed temporarily
-    @Transient
-    private List<Pokemon> pokeList = new ArrayList<>();
+    @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER)
+    private List<Pokemon> pokemon;
 
     private int currency;
 
-    public Trainer() {
-    }
+    public Trainer() {}
 
     public Trainer(String username, String email, String password) {
         this.username = username;
@@ -97,8 +97,8 @@ public class Trainer {
         this.username = username;
     }
 
-    public List<Pokemon> getPokeList() {
-        return pokeList;
+    public List<Pokemon> getPokemon() {
+        return pokemon;
     }
 
     public byte[] getPasswordHash() {
@@ -115,10 +115,6 @@ public class Trainer {
 
     public void setSalt(byte[] salt) {
         this.salt = salt;
-    }
-
-    public void setPokeList(List<Pokemon> pokeList) {
-        this.pokeList = pokeList;
     }
 
     public String getEmail() {

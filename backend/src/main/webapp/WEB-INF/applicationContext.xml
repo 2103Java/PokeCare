@@ -48,8 +48,6 @@
         <property name="from" value="#{systemProperties['email']}"/>
     </bean>
 
-    <bean id="TrainerDatabase" class="com.revature.pokecare.repository.TrainerRepository"/>
-
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
