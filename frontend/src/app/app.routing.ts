@@ -2,8 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule, Routes} from '@angular/router';
-import { AuthGuard } from './auth.guard';
-import { Auth2Guard } from './auth2.guard';
+import {AuthGuard} from './auth.guard';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
@@ -17,12 +16,12 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [Auth2Guard]
+        canActivate: [AuthGuard]
     },
     {
         path: 'register',
         component: RegisterComponent,
-        canActivate: [Auth2Guard]
+        canActivate: [AuthGuard]
     },
     {
         path: 'care',
