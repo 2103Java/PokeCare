@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -16,7 +16,7 @@ export interface Pokemon{
 export interface Trainer{
     id: number;
     username: string;
-    pokeList: Array<Pokemon>;
+    pokemon: Array<Pokemon>;
     currency: number;
 }
 
@@ -64,14 +64,14 @@ export class HttpService {
     }
 
     fetchTrainer(): Observable<Trainer>{
-      return this.httpClient.get<Trainer>(this.trainerApiUrl+"reload")
+      return this.httpClient.get<Trainer>(this.trainerApiUrl)
     }
 
-    logout(): Observable<any>{
-      return this.httpClient.delete(this.trainerApiUrl+"logout", {responseType: "text"})
+    logout(): Observable<HttpResponse<number>>{
+      return this.httpClient.delete<number>(this.trainerApiUrl+"logout", {observe:"response"})
     }
-//     newPokemonRequest(data: Pokemon) {
-//         this.apiUrl = "/pokemon/new";
-//         return this.httpClient.post<Pokemon>(this.apiUrl, data); //this should also prob. be a post
-//     }
+
+    newPokemonRequest(): Observable<Pokemon> {
+        return this.httpClient.post<Pokemon>(this.pokeApiUrl+"new","");
+    }
  }

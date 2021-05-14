@@ -98,7 +98,7 @@ public class PokemonController {
         return null;
     }
 
-    @PutMapping(value = "/new")
+    @PostMapping(value = "/new")
     public ResponseEntity<Pokemon> newPokemon(HttpSession session) {
         Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
 

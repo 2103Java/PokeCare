@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {HttpService, Trainer} from "../httpService/http.service";
+import {HttpService, Pokemon, Trainer} from "../httpService/http.service";
 
 @Component({
     selector: 'app-sidenav',
@@ -25,6 +25,12 @@ export class SidenavComponent implements OnInit {
     logout(){
         this.httpService.logout().subscribe(data=>{
             console.log(data);
+        });
+    }
+
+    addPokemon(){
+        this.httpService.newPokemonRequest().subscribe(pokemon=>{
+            this.trainer.pokemon.push(pokemon);
         });
     }
 }
