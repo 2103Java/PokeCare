@@ -25,37 +25,38 @@
             <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
                 <mat-card class="box">
                     <mat-card-header>
-                        <mat-card-title>Register</mat-card-title>
+                        <mat-card-title i18n>Register</mat-card-title>
                     </mat-card-header>
-            
+
                     <form class="example-form" [formGroup]="form" (submit)="submit()">
                         <mat-card-content>
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Username" [formControl]="userNameFormControl">
-                                <mat-error *ngIf="userNameFormControl.invalid">This field is required</mat-error>
+                                <input matInput i18n-placeholder placeholder="Username" [formControl]="userNameFormControl">
+                                <mat-error *ngIf="userNameFormControl.invalid" i18n="@@fieldRequired">This field is required</mat-error>
                             </mat-form-field>
-                            
+
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Email" [formControl]="emailFormControl">
-                                <mat-error *ngIf="emailFormControl.hasError('required')">This field is required</mat-error>
-                                <mat-error *ngIf="emailFormControl.hasError('pattern')">Enter a valid email</mat-error>
+                                <input matInput i18n-placeholder placeholder="Email" [formControl]="emailFormControl">
+                                <mat-error *ngIf="emailFormControl.hasError('required')" i18n="@@fieldRequired">This field is required</mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('pattern')" i18n>Enter a valid email</mat-error>
                             </mat-form-field>
-                
+
                             <mat-form-field class="example-full-width">
-                                <input matInput type="password" placeholder="Password" [formControl]="passwordFormControl">
-                                <mat-error *ngIf="passwordFormControl.invalid">This field is required</mat-error>
+                                <input matInput type="password" i18n-placeholder placeholder="Password" [formControl]="passwordFormControl">
+                                <mat-error *ngIf="passwordFormControl.invalid" i18n="@@fieldRequired">This field is required</mat-error>
                             </mat-form-field>
-                            
+
                             <mat-form-field class="example-full-width">
-                                <input matInput type="password" placeholder="Confirm Password" [formControl]="confirmPasswordFormControl" [errorStateMatcher]="matcher">
-                                <mat-error *ngIf="form.hasError('notSame')">
+                                <input matInput type="password" i18n-placeholder placeholder="Confirm Password" [formControl]="confirmPasswordFormControl"
+                                       [errorStateMatcher]="matcher">
+                                <mat-error *ngIf="form.hasError('notSame')" i18n>
                                     Passwords do not match
                                 </mat-error>
                             </mat-form-field>
                         </mat-card-content>
-                        <button type="submit" mat-stroked-button color="accent" class="btn-block">Register</button>
+                        <button type="submit" mat-stroked-button color="accent" class="btn-block" i18n>Register</button>
                     </form>
-                    <p class="in-center">Already registered?<span><a style="color: blue;" [routerLink]="['/']"> Log in</a></span></p>
+                    <p class="in-center" i18n>Already registered?<span><a style="color: blue;" [routerLink]="['/login']"> Log in</a></span></p>
                 </mat-card>
             </div>
         </div>

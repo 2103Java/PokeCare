@@ -1,38 +1,38 @@
 <div class="background"></div>
 <div class="container">
-
     <div id="img-wrapper">
         <img id="pokeimg"
              src="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/{{pokeName}}.gif"
-             (error)="errHandler($event)" alt="" >
-
+             (error)="errHandler($event)" alt="">
     </div>
+
     <div class="text-container">
-
         <h2>{{pokeName.charAt(0).toUpperCase() + pokeName.slice(1)}}</h2>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Happiness</li>
-            <li class="list-group-item">Hunger</li>
-            <li class="list-group-item">Fatigue</li>
-        </ul>
 
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" i18n>Happiness</li>
+            <li class="list-group-item" i18n>Hunger</li>
+            <li class="list-group-item" i18n>Fatigue</li>
+        </ul>
 
         <div class="button-container d-flex mt-2">
             <button class="btn actions" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="Train" mat-fab color="accent" aria-label="Example icon button with a home icon" (click)="openTraining()">
+                    i18n-title title="Train" mat-fab color="accent" aria-label="Example icon button with a home icon" (click)="openTraining()">
                 <mat-icon>fitness_center</mat-icon>
             </button>
+
             <button class="btn actions" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="Feed" mat-fab color="primary" aria-label="Example icon button with a home icon">
+                    i18n-title title="Feed" mat-fab color="primary" aria-label="Example icon button with a home icon">
                 <mat-icon>bakery_dining</mat-icon>
             </button>
+
             <button class="btn actions" id="playBtn" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="Play" mat-fab color="green" aria-label="Example icon button with a home icon">
+                    i18n-title title="Play" mat-fab color="green" aria-label="Example icon button with a home icon">
                 <mat-icon>sports_soccer</mat-icon>
             </button>
 
             <button class="btn actions" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="Return Pokemon" mat-fab color="warn" aria-label="Example icon button with a home icon">
+                    i18n-title title="Return Pokemon" mat-fab color="warn" aria-label="Example icon button with a home icon">
                 <mat-icon>home</mat-icon>
             </button>
         </div>

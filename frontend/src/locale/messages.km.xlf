@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en-US" datatype="plaintext" original="ng2.template">
+        <body>
+        <!--  Pokemon card translation template      -->
+            <trans-unit id="186438646547177289" datatype="html">
+                <source>Happiness</source>
+                <target>សប្បាយរីករាយ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/card/card.component.html</context>
+                    <context context-type="linenumber">14</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="2481115355110307732" datatype="html">
+                <source>Hunger</source>
+                <target>ស្រេកឃ្លាន</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/card/card.component.html</context>
+                    <context context-type="linenumber">15</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4821876022938668767" datatype="html">
+                <source>Fatigue</source>
+                <target>ហត់កម្លាំង</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/card/card.component.html</context>
+                    <context context-type="linenumber">16</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4172345182949733528" datatype="html">
+                <source>Train</source>
+                <target>ហ្វឹកហាត់</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/card/card.component.html</context>
+                    <context context-type="linenumber">22</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="642534594356440342" datatype="html">
+                <source>Feed</source>
+                <target>ចិញ្ចឹម</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/card/card.component.html</context>
+                    <context context-type="linenumber">26</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="8564202903947049539" datatype="html">
+                <source>Play</source>
+                <target>លេង</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/card/card.component.html</context>
+                    <context context-type="linenumber">30</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4187066187133719197" datatype="html">
+                <source>Return Pokemon</source>
+                <target>អោយPokemonវិញ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/card/card.component.html</context>
+                    <context context-type="linenumber">34</context>
+                </context-group>
+            </trans-unit>
+        <!-- login page translation template-->
+            <trans-unit id="2336550011721758066" datatype="html">
+                <source>Log in</source>
+                <target>ចូល</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/login/login.component.html</context>
+                    <context context-type="linenumber">28</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="8753404881694620186" datatype="html">
+                <source>Username or Email</source>
+                <target>ឈ្មោះ​អ្នកប្រើប្រាស់​ ឬ អ៊ីមែល</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/login/login.component.html</context>
+                    <context context-type="linenumber">34</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="fieldRequired" datatype="html">
+                <source>This field is required</source>
+                <target>ចន្លោះនេះត្រូវតែបំពេញ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/login/login.component.html</context>
+                    <context context-type="linenumber">35</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/login/login.component.html</context>
+                    <context context-type="linenumber">40</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="1431416938026210429" datatype="html">
+                <source>Password</source>
+                <target>លេខសម្ងាត់</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/login/login.component.html</context>
+                    <context context-type="linenumber">39</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="1850077569209729387" datatype="html">
+                <source>Don&apos;t have an account?
+                    <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a style=&quot;color: blue;&quot; [routerLink]=&quot;[&apos;/register&apos;]&quot;&gt;"/>
+                    Register
+                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>
+                    <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+                </source>
+                <target>ឣត់មានគណនីមែនទេ?
+                    <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a style=&quot;color: blue;&quot; [routerLink]=&quot;[&apos;/register&apos;]&quot;&gt;"/>
+                    ចុះឈ្មោះ
+                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>
+                    <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/login/login.component.html</context>
+                    <context context-type="linenumber">45</context>
+                </context-group>
+            </trans-unit>
+
+            <!-- register page translation template-->
+            <trans-unit id="3301086086650990787" datatype="html">
+                <source>Register</source>
+                <target>ចុះឈ្មោះ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">28</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">56</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="5248717555542428023" datatype="html">
+                <source>Username</source>
+                <target>ឈ្មោះ​អ្នកប្រើប្រាស់​</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">34</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4768749765465246664" datatype="html">
+                <source>Email</source>
+                <target>អ៊ីមែល</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">39</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="508057353462157470" datatype="html">
+                <source>Enter a valid email</source>
+                <target>បញ្ចូលអ៊ីមែលអោយត្រឹមត្រូវ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">41</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="3241357959735682038" datatype="html">
+                <source>Confirm Password</source>
+                <target>បញ្ជាក់លេខសម្ងាត់</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">50</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4314910104023472121" datatype="html">
+                <source>Passwords do not match</source>
+                <target>លេខសម្ងាត់មិនត្រូវគ្នា</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">52,53</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="9046587285551872897" datatype="html">
+                <source>Already registered?
+                    <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a style=&quot;color: blue;&quot; [routerLink]=&quot;[&apos;/&apos;]&quot;&gt;"/>
+                    Log in
+                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>
+                    <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+                </source>
+                <target>បានចុះឈ្មោះរួចហើយ?
+                    <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                    <x id="START_LINK" ctype="x-a" equiv-text="&lt;a style=&quot;color: blue;&quot; [routerLink]=&quot;[&apos;/&apos;]&quot;&gt;"/>
+                    ចូល
+                    <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>
+                    <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/register/register.component.html</context>
+                    <context context-type="linenumber">58</context>
+                </context-group>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
