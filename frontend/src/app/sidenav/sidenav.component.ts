@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {HttpService, Pokemon, Trainer} from "../httpService/http.service";
+import {Component, OnInit} from '@angular/core';
+import {HttpService, Trainer} from "../httpService/http.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-sidenav',
@@ -7,30 +8,27 @@ import {HttpService, Pokemon, Trainer} from "../httpService/http.service";
     styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
+    opened = false;
 
-    trainer: Trainer;
-
-    constructor(private httpService: HttpService) {
+    constructor(private httpService: HttpService, private router: Router) {
     }
 
     ngOnInit(): void {
-        this.httpService.fetchTrainer().subscribe(data => {
-            this.trainer = data;
-            console.log(this.trainer);
-        })
     }
 
-    opened = false;
-
-    logout(){
-        this.httpService.logout().subscribe(data=>{
-            console.log(data);
+    logout() {
+        this.httpService.logout().subscribe(data => {
+            this.router.navigateByUrl("/login");
         });
     }
 
-    addPokemon(){
-        this.httpService.newPokemonRequest().subscribe(pokemon=>{
-            this.trainer.pokemon.push(pokemon);
+    addPokemon() {
+        this.httpService.newPokemonRequest().subscribe(pokemon => {
+            this.httpService.trainer.pokemon.push(pokemon);
         });
+    }
+
+    get trainer(): Trainer {
+        return this.httpService.trainer;
     }
 }
