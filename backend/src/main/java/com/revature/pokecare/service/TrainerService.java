@@ -28,12 +28,8 @@ public class TrainerService {
             Trainer train = trainerRepo.findTrainerByUsername(username);
             //And just in case the DAO passes us an empty trainer object.
             if (train != null && train.correctPassword(password)) {
-                if (PokemonService.pokes.isEmpty()) {
-                    pokemonService.fillPokeMap();
-                }
-
                 for (Pokemon pk : train.getPokemon()) {
-                    pk.setPokeName(PokemonService.pokes.get(pk.getNumber()));
+                    pk.setData(pokemonService.getPokemonData(pk.getNumber()));
                 }
                 return train;
             }

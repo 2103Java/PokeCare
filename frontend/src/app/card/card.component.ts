@@ -43,7 +43,7 @@ export class CardComponent implements OnInit {
 
     ngOnInit() {
         this.cardName = 'Title ' + this.index;
-        this.pokeName = this.poke.pokeName;
+        this.pokeName = this.poke.data.name;
     }
 
     get cardPosition() {

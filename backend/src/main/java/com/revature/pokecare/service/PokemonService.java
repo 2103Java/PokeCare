@@ -6,22 +6,20 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.GetRequest;
 import com.revature.pokecare.models.Pokemon;
+import com.revature.pokecare.models.PokemonData;
 import com.revature.pokecare.models.Trainer;
 import com.revature.pokecare.repository.PokemonRepository;
 import com.revature.pokecare.repository.TrainerRepository;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class PokemonService {
-    public static Map<Integer, String> pokes = new HashMap<>();
+    private final PokemonData[] pokemonData = new PokemonData[898];
 
     private final PokemonRepository pokemonRepo;
     private final TrainerRepository trainerRepo;
@@ -81,7 +79,7 @@ public class PokemonService {
         pokemonRepo.insertPokemon(newPoke);
 
         trainer.getPokemon().add(newPoke);
-        newPoke.setPokeName(pokes.get(num));
+        newPoke.setData(getPokemonData(num));
 
         return newPoke;
     }
@@ -166,20 +164,26 @@ public class PokemonService {
         return false;
     }
 
-    public void fillPokeMap() {
-        GetRequest getRequest = Unirest.get("https://pokeapi.co/api/v2/pokemon?limit=898&offset=0");
+    public PokemonData getPokemonData(int pokeId) {
+        pokeId--;
+
+        if (pokemonData[pokeId] != null) {
+            return pokemonData[pokeId];
+        }
+
+        GetRequest getRequest = Unirest.get("https://pokeapi.co/api/v2/pokemon/" + (pokeId + 1));
 
         try {
             HttpResponse<JsonNode> jsonNodeHttpResponse = getRequest.asJson();
             JsonNode body = jsonNodeHttpResponse.getBody();
-            JSONObject fullResponse = body.getObject();
-            JSONArray results = fullResponse.getJSONArray("results");
+            JSONObject poke = body.getObject();
 
-            for (int i = 0; i < 898; i++) {
-                pokes.put(i + 1, results.getJSONObject(i).getString("name"));
-            }
+            pokemonData[pokeId] = new PokemonData(poke.getJSONObject("species").getString("name"),
+                    poke.getJSONArray("types").getJSONObject(0).getJSONObject("type").getString("name"));
         } catch (UnirestException e) {
             e.printStackTrace();
         }
+
+        return pokemonData[pokeId];
     }
 }

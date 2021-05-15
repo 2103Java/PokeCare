@@ -18,8 +18,92 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#55ffff', endColorstr='#00ffffff', GradientType=0);
 }
 
+::ng-deep :root {
+    --shadowColor: #A8A878;
+}
+
 :host:hover {
-    box-shadow: 0 0 14px 6px greenyellow;
+    box-shadow: 0 0 14px 6px var(--shadowColor);
+}
+
+::ng-deep .normal {
+    --shadowColor: #A8A878;
+}
+
+::ng-deep .fighting {
+    --shadowColor: #C03028;
+}
+
+::ng-deep .flying {
+    --shadowColor: #A890F0;
+}
+
+::ng-deep .poison {
+    --shadowColor: #A040A0;
+}
+
+::ng-deep .ground {
+    --shadowColor: #E0C068;
+}
+
+::ng-deep .rock {
+    --shadowColor: #B8A038;
+}
+
+::ng-deep .bug {
+    --shadowColor: #A8B820;
+}
+
+::ng-deep .ghost {
+    --shadowColor: #705898;
+}
+
+::ng-deep .steel {
+    --shadowColor: #B8B8D0;
+}
+
+::ng-deep .fire {
+    --shadowColor: #F08030;
+}
+
+::ng-deep .water {
+    --shadowColor: #6890F0;
+}
+
+::ng-deep .grass {
+    --shadowColor: #78C850;
+}
+
+::ng-deep .electric {
+    --shadowColor: #F8D030;
+}
+
+::ng-deep .psychic {
+    --shadowColor: #F85888;
+}
+
+::ng-deep .ice {
+    --shadowColor: #98D8D8;
+}
+
+::ng-deep .dragon {
+    --shadowColor: #7038F8;
+}
+
+::ng-deep .dark {
+    --shadowColor: #705848;
+}
+
+::ng-deep .fairy {
+    --shadowColor: #EE99AC;
+}
+
+::ng-deep .unknown {
+    --shadowColor: #68A090;
+}
+
+::ng-deep .shadow {
+    --shadowColor: #100017FF;
 }
 
 .background {

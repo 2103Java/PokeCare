@@ -12,6 +12,7 @@ import {
 import {animate, AnimationBuilder, AnimationPlayer, style} from "@angular/animations";
 import {CardComponent} from "../card/card.component";
 import {Trainer, Pokemon, HttpService} from "../httpService/http.service";
+
 // import * as M from "../../assets/materialize/js/materialize.min.js";
 
 @Component({
@@ -19,7 +20,7 @@ import {Trainer, Pokemon, HttpService} from "../httpService/http.service";
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit, AfterViewInit{
+export class CarouselComponent implements OnInit, AfterViewInit {
     @Input() loggedTrainer: Trainer;
     @ViewChildren('withBuilder') cards: QueryList<CardComponent>;
     @ViewChildren('withBuilder', {read: ElementRef}) elCards: QueryList<ElementRef>;

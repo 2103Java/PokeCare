@@ -10,7 +10,12 @@ export interface Pokemon {
     hunger: number;
     fatigue: number;
     xp: number;
-    pokeName: string;
+    data: PokemonData;
+}
+
+export interface PokemonData {
+    name: string;
+    type: string;
 }
 
 export interface Trainer {

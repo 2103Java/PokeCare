@@ -25,7 +25,7 @@ public class Pokemon {
     private int experience;
 
     @Transient
-    private String pokeName;
+    private PokemonData data;
 
     public Pokemon() {}
 
@@ -86,11 +86,11 @@ public class Pokemon {
         this.experience = experience;
     }
 
-    public String getPokeName() {
-        return pokeName;
+    public PokemonData getData() {
+        return data;
     }
 
-    public void setPokeName(String pokeName) {
-        this.pokeName = pokeName;
+    public void setData(PokemonData data) {
+        this.data = data;
     }
 }

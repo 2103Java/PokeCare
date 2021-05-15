@@ -1,6 +1,7 @@
 <app-card
     #withBuilder
     *ngFor="let item of items; let i = index; let poke of loggedTrainer.pokemon"
+    [class]="poke.data.type"
     [index]="i"
     [position]="i"
     [poke]="poke"
