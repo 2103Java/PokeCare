@@ -1,13 +1,26 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    Input,
+    OnChanges,
+    OnInit,
+    QueryList,
+    ViewChild,
+    ViewChildren
+} from '@angular/core';
 import {animate, AnimationBuilder, AnimationPlayer, style} from "@angular/animations";
 import {CardComponent} from "../card/card.component";
+import {Trainer, Pokemon, HttpService} from "../httpService/http.service";
+// import * as M from "../../assets/materialize/js/materialize.min.js";
 
 @Component({
     selector: 'app-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements AfterViewInit {
+export class CarouselComponent implements OnInit, AfterViewInit{
+    @Input() loggedTrainer: Trainer;
     @ViewChildren('withBuilder') cards: QueryList<CardComponent>;
     @ViewChildren('withBuilder', {read: ElementRef}) elCards: QueryList<ElementRef>;
     @ViewChild('withBuilder', {read: ElementRef}) baseCard: ElementRef;
@@ -24,8 +37,11 @@ export class CarouselComponent implements AfterViewInit {
     private propCanvasCard = 0;
     private cardsArr = [];
 
+    constructor(private animationBuilder: AnimationBuilder, private elementRef: ElementRef, private httpService: HttpService) {
+    }
 
-    constructor(private animationBuilder: AnimationBuilder, private elementRef: ElementRef) {
+    ngOnInit() {
+        this.loggedTrainer = this.httpService.trainer;
 
     }
 
@@ -33,6 +49,7 @@ export class CarouselComponent implements AfterViewInit {
         this.cardsArr = this.cards.toArray();
         this.proportions();
     }
+
 
     private proportions() {
         const el = this.elementRef.nativeElement;
@@ -121,5 +138,10 @@ export class CarouselComponent implements AfterViewInit {
                 break;
         }
     }
+
+    onResize($event: any) {
+        this.proportions();
+    }
+
 
 }

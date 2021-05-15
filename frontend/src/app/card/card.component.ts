@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {TrainComponent} from '../train/train.component';
 import {MatDialog} from '@angular/material/dialog';
+import {Pokemon} from "../httpService/http.service";
 
 @Component({
     selector: 'app-card',
@@ -29,6 +30,7 @@ export class CardComponent implements OnInit {
     @Input() index: string;
     @Output() currentPosition: EventEmitter<number> = new EventEmitter<number>();
     @Input() position: number;
+    @Input() poke: Pokemon;
 
     cardName: string;
     //this is the name that defines what 3D model is returned.
@@ -40,6 +42,7 @@ export class CardComponent implements OnInit {
 
     ngOnInit() {
         this.cardName = 'Title ' + this.index;
+        this.pokeName = this.poke.pokeName;
     }
 
     get cardPosition() {
