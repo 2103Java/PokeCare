@@ -2,7 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {TrainComponent} from '../train/train.component';
 import {MatDialog} from '@angular/material/dialog';
-import {Pokemon} from "../httpService/http.service";
+import {HttpService, Pokemon} from "../httpService/http.service";
+import {ReturnComponent} from "../return/return.component";
 
 @Component({
     selector: 'app-card',
@@ -96,6 +97,12 @@ export class CardComponent implements OnInit {
     openTraining() {
         const dialogRef = this.dialog.open(TrainComponent, {
             data: {pokeName: this.pokeName}
+        });
+    }
+
+    returnPokemon() {
+        this.dialog.open(ReturnComponent, {
+            data: {pokemon: this.poke}
         });
     }
 }

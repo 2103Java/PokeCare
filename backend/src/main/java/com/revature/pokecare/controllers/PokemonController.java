@@ -72,18 +72,18 @@ public class PokemonController {
         }
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Integer> returnPokemon(@PathVariable("id") int id, HttpSession session) {
+        Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
 
-    //delete a pokemon based on their unique ID
-    @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<String> deletePokemon(@PathVariable("id") int id, HttpSession session) {
-        if (session.getAttribute("PokeTrainer") != null) {
-            if (pokemonService.deletePokemon(id)) {
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        if (trainer != null) {
+            int money = pokemonService.returnPokemon(trainer, id);
+
+            if (money > 0) {
+                return new ResponseEntity<>(money, HttpStatus.ACCEPTED);
             }
-
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping(value = "/update")

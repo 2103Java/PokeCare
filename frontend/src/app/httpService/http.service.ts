@@ -91,4 +91,8 @@ export class HttpService {
     get trainer() {
         return this._trainer;
     }
+
+    returnPokemon(pokemon: Pokemon): Observable<number> {
+        return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
+    }
 }

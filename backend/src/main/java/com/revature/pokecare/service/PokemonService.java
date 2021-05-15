@@ -8,27 +8,28 @@ import com.mashape.unirest.request.GetRequest;
 import com.revature.pokecare.models.Pokemon;
 import com.revature.pokecare.models.Trainer;
 import com.revature.pokecare.repository.PokemonRepository;
+import com.revature.pokecare.repository.TrainerRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
-@Transactional
 public class PokemonService {
     public static Map<Integer, String> pokes = new HashMap<>();
 
     private final PokemonRepository pokemonRepo;
+    private final TrainerRepository trainerRepo;
 
     @Autowired
-    public PokemonService(PokemonRepository pokemonRepo) {
+    public PokemonService(PokemonRepository pokemonRepo, TrainerRepository trainerRepo) {
         this.pokemonRepo = pokemonRepo;
+        this.trainerRepo = trainerRepo;
     }
 
     public Pokemon findMyPokemon(int id) {
@@ -43,12 +44,27 @@ public class PokemonService {
         return null;
     }
 
-    public boolean deletePokemon(int id) {
-        if (id != 0) {
-            pokemonRepo.deletePokemon(id);
-            return true;
+    public int returnPokemon(Trainer trainer, int id) {
+        Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == id).findFirst().orElse(null);
+
+        if (pokemon != null && pokemonRepo.deletePokemon(pokemon)) {
+            int money = 100 * pokemon.getHappiness();
+
+            if (pokemon.getHunger() > 10) {
+                money /= pokemon.getHunger();
+            }
+
+            if (pokemon.getExperience() > 1) {
+                money /= (double) pokemon.getFatigue() / 10;
+            }
+
+            trainer.getPokemon().remove(pokemon);
+            trainer.setCurrency(trainer.getCurrency() + money);
+            trainerRepo.updateTrainer(trainer);
+
+            return money;
         }
-        return false;
+        return 0;
     }
 
     public Pokemon getNewPokemon(Trainer trainer) {

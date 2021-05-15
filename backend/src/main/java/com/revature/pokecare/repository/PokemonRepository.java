@@ -4,7 +4,6 @@ import com.revature.pokecare.models.Pokemon;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -56,7 +55,6 @@ public class PokemonRepository {
 
     }
 
-    //UPDATE METHOD
     public boolean updatePokemon(Pokemon pk) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -66,13 +64,13 @@ public class PokemonRepository {
         return true;
     }
 
-    //DELETE METHOD
-    public boolean deletePokemon(int pkId) {
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("DELETE Pokemon WHERE id = " + pkId);
-        int result = query.executeUpdate();
-        session.close();
+    public boolean deletePokemon(Pokemon pokemon) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tran = session.beginTransaction();
 
-        return result == 1;
+            session.delete(pokemon);
+            tran.commit();
+        }
+        return true;
     }
 }

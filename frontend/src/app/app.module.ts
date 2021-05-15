@@ -20,6 +20,7 @@ import {TrainComponent} from './train/train.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpService} from "./httpService/http.service";
 import {HttpClientModule} from "@angular/common/http";
+import { ReturnComponent } from './return/return.component';
 
 
 
@@ -31,7 +32,8 @@ import {HttpClientModule} from "@angular/common/http";
         CarouselComponent,
         LoginComponent,
         RegisterComponent,
-        TrainComponent
+        TrainComponent,
+        ReturnComponent
     ],
     imports: [
         CommonModule,
