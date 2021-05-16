@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService, Trainer} from "../httpService/http.service";
 import {Router} from "@angular/router";
+import { MatDialog } from '@angular/material/dialog';
+import { UploadImageComponent } from '../upload-image/upload-image.component';
 
 @Component({
     selector: 'app-sidenav',
@@ -10,7 +12,7 @@ import {Router} from "@angular/router";
 export class SidenavComponent implements OnInit {
     opened = false;
 
-    constructor(private httpService: HttpService, private router: Router) {
+    constructor(private httpService: HttpService, private router: Router, private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
@@ -26,6 +28,10 @@ export class SidenavComponent implements OnInit {
         this.httpService.newPokemonRequest().subscribe(pokemon => {
             this.httpService.trainer.pokemon.push(pokemon);
         });
+    }
+    
+    uploadImage() {
+        const dialogRef = this.dialog.open(UploadImageComponent);
     }
 
     get trainer(): Trainer {

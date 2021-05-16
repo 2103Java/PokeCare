@@ -21,6 +21,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpService} from "./httpService/http.service";
 import {HttpClientModule} from "@angular/common/http";
 import { ReturnComponent } from './return/return.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 
 
@@ -33,7 +34,8 @@ import { ReturnComponent } from './return/return.component';
         LoginComponent,
         RegisterComponent,
         TrainComponent,
-        ReturnComponent
+        ReturnComponent,
+        UploadImageComponent
     ],
     imports: [
         CommonModule,
@@ -46,7 +48,8 @@ import { ReturnComponent } from './return/return.component';
         ReactiveFormsModule,
         NgbModule,
         HttpClientModule,
-        MaterialModule
+        MaterialModule,
+        FormsModule
     ],
     exports: [
         PortalModule,
