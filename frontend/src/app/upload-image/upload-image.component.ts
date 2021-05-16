@@ -1,6 +1,7 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, ViewChild} from '@angular/core';
 import Swal from 'sweetalert2';
 import {HttpService} from '../httpService/http.service';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
     selector: 'app-upload-image',
@@ -13,7 +14,7 @@ export class UploadImageComponent {
     fileAttr: any;
     message: string;
 
-    constructor(private httpService: HttpService) {
+    constructor(private httpService: HttpService, @Inject(MAT_DIALOG_DATA) public data: object) {
     }
 
     readURL(event) {
@@ -39,8 +40,9 @@ export class UploadImageComponent {
     }
 
     upload() {
-        this.httpService.upload(this.files[0]).subscribe(data => {
-            if (data.status == 200) {
+        this.httpService.upload(this.files[0]).subscribe(response => {
+            if (response.status == 200) {
+                this.data['img']['src'] = this.fileAttr;
                 Swal.fire("Success", "Image Uploaded Successfully", "success");
             } else {
                 Swal.fire("Oopss", "Something Went Wrong", "error");
