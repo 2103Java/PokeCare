@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     submit() {
         if (this.form.valid) {
             this.httpService.login(this.emailFormControl.value, this.passwordFormControl.value).subscribe(trainer => {
-                if (trainer) {
+                if (trainer.id != null) {
                     this.router.navigateByUrl("/care");
                 } else {
                     Swal.fire("Oopss", "Wrong Username or Password", "error");

@@ -100,4 +100,12 @@ export class HttpService {
     returnPokemon(pokemon: Pokemon): Observable<number> {
         return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
     }
+
+    upload(pic): Observable<any> {
+        const data = new FormData();
+
+        data.append('pic', pic);
+
+        return this.httpClient.put(this.trainerApiUrl + "profile", data, {observe: 'response'});
+    }
 }

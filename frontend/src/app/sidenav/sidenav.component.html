@@ -4,17 +4,16 @@
             <div class="row mt-4 ms-1 pe-0">
                 <div class="col-4" id="profileImgWrapper">
                     <div class="dropdown">
-                        <img
-                            src="https://w7.pngwing.com/pngs/1021/743/png-transparent-ash-ketchum-and-pikachu-ash-ketchum-pokxe9mon-x-and-y-pokxe9mon-sun-and-moon-pikachu-misty-pokemon-ash-free-chibi-boy-fictional-character-thumbnail.png"
-                            class="img-thumbnail rounded-circle dropdown-toggle" id="profileImg" alt="..." type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <img #profileImg src="https://pokecare.s3.amazonaws.com/{{trainer.id}}" (error)="fallbackImage($event)"
+                             class="img-thumbnail rounded-circle dropdown-toggle" id="profileImg" alt="..." type="button"
+                             data-bs-toggle="dropdown" aria-expanded="false">
 
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileImg">
                             <li>
                                 <button class="dropdown-item" type="button" (click)="addPokemon()" i18n>Add Pokemon</button>
                             </li>
                             <li>
-                                <button class="dropdown-item" type="button" i18n>Upload Photo</button>
+                                <button class="dropdown-item" type="button" (click)="uploadImage()" i18n>Upload Photo</button>
                             </li>
                             <li>
                                 <button class="dropdown-item" type="button" i18n>Settings</button>
