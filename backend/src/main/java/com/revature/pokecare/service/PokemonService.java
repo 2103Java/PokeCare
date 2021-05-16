@@ -101,21 +101,23 @@ public class PokemonService {
         return null;
     }
 
-    public Pokemon feedPokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-//    		int hungDown = ThreadLocalRandom.current().nextInt(5, 10);
-
-            int newHung = pokemon.getHunger() - 5;
-            if (newHung >= 0) {
-                pokemon.setHunger(newHung);
-            } else {
-                pokemon.setHunger(0);
-            }
-
-            pokemonRepo.updatePokemon(pokemon);
-            return pokemon;
+    public boolean feedPokemon(Trainer trainer, int id) {
+        if (trainer.getCurrency() < 100) {
+            return false;
         }
-        return null;
+
+        Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == id).findFirst().orElse(null);
+
+        if (pokemon == null) {
+            return false;
+        }
+
+        pokemon.setHunger(Math.max(pokemon.getHunger() - 50, 0));
+        pokemonRepo.updatePokemon(pokemon);
+
+        trainer.setCurrency(trainer.getCurrency() - 100);
+        trainerRepo.updateTrainer(trainer);
+        return true;
     }
 
     public Pokemon tirePokemon(Pokemon pokemon) {

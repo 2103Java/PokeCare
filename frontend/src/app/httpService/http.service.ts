@@ -97,6 +97,10 @@ export class HttpService {
         return this._trainer;
     }
 
+    feedPokemon(pokemon: Pokemon): Observable<any> {
+        return this.httpClient.put(this.pokeApiUrl + "feed/" + pokemon.id, "");
+    }
+
     returnPokemon(pokemon: Pokemon): Observable<number> {
         return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
     }
