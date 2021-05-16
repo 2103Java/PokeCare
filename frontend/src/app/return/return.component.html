@@ -1,10 +1,10 @@
 <mat-dialog-actions>
-    <h1>Are you sure you want to return {{pokemon.data.name}} to its trainer?</h1>
+    <h1 i18n>Are you sure you want to return {{pokemon.data.name}} to its trainer?</h1>
 
     <div class="row" style="width: 100%;">
         <div class="col-md-6" style="text-align: right;">
-            <button mat-button mat-dialog-close>No</button>
-            <button #applyButton mat-button mat-dialog-close cdkFocusInitial (click)="return()">Yes</button>
+            <button mat-button mat-dialog-close i18n>No</button>
+            <button #applyButton mat-button mat-dialog-close cdkFocusInitial (click)="return()" i18n>Yes</button>
         </div>
     </div>
 </mat-dialog-actions>

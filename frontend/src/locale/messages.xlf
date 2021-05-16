@@ -409,6 +409,27 @@
           <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8028174215132496680" datatype="html">
+        <source>Are you sure you want to return <x id="INTERPOLATION" equiv-text="{{pokemon.data.name}}"/> to its trainer?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/return/return.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3542042671420335679" datatype="html">
+        <source>No</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/return/return.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2807800733729323332" datatype="html">
+        <source>Yes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/return/return.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1926472880047360996" datatype="html">
         <source>Add Pokemon</source>
         <context-group purpose="location">

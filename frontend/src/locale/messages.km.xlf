@@ -94,7 +94,7 @@
                 </context-group>
             </trans-unit>
 
-<!--        train component translation template    -->
+<!--        train pokemon component translation template    -->
             <trans-unit id="1690657871131366596" datatype="html">
                 <source>Stamina: <x id="INTERPOLATION" equiv-text="{{pokeStamina}}"/>% Hunger: <x id="INTERPOLATION_1" equiv-text="{{pokeHunger}}"/>%</source>
                 <target>កម្លាំង: <x id="INTERPOLATION" equiv-text="{{pokeStamina}}"/>% ស្រេកឃ្លាន: <x id="INTERPOLATION_1" equiv-text="{{pokeHunger}}"/>%</target>
@@ -185,6 +185,32 @@
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
                     <context context-type="linenumber">76</context>
+                </context-group>
+            </trans-unit>
+
+<!--        return pokemon component translation template    -->
+            <trans-unit id="8028174215132496680" datatype="html">
+                <source>Are you sure you want to return <x id="INTERPOLATION" equiv-text="{{pokemon.data.name}}"/> to its trainer?</source>
+                <target>តើអ្នកពិតជាចង់ប្រគល់ <x id="INTERPOLATION" equiv-text="{{pokemon.data.name}}"/> ទៅម្ចាស់ដើមវាវិញមែនទេ?</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/return/return.component.html</context>
+                    <context context-type="linenumber">2</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="3542042671420335679" datatype="html">
+                <source>No</source>
+                <target>អត់ទេ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/return/return.component.html</context>
+                    <context context-type="linenumber">6</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="2807800733729323332" datatype="html">
+                <source>Yes</source>
+                <target>បាទ/ចាស</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/return/return.component.html</context>
+                    <context context-type="linenumber">7</context>
                 </context-group>
             </trans-unit>
 
