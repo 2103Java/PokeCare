@@ -37,14 +37,29 @@ export class CardComponent implements OnInit {
     cardName: string;
     //this is the name that defines what 3D model is returned.
     pokeName: string;
+    pokeHappiness: number;
+    pokeFatigue: number;
+    pokeXp: number;
+    pokeHunger: number;
     errorHandled: number = 0;
+    displayName: string;
 
     constructor(private dialog: MatDialog) {
     }
 
     ngOnInit() {
         this.cardName = 'Title ' + this.index;
-        this.pokeName = this.poke.data.name;
+        if (this.poke.data.name=="mr-rime"||this.poke.data.name=="mr-mime"){
+            this.pokeName = "mr._"+this.poke.data.name.slice(3)
+            console.log(this.pokeName)
+        }else{
+            this.pokeName = this.poke.data.name;
+        }
+        this.pokeHunger = this.poke.hunger;
+        this.pokeFatigue = this.poke.fatigue;
+        this.pokeHappiness = this.poke.happiness
+        this.pokeXp = this.poke.xp;
+        this.displayName = this.editDisplayName(this.pokeName)
     }
 
     get cardPosition() {
@@ -53,9 +68,9 @@ export class CardComponent implements OnInit {
 
     //if the 3D model for the pokemon does not exist; we change the source to a static img.
     errHandler(error) {
-
         if (this.errorHandled == 1) {
             error.target.src = "https://www.pkparaiso.com/imagenes/xy/sprites/animados/" + this.pokeName + ".gif"
+            error.target.style = "height:50%; width: auto; top: 4rem"
             this.errorHandled++;
         } else if (this.errorHandled == 0) {
             error.target.src = "https://www.pkparaiso.com/imagenes/ultra_sol_ultra_luna/sprites/animados-sinbordes-gigante/" + this.pokeName + ".gif"
@@ -64,11 +79,6 @@ export class CardComponent implements OnInit {
             error.target.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6at7RwZOM_yVpsUZWimO0o75bYbKAE1DaTg&usqp=CAU";
             this.errorHandled = 0;
         }
-        //error.target.src = "https://www.pkparaiso.com/imagenes/xy/sprites/animados/" + this.pokeName + ".gif"
-        //If the above fails I need to use the below url. but I don't know how to tell typescript the above also failed
-        // "https://www.pkparaiso.com/imagenes/ultra_sol_ultra_luna/sprites/animados-sinbordes-gigante/" + this.pokeName + ".gif"
-        // error.target.src = "https://www.pkparaiso.com/imagenes/xy/sprites/animados/" + this.pokeName + ".gif";
-        // error.target.style = "height:auto; width: 40%; top: 3rem"
     }
 
     positionChange(position) {
@@ -99,6 +109,14 @@ export class CardComponent implements OnInit {
         const dialogRef = this.dialog.open(TrainComponent, {
             data: {pokeName: this.pokeName}
         });
+    }
+    editDisplayName(name){
+        if( name == "mr._mime" || name == "mr._rime") {
+            name = "Mr. " + name.charAt(4).toUpperCase() + name.slice(5);
+        } else {
+            name = name.charAt(0).toUpperCase() + name.slice(1)
+        }
+        return name;
     }
 
     feedPokemon() {

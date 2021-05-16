@@ -76,15 +76,15 @@ export class CarouselComponent implements OnInit, AfterViewInit {
             let position = offset + this.cardsArr[key].cardPosition;
             switch (position) {
                 case -1:
-                    position = 7;
+                    position = 5;
                     break;
                 case -2:
-                    position = 6;
+                    position = 4;
                     break;
-                case 8:
+                case 6:
                     position = 0;
                     break;
-                case 9:
+                case 7:
                     position = 1;
                     break;
             }

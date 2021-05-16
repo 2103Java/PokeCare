@@ -1,6 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {ApplicationRef, Component, Inject} from '@angular/core';
 import {HttpService, Pokemon} from "../httpService/http.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {CarouselComponent} from "../carousel/carousel.component";
 
 @Component({
     selector: 'app-feed',
