@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/pokemon")
+@RequestMapping("/api/pokemon")
 public class PokemonController {
     private final PokemonService pokemonService;
 

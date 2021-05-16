@@ -48,6 +48,7 @@
                             <arguments>
                                 <argument>build</argument>
                                 <argument>--prod</argument>
+                                <argument>--localize</argument>
                             </arguments>
                         </configuration>
                     </execution>

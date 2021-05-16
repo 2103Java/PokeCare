@@ -1,10 +1,10 @@
 <mat-dialog-title>
     <div class="row">
         <div class="col-md-6">
-            <h1>Train</h1>
+            <h1 i18n>Train</h1>
         </div>
         <div class="col-md-6">
-            <h3 style="text-align: right;">Stamina: {{pokeStamina}}% Hunger: {{pokeHunger}}%</h3>
+            <h3 style="text-align: right;" i18n>Stamina: {{pokeStamina}}% Hunger: {{pokeHunger}}%</h3>
         </div>
     </div>
 </mat-dialog-title>
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-6">
             <div class="row">
-                <p>Training 1</p>
+                <p i18n>Training 1</p>
 
                 <ngb-rating [(rate)]="training1" (hover)="hover1=$event; hoverDisplay1=true;" (leave)="hover1=0; hoverDisplay1=false;"
                             (click)="calculateTotal()" [max]="3">
@@ -31,11 +31,11 @@
                         </span>
                     </ng-template>
                 </ngb-rating>
-                <p [hidden]="hoverDisplay1">cost: stamina = {{training1 * 20}}%, hunger = {{training1 * 15}}%</p>
-                <p [hidden]="!hoverDisplay1">cost: stamina = {{hover1 * 20}}%, hunger = {{hover1 * 15}}%</p>
+                <p [hidden]="hoverDisplay1" i18n>cost: stamina = {{training1 * 20}}%, hunger = {{training1 * 15}}%</p>
+                <p [hidden]="!hoverDisplay1" i18n>cost: stamina = {{hover1 * 20}}%, hunger = {{hover1 * 15}}%</p>
             </div>
             <div class="row">
-                <p>Training 2</p>
+                <p i18n>Training 2</p>
 
                 <ngb-rating [(rate)]="training2" (hover)="hover2=$event; hoverDisplay2=true;" (leave)="hover2=0; hoverDisplay2=false;"
                             (click)="calculateTotal()" [max]="3">
@@ -45,11 +45,11 @@
                         </span>
                     </ng-template>
                 </ngb-rating>
-                <p [hidden]="hoverDisplay2">cost: stamina = {{training2 * 28}}%, hunger = {{training2 * 25}}%</p>
-                <p [hidden]="!hoverDisplay2">cost: stamina = {{hover2 * 28}}%, hunger = {{hover2 * 25}}%</p>
+                <p [hidden]="hoverDisplay2" i18n>cost: stamina = {{training2 * 28}}%, hunger = {{training2 * 25}}%</p>
+                <p [hidden]="!hoverDisplay2" i18n>cost: stamina = {{hover2 * 28}}%, hunger = {{hover2 * 25}}%</p>
             </div>
             <div class="row">
-                <p>Training 3</p>
+                <p i18n>Training 3</p>
 
                 <ngb-rating [(rate)]="training3" (hover)="hover3=$event; hoverDisplay3=true;" (leave)="hover3=0; hoverDisplay3=false;"
                             (click)="calculateTotal()" [max]="3">
@@ -59,8 +59,8 @@
                         </span>
                     </ng-template>
                 </ngb-rating>
-                <p [hidden]="hoverDisplay3">cost: stamina = {{training3 * 33}}%, hunger = {{training3 * 30}}%</p>
-                <p [hidden]="!hoverDisplay3">cost: stamina = {{hover3 * 33}}%, hunger = {{hover3 * 30}}%</p>
+                <p [hidden]="hoverDisplay3" i18n>cost: stamina = {{training3 * 33}}%, hunger = {{training3 * 30}}%</p>
+                <p [hidden]="!hoverDisplay3" i18n>cost: stamina = {{hover3 * 33}}%, hunger = {{hover3 * 30}}%</p>
             </div>
         </div>
     </div>
@@ -68,12 +68,12 @@
 <mat-dialog-actions>
     <div class="row" style="width: 100%;">
         <div class="col-md-6">
-            <p #total>Total Cost: Stamina = {{totalStamina}}%, Hunger = {{totalHunger}}%</p>
+            <p #total i18n>Total Cost: Stamina = {{totalStamina}}%, Hunger = {{totalHunger}}%</p>
         </div>
         <div class="col-md-6" style="text-align: right;">
-            <button mat-button mat-dialog-close (click)="reset()">Cancel</button>
-            <button mat-button (click)="reset()">Reset</button>
-            <button #applyButton mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="apply()">Apply</button>
+            <button mat-button mat-dialog-close (click)="reset()" i18n><b>Cancel</b></button>
+            <button mat-button (click)="reset()" i18n><b>Reset</b></button>
+            <button #applyButton mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="apply()" i18n><b>Apply</b></button>
         </div>
     </div>
 </mat-dialog-actions>

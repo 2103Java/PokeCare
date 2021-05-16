@@ -25,24 +25,24 @@
             <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
                 <mat-card class="box">
                     <mat-card-header>
-                        <mat-card-title>Log in</mat-card-title>
+                        <mat-card-title i18n>Log in</mat-card-title>
                     </mat-card-header>
-            
+
                     <form class="example-form" name="form" [formGroup]="form" (submit)="submit()">
                         <mat-card-content>
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Username or Email" [formControl]="emailFormControl">
-                                <mat-error *ngIf="emailFormControl.invalid">This field is required</mat-error> 
+                                <input matInput i18n-placeholder placeholder="Username or Email" type="email" [formControl]="emailFormControl">
+                                <mat-error *ngIf="emailFormControl.invalid" i18n="@@fieldRequired">This field is required</mat-error>
                             </mat-form-field>
-                
+
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Password" type="password" [formControl]="passwordFormControl">
-                                <mat-error *ngIf="passwordFormControl.invalid">This field is required</mat-error>
+                                <input matInput i18n-placeholder placeholder="Password" type="password" [formControl]="passwordFormControl">
+                                <mat-error *ngIf="passwordFormControl.invalid" i18n="@@fieldRequired">This field is required</mat-error>
                             </mat-form-field>
                         </mat-card-content>
-                        <button type="submit" mat-stroked-button color="accent" class="btn-block">Log in</button>
+                        <button type="submit" mat-stroked-button color="accent" class="btn-block" i18n>Log in</button>
                     </form>
-                    <p class="in-center">Don't have an account?<span><a style="color: blue;" [routerLink]="['/register']"> Register</a></span></p>
+                    <p class="in-center" i18n>Don't have an account?<span><a style="color: blue;" [routerLink]="['/register']"> Register</a></span></p>
                 </mat-card>
             </div>
         </div>

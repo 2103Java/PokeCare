@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/trainer")
+@RequestMapping("/api/trainer")
 public class TrainerController {
     private final TrainerService trainerService;
     private final FileService fileService;
