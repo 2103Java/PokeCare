@@ -100,4 +100,8 @@ export class HttpService {
     returnPokemon(pokemon: Pokemon): Observable<number> {
         return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
     }
+
+    get getMyFriends(){
+        return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends");
+    }
 }
