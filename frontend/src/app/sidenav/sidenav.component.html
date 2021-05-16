@@ -17,7 +17,23 @@
                                 <button class="dropdown-item" type="button" i18n>Upload Photo</button>
                             </li>
                             <li>
-                                <button class="dropdown-item" type="button" i18n>Settings</button>
+                                <button mat-button [matMenuTriggerFor]="settings">Settings</button>
+                                <!-- #docregion sub-menu -->
+                                <mat-menu  #settings="matMenu">
+                                    <button mat-menu-item [matMenuTriggerFor]="change_language">Change Language</button>
+                                </mat-menu>
+
+                                <mat-menu #change_language="matMenu">
+                                    <a mat-menu-item href="/en/">English</a>
+                                    <a mat-menu-item href="/es/">Spanish</a>
+                                    <a mat-menu-item href="/km/">Khmer</a>
+                                </mat-menu>
+<!--                                <button class="dropdown-item" type="button" i18n>Settings &raquo;</button>-->
+<!--                                    <ul class="submenu dropdown-menu">-->
+<!--                                        <li><a class="dropdown-item" href="/{{language.}}/">View in English</a></li>-->
+<!--                                        <li><a class="dropdown-item" href="/{{language.code}}/">View in Spanish</a></li>-->
+<!--                                        <li><a class="dropdown-item" href="/{{language.code}}/">View in Khmer</a></li>-->
+<!--                                    </ul>-->
                             </li>
                             <li>
                                 <hr class="dropdown-divider">

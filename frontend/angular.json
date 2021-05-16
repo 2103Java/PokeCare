@@ -75,6 +75,13 @@
                                     "maximumError": "10kb"
                                 }
                             ]
+                        },
+                        "es": {
+                            "aot": true,
+                            "i18nFile": "src/locale/messages.es.xlf",
+                            "i18nFormat": "xlf",
+                            "i18nLocale": "es",
+                            "i18nMissingTranslation": "error"
                         }
                     }
                 },
@@ -86,13 +93,16 @@
                     "configurations": {
                         "production": {
                             "browserTarget": "PokeCare:build:production"
+                        },
+                        "es": {
+                            "browserTarget": "PokeCare:build:es"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "PokeCare:build"
+                        "browserTarget": "PokeCare:build:es"
                     }
                 },
                 "test": {

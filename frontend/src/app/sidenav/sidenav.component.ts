@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, LOCALE_ID, Inject} from '@angular/core';
 import {HttpService, Trainer} from "../httpService/http.service";
 import {Router} from "@angular/router";
 
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 export class SidenavComponent implements OnInit {
     opened = false;
 
-    constructor(private httpService: HttpService, private router: Router) {
+    constructor(@Inject(LOCALE_ID) protected localeId: string, private httpService: HttpService, private router: Router) {
     }
 
     ngOnInit(): void {

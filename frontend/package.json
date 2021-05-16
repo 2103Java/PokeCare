@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-locale:en": "ng build --prod --i18n-locale en --i18n-format xlf --i18n-file src/locale/messages.en.xlf --output-path=dist/en --baseHref /en/",
+    "build-locale:es": "ng build --prod --i18n-locale es --i18n-format xlf --i18n-file src/locale/messages.es.xlf --output-path=dist/es --baseHref /es/",
+    "build-locale:km": "ng build --prod --i18n-locale km --i18n-format xlf --i18n-file src/locale/messages.km.xlf --output-path=dist/km --baseHref /km/",
+    "build-locale": "npm run build-locale:en && npm run build-locale:es && npm run build-locale:km"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +27,7 @@
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
-    "bootstrap": "^5.0.0",
+    "bootstrap": "^5.0.0-beta3",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.16.7",
     "tslib": "^2.0.0",

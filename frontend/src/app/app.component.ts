@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, LOCALE_ID, Inject } from '@angular/core';
 
 @Component({
     selector: 'app-root',
