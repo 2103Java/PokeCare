@@ -104,4 +104,22 @@ export class HttpService {
     getMyFriends(): Observable<Array<Trainer>> {
         return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends");
     }
+
+    getPendingReqs(): Observable<Array<Trainer>>{
+        return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends/requests");
+    }
+
+    addFriend(username: string) {
+    const body = new HttpParams().set('username', username);
+      return this.httpClient.post(this.trainerApiUrl+"friends/new", body.toString());
+    }
+
+    acceptFriend(id: number): Observable<String>{
+          return this.httpClient.put<String>(this.trainerApiUrl+"friends/update/"+id,"");
+    }
+
+    rejectFriend(id: number): Observable<String>{
+         return this.httpClient.delete<String>(this.trainerApiUrl+"friends/update/"+id);
+    }
+
 }

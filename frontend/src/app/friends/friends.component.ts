@@ -20,4 +20,5 @@ export class FriendsComponent {
         message += "Currency: " + friend.currency;
         alert(message);
     }
+
 }

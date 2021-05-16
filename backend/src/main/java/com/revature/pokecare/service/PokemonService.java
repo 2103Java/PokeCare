@@ -66,6 +66,7 @@ public class PokemonService {
     }
 
     public Pokemon getNewPokemon(Trainer trainer) {
+        if(trainer.getPokemon().size() >= 6) return null;
         Pokemon newPoke;
         Random rand = new Random();
         int num = rand.nextInt(898);

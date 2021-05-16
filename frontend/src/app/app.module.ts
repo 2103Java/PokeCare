@@ -22,6 +22,7 @@ import {HttpService} from "./httpService/http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ReturnComponent} from './return/return.component';
 import {FriendsComponent} from './friends/friends.component';
+import { FRequestsComponent } from './f-requests/f-requests.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import {FriendsComponent} from './friends/friends.component';
         RegisterComponent,
         TrainComponent,
         ReturnComponent,
-        FriendsComponent
+        FriendsComponent,
+        FRequestsComponent
     ],
     imports: [
         CommonModule,

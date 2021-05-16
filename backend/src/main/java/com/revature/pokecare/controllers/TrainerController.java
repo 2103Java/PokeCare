@@ -68,21 +68,21 @@ public class TrainerController {
         return new ResponseEntity<List<Trainer>>(rCheck, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/friends/update")
-    public ResponseEntity<String> acceptRequest(@RequestParam int confirm, HttpSession session){
+    @PutMapping(value = "/friends/update/{id}")
+    public ResponseEntity<String> acceptRequest(@PathVariable int id, HttpSession session){
         if (session.getAttribute("PokeTrainer") == null) return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 
         Trainer friendee = (Trainer) session.getAttribute("PokeTrainer");
-        trainerService.processFriendRequest(friendee, confirm, "ACCEPTED");
+        trainerService.processFriendRequest(friendee, id, "ACCEPTED");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/friends/update")
-    public ResponseEntity<String> rejectRequest(@RequestParam int confirm, HttpSession session){
+    @DeleteMapping(value = "/friends/update/{id}")
+    public ResponseEntity<String> rejectRequest(@PathVariable int id, HttpSession session){
         if (session.getAttribute("PokeTrainer") == null) return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 
         Trainer friendee = (Trainer) session.getAttribute("PokeTrainer");
-        trainerService.processFriendRequest(friendee, confirm, "REJECTED");
+        trainerService.processFriendRequest(friendee, id, "REJECTED");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

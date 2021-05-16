@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ReturnComponent} from "../return/return.component";
 import {FriendsComponent} from "../friends/friends.component";
 import {MatDialog} from "@angular/material/dialog";
+import {FRequestsComponent} from "../f-requests/f-requests.component";
 
 @Component({
     selector: 'app-sidenav',
@@ -40,4 +41,13 @@ export class SidenavComponent {
             });
         });
     }
+
+    pendingRequests() {
+        this.httpService.getPendingReqs().subscribe(friends => {
+            this.dialog.open(FRequestsComponent, {
+                data: {friends: friends}
+            });
+        });
+    }
+
 }
