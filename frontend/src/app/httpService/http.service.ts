@@ -101,9 +101,11 @@ export class HttpService {
         return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
     }
 
-    upload(pic) {
-        return this.httpClient.put<any>(this.trainerApiUrl+"profile", 
-            new FormData().append('pic',pic), 
-            {headers : new HttpHeaders({'Content-Type':'multipart/form-data'})});
+    upload(pic): Observable<any> {
+        const data = new FormData();
+
+        data.append('pic', pic);
+
+        return this.httpClient.put(this.trainerApiUrl + "profile", data, {observe: 'response'});
     }
 }
