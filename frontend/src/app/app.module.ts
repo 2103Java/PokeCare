@@ -20,9 +20,8 @@ import {TrainComponent} from './train/train.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpService} from "./httpService/http.service";
 import {HttpClientModule} from "@angular/common/http";
-import { ReturnComponent } from './return/return.component';
-
-
+import {ReturnComponent} from './return/return.component';
+import {FriendsComponent} from './friends/friends.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +32,8 @@ import { ReturnComponent } from './return/return.component';
         LoginComponent,
         RegisterComponent,
         TrainComponent,
-        ReturnComponent
+        ReturnComponent,
+        FriendsComponent
     ],
     imports: [
         CommonModule,
