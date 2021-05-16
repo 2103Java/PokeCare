@@ -98,8 +98,8 @@ public class TrainerRepository {
 
     public List<Trainer> findMyFriends(Trainer trainer) {
         Session session = sessionFactory.openSession();
-        String sql = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friender and friends.status = 'ACCEPTED') where poketrainer.id != " + trainer.getId();
-        String sql2 = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friendee and friends.status = 'ACCEPTED') where poketrainer.id != " + trainer.getId();
+        String sql = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friender and "+trainer.getId()+"= friendee and friends.status = 'ACCEPTED') where poketrainer.id != " + trainer.getId();
+        String sql2 = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friendee and "+trainer.getId()+"= friender and friends.status = 'ACCEPTED') where poketrainer.id != " + trainer.getId();
 
         TypedQuery<Trainer> query = session.createNativeQuery(sql, Trainer.class);
         List<Trainer> fAddedByMe = query.getResultList();

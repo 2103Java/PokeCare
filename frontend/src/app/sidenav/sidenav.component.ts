@@ -36,7 +36,8 @@ export class SidenavComponent implements OnInit {
         return this.httpService.trainer;
     }
 
-    toggleFriends() {
+    toggleFriends(e) {
+        e.preventDefault;
     if(document.getElementById("toggleFriends").style.display == "none"){
         document.getElementById("toggleFriends").style.display = "block";
     }
