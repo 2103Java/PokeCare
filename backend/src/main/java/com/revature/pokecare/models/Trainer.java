@@ -2,14 +2,7 @@ package com.revature.pokecare.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -40,6 +33,11 @@ public class Trainer {
 
     @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER)
     private List<Pokemon> pokemon;
+
+    @ManyToMany(cascade = { CascadeType.ALL})
+    @JoinTable(name = "friends",
+            joinColumns = {@JoinColumn(name = "friender")}, inverseJoinColumns = {@JoinColumn(name = "friendee")} )
+    private List<Trainer> myFriends;
 
     private int currency;
 

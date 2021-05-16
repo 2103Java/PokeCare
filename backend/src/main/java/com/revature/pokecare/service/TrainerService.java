@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -51,7 +52,26 @@ public class TrainerService {
         if (trainer != null) {
             trainerRepo.deleteTrainer(trainer.getId());
         }
-
         return true;
+    }
+    public boolean addFriend(Trainer pokeTrainer, String fUsername) {
+        Trainer friendee = trainerRepo.findTrainerByUsername(fUsername);
+        if (friendee != null) {
+            return trainerRepo.sendFriendRequest(pokeTrainer, friendee);
+        } else return false;
+    }
+
+
+    public List<Trainer> myFriends(Trainer trainer) {
+        return trainerRepo.findMyFriends(trainer);
+    }
+
+    public List<Trainer> myFriendReq(Trainer trainer){
+        return trainerRepo.myFriendRequests(trainer);
+    }
+
+    public void processFriendRequest(Trainer friendee, int friendID, String process){
+        Trainer friender = trainerRepo.findTrainerById(friendID);
+        trainerRepo.processFriendRequest(friender,friendee,process);
     }
 }
