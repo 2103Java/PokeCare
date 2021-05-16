@@ -20,10 +20,7 @@
                                 <button class="dropdown-item" type="button">Settings</button>
                             </li>
                             <li>
-                                <button class="dropdown-item" type="button" (click)="toggleFriends()">My Friends</button>
-                                <div id="toggleFriends" *ngIf="myFriends != undefined" style="display:none;text-indent:10px">
-                                    <button class="dropdown-item" type="button" *ngFor="let friend of myFriends" (click)="myFriendsStats(friend)">  {{friend.username}}</button>
-                                </div>
+                                <button class="dropdown-item" type="button" (click)="showFriends()">My Friends</button>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
