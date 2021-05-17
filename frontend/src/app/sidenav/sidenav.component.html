@@ -37,7 +37,7 @@
             </div>
             <div class="row mt-n1 ms-1">
                 <div class="col-8" id="currencyWrapper">
-                    <h1 *ngIf="trainer">₽  {{trainer.currency}}</h1>
+                    <h1 *ngIf="trainer">₽ {{trainer.currency | number:'2.'}}</h1>
                 </div>
             </div>
         </div>
