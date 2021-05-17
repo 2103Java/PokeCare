@@ -37,10 +37,6 @@ export class CardComponent implements OnInit {
     cardName: string;
     //this is the name that defines what 3D model is returned.
     pokeName: string;
-    pokeHappiness: number;
-    pokeFatigue: number;
-    pokeXp: number;
-    pokeHunger: number;
     errorHandled: number = 0;
     displayName: string;
 
@@ -51,14 +47,9 @@ export class CardComponent implements OnInit {
         this.cardName = 'Title ' + this.index;
         if (this.poke.data.name=="mr-rime"||this.poke.data.name=="mr-mime"){
             this.pokeName = "mr._"+this.poke.data.name.slice(3)
-            console.log(this.pokeName)
         }else{
             this.pokeName = this.poke.data.name;
         }
-        this.pokeHunger = this.poke.hunger;
-        this.pokeFatigue = this.poke.fatigue;
-        this.pokeHappiness = this.poke.happiness
-        this.pokeXp = this.poke.xp;
         this.displayName = this.editDisplayName(this.pokeName)
     }
 
