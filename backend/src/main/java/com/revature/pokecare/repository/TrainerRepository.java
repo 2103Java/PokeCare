@@ -4,6 +4,7 @@ import com.revature.pokecare.models.Trainer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -127,11 +128,12 @@ public class TrainerRepository {
     public boolean sendFriendRequest(Trainer friender, Trainer friendee) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        //Query reqCheck = session.createNativeQuery("select * from friends where friender = "+friender.getId()+" and friendee = "+friendee.getId()+"and status = 'PENDING' OR status = 'BLOCKED'");
-        //int reqInt = 0;
-        //reqInt = reqCheck.getMaxResults();
 
-       // if(reqInt != 0) return false;
+        String check = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friender and "+friender.getId()+"= friendee and friends.status = 'PENDING') where poketrainer.id != " + friender.getId();
+        TypedQuery<Trainer> qCheck = session.createNativeQuery(check, Trainer.class);
+        List<Trainer> fAddedByMe = qCheck.getResultList();
+        System.out.println(fAddedByMe.size());
+        if(fAddedByMe.size() > 1) return false;
 
         Query query = session.createNativeQuery("INSERT INTO friends (friender,friendee,status) values ("+friender.getId()+","+friendee.getId()+",'PENDING')");
 
