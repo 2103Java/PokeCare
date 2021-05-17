@@ -21,10 +21,11 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
-    @PutMapping(value = "/training")
-    public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pokemon, @PathVariable int type, HttpSession session) {
-        if (session.getAttribute("PokeTrainer") != null) {
-            pokemonService.trainPokemon(pokemon, type);
+    @PutMapping(value = "/train/{id}/{type}")
+    public ResponseEntity<?> trainPokemon(@PathVariable int id, @PathVariable int type, HttpSession session) {
+        Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
+
+        if (trainer != null && pokemonService.trainPokemon(trainer, id, type)) {
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
 
@@ -41,10 +42,11 @@ public class PokemonController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @PutMapping(value = "/rest")
-    public ResponseEntity<String> restPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
-        if (session.getAttribute("PokeTrainer") != null) {
-            pokemonService.restPokemon(pokemon);
+    @PutMapping(value = "/rest/{id}/{fatigue}")
+    public ResponseEntity<?> restPokemon(@PathVariable int id, @PathVariable int fatigue, HttpSession session) {
+        Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
+
+        if (trainer != null && pokemonService.restPokemon(trainer, id, fatigue)) {
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

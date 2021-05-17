@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {TrainComponent} from '../train/train.component';
 import {MatDialog} from '@angular/material/dialog';
-import {Pokemon} from "../httpService/http.service";
+import {HttpService, Pokemon} from "../httpService/http.service";
 import {ReturnComponent} from "../return/return.component";
 import {FeedComponent} from "../feed/feed.component";
 
@@ -28,7 +28,7 @@ import {FeedComponent} from "../feed/feed.component";
     ]
 })
 
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnDestroy {
     @Input() index: string;
     @Output() currentPosition: EventEmitter<number> = new EventEmitter<number>();
     @Input() position: number;
@@ -41,7 +41,9 @@ export class CardComponent implements OnInit {
     displayName: string;
     pokeImgSrc: string = "";
 
-    constructor(private dialog: MatDialog) {
+    intervalId: number;
+
+    constructor(private dialog: MatDialog, private http: HttpService) {
     }
 
     ngOnInit() {
@@ -52,6 +54,20 @@ export class CardComponent implements OnInit {
             this.pokeName = this.poke.data.name;
         }
         this.displayName = this.editDisplayName(this.pokeName)
+
+        this.intervalId = setInterval(() => {
+            if (this.poke.fatigue < 1) {
+                return;
+            }
+
+            if (--this.poke.fatigue % 5 == 0) {
+                this.http.updateFatigue(this.poke);
+            }
+        }, 2000);
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.intervalId);
     }
 
     get cardPosition() {
@@ -98,8 +114,8 @@ export class CardComponent implements OnInit {
     }
 
     openTraining() {
-        const dialogRef = this.dialog.open(TrainComponent, {
-            data: {pokeName: this.pokeName}
+        this.dialog.open(TrainComponent, {
+            data: {pokemon: this.poke}
         });
     }
 
@@ -125,21 +141,14 @@ export class CardComponent implements OnInit {
     }
 
     cantFeed() {
-        console.log(this.poke.hunger)
-        if (this.poke.hunger === 0) {
-            return true;
-        } else return false;
+        return this.poke.hunger === 0;
     }
 
     cantPlay() {
-        if (this.poke.fatigue > 0 || this.poke.hunger === 100) {
-            return true;
-        } else return false;
+        return this.poke.fatigue > 0 || this.poke.hunger === 100;
     }
 
     cantTrain() {
-        if (this.poke.fatigue > 0 || this.poke.hunger === 100) {
-            return true;
-        } else return false;
+        return this.poke.fatigue > 0 || this.poke.hunger === 100 || this.poke.happiness < 20;
     }
 }

@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
+import {catchError} from "rxjs/operators";
 
 export interface Pokemon {
     id: number;
     poke_number: number;
-    trainer_id: number;
     happiness: number;
     hunger: number;
     fatigue: number;
-    xp: number;
+    experience: number;
     data: PokemonData;
 }
 
@@ -103,5 +103,14 @@ export class HttpService {
 
     returnPokemon(pokemon: Pokemon): Observable<number> {
         return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
+    }
+
+    trainPokemon(pokemon: Pokemon, method: number): Observable<any> {
+        return this.httpClient.put(this.pokeApiUrl + "train/" + pokemon.id + "/" + method, "");
+    }
+
+    updateFatigue(pokemon: Pokemon) {
+        this.httpClient.put(this.pokeApiUrl + "rest/" + pokemon.id + "/" + pokemon.fatigue, "").subscribe(done => {
+        });
     }
 }
