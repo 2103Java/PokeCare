@@ -3,6 +3,7 @@ package com.revature.pokecare.controllers;
 import com.revature.pokecare.models.Pokemon;
 import com.revature.pokecare.models.Trainer;
 import com.revature.pokecare.service.PokemonService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/api/pokemon")
 public class PokemonController {
     private final PokemonService pokemonService;
+    private final static Logger loggy = Logger.getLogger(PokemonController.class);
 
     @Autowired
     public PokemonController(PokemonService pokemonService) {
@@ -26,6 +28,7 @@ public class PokemonController {
     public @ResponseBody
     Pokemon findMyPokemon(@PathVariable("id") int id, HttpSession session) {
         if (session.getAttribute("PokeTrainer") != null) {
+            loggy.info("Finding pokemon.");
             return pokemonService.findMyPokemon(id);
         }
         return null;
@@ -36,6 +39,7 @@ public class PokemonController {
     @PutMapping(value = "/training")
     public ResponseEntity<String> trainPokemon(@RequestBody Pokemon pokemon, @PathVariable int type, HttpSession session) {
         if (session.getAttribute("PokeTrainer") != null) {
+            loggy.info("trainPokemon put request received.");
             pokemonService.trainPokemon(pokemon, type);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
@@ -47,6 +51,7 @@ public class PokemonController {
     @PutMapping(value = "/feed")
     public ResponseEntity<String> feedPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
         if (session.getAttribute("PokeTrainer") != null) {
+            loggy.info("feedPokemon put received.");
             pokemonService.feedPokemon(pokemon);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
@@ -57,6 +62,7 @@ public class PokemonController {
     @PutMapping(value = "/rest")
     public ResponseEntity<String> restPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
         if (session.getAttribute("PokeTrainer") != null) {
+            loggy.info("restPokemon put received.");
             pokemonService.restPokemon(pokemon);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
@@ -68,6 +74,7 @@ public class PokemonController {
     @PutMapping(value = "/play")
     public void playWithPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
         if (session.getAttribute("PokeTrainer") != null) {
+            loggy.info("playWithPokemon put received");
             pokemonService.playWithPokemon(pokemon);
         }
     }

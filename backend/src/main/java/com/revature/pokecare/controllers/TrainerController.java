@@ -3,6 +3,7 @@ package com.revature.pokecare.controllers;
 import com.revature.pokecare.models.Trainer;
 import com.revature.pokecare.service.FileService;
 import com.revature.pokecare.service.TrainerService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,9 +29,11 @@ import java.io.IOException;
 public class TrainerController {
     private final TrainerService trainerService;
     private final FileService fileService;
+    private final static Logger loggy = Logger.getLogger(TrainerController.class);
 
     @Autowired
     public TrainerController(TrainerService trainerService, FileService fileService) {
+        loggy.info("Constructing TrainerController.");
         this.trainerService = trainerService;
         this.fileService = fileService;
     }
@@ -73,13 +76,16 @@ public class TrainerController {
         Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
 
         if (trainer == null) {
+            loggy.info("Profile pic upload FORBIDDEN");
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
         try {
+            loggy.info("Profile pic uploading.");
             fileService.putFile(String.valueOf(trainer.getId()), file.getInputStream());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (IOException e) {
+            loggy.warn(e);
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -88,11 +94,12 @@ public class TrainerController {
     @DeleteMapping(value = "/logout")
     @ResponseStatus(HttpStatus.OK)
     public void logout(HttpSession session) {
-        session.invalidate();
+        loggy.info("Session terminated."); session.invalidate();
     }
 
     @GetMapping
     public ResponseEntity<Trainer> getTrainer(HttpSession session) {
+        loggy.info("Getting trainer...");
         Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
 
         return trainer == null ? new ResponseEntity<>(HttpStatus.FORBIDDEN) : new ResponseEntity<>(trainer, HttpStatus.OK);

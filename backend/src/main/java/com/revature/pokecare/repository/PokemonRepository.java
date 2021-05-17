@@ -1,6 +1,7 @@
 package com.revature.pokecare.repository;
 
 import com.revature.pokecare.models.Pokemon;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,6 +14,7 @@ import java.util.List;
 @Repository
 public class PokemonRepository {
     private final SessionFactory sessionFactory;
+    private static final Logger loggy = Logger.getLogger(PokemonRepository.class);
 
     @Autowired
     public PokemonRepository(SessionFactory sessionFactory) {
@@ -30,6 +32,7 @@ public class PokemonRepository {
 
             tx.commit();
         } catch (RuntimeException e) {
+            loggy.warn(e);
             if (tx != null) { tx.rollback(); }
             return false;
         }
@@ -56,6 +59,7 @@ public class PokemonRepository {
     }
 
     public boolean updatePokemon(Pokemon pk) {
+        loggy.info("Updating pokemon: " + pk.getId());
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         session.saveOrUpdate(pk);
