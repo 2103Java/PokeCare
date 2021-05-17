@@ -46,7 +46,7 @@ export class CardComponent implements OnInit, OnDestroy {
     displayName: string;
     pokeImgSrc: string = "";
     level: number;
-
+    xpAsPercent: number;
     intervalId: number;
 
     constructor(private dialog: MatDialog, private http: HttpService) {
@@ -75,6 +75,7 @@ export class CardComponent implements OnInit, OnDestroy {
             for (let i = 0; i < XP_LEVELS.length; i++) {
                 if (this.poke.experience < XP_LEVELS[i]) {
                     this.level = i + 1;
+                    this.xpAsPercent = (this.poke.experience / XP_LEVELS[i])*100;
                     break;
                 }
             }

@@ -73,9 +73,7 @@ public class PokemonController {
         if (trainer != null) {
             int money = pokemonService.returnPokemon(trainer, id);
 
-            if (money > 0) {
-                return new ResponseEntity<>(money, HttpStatus.ACCEPTED);
-            }
+            return new ResponseEntity<>(money, HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }

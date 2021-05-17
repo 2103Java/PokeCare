@@ -1,62 +1,59 @@
 <mat-dialog-title>
-    <div class="row">
-        <div class="col-md-6">
-            <h1 i18n>Train</h1>
-        </div>
-        <div class="col-md-6">
-            <h3 style="text-align: right;" i18n>Fatigue: {{pokemon.fatigue}}% Hunger: {{pokemon.hunger}}%</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-center">
+                <h1 i18n>Train</h1>
+            </div>
         </div>
     </div>
 </mat-dialog-title>
 <mat-dialog-content class="mat-typography">
-    <div class="row">
-        <div class="col-md-6">
-            <div id="img-wrapper">
-                <img id="pokeimg"
-                     src="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/{{pokemon.data.name}}.gif"
-                     alt="No Img to Display"
-                     width="150"
-                     height="200">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <p i18n>Battle</p>
-                <input #battle type="radio" (change)="selectTrain(1)">
-                <!--<ngb-rating [(rate)]="training1" (hover)="hover1=$event; hoverDisplay1=true;" (leave)="hover1=0; hoverDisplay1=false;" [max]="3">
-                    <ng-template #t let-fill="fill">
-                        <span class="star" [class.full]="fill === 100">
-                            <span class="half" [style.width.%]="fill"><i class='fas fa-biking'></i></span><i class='fas fa-biking'></i>
-                        </span>
-                    </ng-template>
-                </ngb-rating>-->
-                <p i18n>Cost: fatigue +100%, hunger +100%, xp +150</p>
-            </div>
+    <div class="container">
+        <mat-divider></mat-divider>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <p i18n><input #battle type="radio" (change)="selectTrain(1)"> Battle</p>
+                    <p>XP: +150</p>
+                    <!--<ngb-rating [(rate)]="training1" (hover)="hover1=$event; hoverDisplay1=true;" (leave)="hover1=0; hoverDisplay1=false;" [max]="3">
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill"><i class='fas fa-biking'></i></span><i class='fas fa-biking'></i>
+                            </span>
+                        </ng-template>
+                    </ngb-rating>-->
+                    <p i18n>Cost: fatigue +100%, hunger +100%</p>
+                    <mat-divider></mat-divider>
+                </div>
 
-            <div class="row">
-                <p i18n>Practice Moves</p>
-                <input #practice type="radio" (change)="selectTrain(2)">
-                <!--<ngb-rating [(rate)]="training2" (hover)="hover2=$event; hoverDisplay2=true;" (leave)="hover2=0; hoverDisplay2=false;" [max]="3">
-                    <ng-template #t let-fill="fill">
-                        <span class="star" [class.full]="fill === 100">
-                            <span class="half" [style.width.%]="fill"><i class='fas fa-snowboarding'></i></span><i class='fas fa-snowboarding'></i>
-                        </span>
-                    </ng-template>
-                </ngb-rating>-->
-                <p i18n>Cost: fatigue +50%, hunger +50%, xp +60</p>
-            </div>
+                <div class="row">
+                    <p i18n><input #practice type="radio" (change)="selectTrain(2)"> Practice Moves</p>
+                    <p>XP: +60</p>
+                    <!--<ngb-rating [(rate)]="training2" (hover)="hover2=$event; hoverDisplay2=true;" (leave)="hover2=0; hoverDisplay2=false;" [max]="3">
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill"><i class='fas fa-snowboarding'></i></span><i class='fas fa-snowboarding'></i>
+                            </span>
+                        </ng-template>
+                    </ngb-rating>-->
+                    <p i18n>Cost: fatigue +50%, hunger +50%</p>
+                    <mat-divider></mat-divider>
+                </div>
 
-            <div class="row">
-                <p i18n>Obedience</p>
-                <input #obedience type="radio" (change)="selectTrain(3)">
-                <!--<ngb-rating [(rate)]="training3" (hover)="hover3=$event; hoverDisplay3=true;" (leave)="hover3=0; hoverDisplay3=false;" [max]="3">
-                    <ng-template #t let-fill="fill">
-                        <span class="star" [class.full]="fill === 100">
-                            <span class="half" [style.width.%]="fill"><i class='fas fa-swimmer'></i></span><i class='fas fa-swimmer'></i>
-                        </span>
-                    </ng-template>
-                </ngb-rating>-->
-                <p i18n>Cost: fatigue +10%, hunger +10%, xp +30</p>
+                <div class="row">
+                    <p i18n><input #obedience type="radio" (change)="selectTrain(3)"> Obedience</p>
+                    <p>XP: +30</p>
+                    <!--<ngb-rating [(rate)]="training3" (hover)="hover3=$event; hoverDisplay3=true;" (leave)="hover3=0; hoverDisplay3=false;" [max]="3">
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill"><i class='fas fa-swimmer'></i></span><i class='fas fa-swimmer'></i>
+                            </span>
+                        </ng-template>
+                    </ngb-rating>-->
+                    <p i18n>Cost: fatigue +10%, hunger +10%</p>
+                    <mat-divider></mat-divider>
+                </div>
+
             </div>
         </div>
     </div>
@@ -64,11 +61,11 @@
 <mat-dialog-actions>
     <div class="row" style="width: 100%;">
         <div class="col-md-6">
-            <p #total i18n>After Training: Fatigue = {{afterFatigue}}%, Hunger = {{afterHunger}}%</p>
         </div>
         <div class="col-md-6" style="text-align: right;">
             <button mat-button mat-dialog-close i18n><b>Cancel</b></button>
-            <button #applyButton mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="apply()" i18n><b>Apply</b></button>
+            <button #applyButton mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="apply()" i18n>
+                <b>Apply</b></button>
         </div>
     </div>
 </mat-dialog-actions>

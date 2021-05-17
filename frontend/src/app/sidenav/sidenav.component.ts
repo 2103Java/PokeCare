@@ -31,6 +31,7 @@ export class SidenavComponent {
     addPokemon() {
         this.httpService.newPokemonRequest().subscribe(pokemon => {
             this.httpService.trainer.pokemon.push(pokemon);
+
         });
     }
 

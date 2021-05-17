@@ -1,11 +1,9 @@
 import {
     AfterViewInit,
     Component,
-    ElementRef,
-    Input,
-    OnChanges,
+    ElementRef, Input, OnChanges,
     OnInit,
-    QueryList,
+    QueryList, SimpleChanges,
     ViewChild,
     ViewChildren
 } from '@angular/core';
@@ -13,15 +11,13 @@ import {animate, AnimationBuilder, AnimationPlayer, style} from "@angular/animat
 import {CardComponent} from "../card/card.component";
 import {Trainer, Pokemon, HttpService} from "../httpService/http.service";
 
-// import * as M from "../../assets/materialize/js/materialize.min.js";
-
 @Component({
     selector: 'app-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit, AfterViewInit {
-    @Input() loggedTrainer: Trainer;
+export class CarouselComponent implements OnInit, AfterViewInit, OnChanges {
+    @Input() pokeArrLength: number;
     @ViewChildren('withBuilder') cards: QueryList<CardComponent>;
     @ViewChildren('withBuilder', {read: ElementRef}) elCards: QueryList<ElementRef>;
     @ViewChild('withBuilder', {read: ElementRef}) baseCard: ElementRef;
@@ -37,20 +33,30 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     private cardBaseSize = {width: 0, height: 0};
     private propCanvasCard = 0;
     private cardsArr = [];
+    loggedTrainer: Trainer;
 
     constructor(private animationBuilder: AnimationBuilder, private elementRef: ElementRef, private httpService: HttpService) {
     }
 
     ngOnInit() {
         this.loggedTrainer = this.httpService.trainer;
-
     }
 
     ngAfterViewInit() {
         this.cardsArr = this.cards.toArray();
+        console.log(this.cardsArr)
         this.proportions();
+        this.cards.changes.subscribe()
     }
 
+
+    ngOnChanges(changes: SimpleChanges) {
+
+        if (!changes['pokeArrLength'].isFirstChange()) {
+            this.ngOnInit();
+            this.ngAfterViewInit();
+        }
+    }
 
     private proportions() {
         const el = this.elementRef.nativeElement;
@@ -143,6 +149,5 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     onResize($event: any) {
         this.proportions();
     }
-
 
 }

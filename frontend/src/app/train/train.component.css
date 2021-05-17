@@ -17,3 +17,9 @@
 :host ::ng-deep .sr-only{
     display: none;
 }
+.cdk-overlay-pane{
+    /*background-image: url("../../assets/img/trainBG.png");*/
+}
+mat-divider{
+    margin-bottom: 12px;
+}
