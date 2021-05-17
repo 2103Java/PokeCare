@@ -86,7 +86,7 @@ public class PokemonService {
 
     public Pokemon playWithPokemon(Pokemon pokemon) {
         if (pokemon != null) {
-            int happUp = ThreadLocalRandom.current().nextInt(5, 10);
+            int happUp = ThreadLocalRandom.current().nextInt(2, 5);
             int newHapp = pokemon.getHappiness() + happUp;
 
             if ((newHapp + happUp) <= 100) {

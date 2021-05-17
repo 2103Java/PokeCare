@@ -37,20 +37,20 @@
                 </ul>
 
                 <div class="button-container d-flex mt-2">
-                    <button class="btn actions" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    <button [disabled]="cantTrain()" class="btn actions" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             i18n-title title="Train" mat-fab color="accent"
                             aria-label="Example icon button with a home icon" (click)="openTraining()">
                         <mat-icon>fitness_center</mat-icon>
                     </button>
 
-                    <button class="btn actions" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    <button [disabled]="cantFeed()" class="btn actions" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             (click)="feedPokemon()"
                             i18n-title title="Feed" mat-fab color="primary"
                             aria-label="Example icon button with a home icon">
                         <mat-icon>bakery_dining</mat-icon>
                     </button>
 
-                    <button class="btn actions" id="playBtn" type="button" data-bs-toggle="tooltip"
+                    <button [disabled]="cantPlay()" class="btn actions" id="playBtn" type="button" data-bs-toggle="tooltip"
                             data-bs-placement="bottom"
                             i18n-title title="Play" mat-fab color="green"
                             aria-label="Example icon button with a home icon">

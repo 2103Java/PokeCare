@@ -39,15 +39,16 @@ export class CardComponent implements OnInit {
     pokeName: string;
     errorHandled: number = 0;
     displayName: string;
+    pokeImgSrc: string = "";
 
     constructor(private dialog: MatDialog) {
     }
 
     ngOnInit() {
         this.cardName = 'Title ' + this.index;
-        if (this.poke.data.name=="mr-rime"||this.poke.data.name=="mr-mime"){
-            this.pokeName = "mr._"+this.poke.data.name.slice(3)
-        }else{
+        if (this.poke.data.name == "mr-rime" || this.poke.data.name == "mr-mime") {
+            this.pokeName = "mr._" + this.poke.data.name.slice(3)
+        } else {
             this.pokeName = this.poke.data.name;
         }
         this.displayName = this.editDisplayName(this.pokeName)
@@ -101,8 +102,9 @@ export class CardComponent implements OnInit {
             data: {pokeName: this.pokeName}
         });
     }
-    editDisplayName(name){
-        if( name == "mr._mime" || name == "mr._rime") {
+
+    editDisplayName(name) {
+        if (name == "mr._mime" || name == "mr._rime") {
             name = "Mr. " + name.charAt(4).toUpperCase() + name.slice(5);
         } else {
             name = name.charAt(0).toUpperCase() + name.slice(1)
@@ -120,5 +122,24 @@ export class CardComponent implements OnInit {
         this.dialog.open(ReturnComponent, {
             data: {pokemon: this.poke}
         });
+    }
+
+    cantFeed() {
+        console.log(this.poke.hunger)
+        if (this.poke.hunger === 0) {
+            return true;
+        } else return false;
+    }
+
+    cantPlay() {
+        if (this.poke.fatigue > 0 || this.poke.hunger === 100) {
+            return true;
+        } else return false;
+    }
+
+    cantTrain() {
+        if (this.poke.fatigue > 0 || this.poke.hunger === 100) {
+            return true;
+        } else return false;
     }
 }
