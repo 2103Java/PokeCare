@@ -25,10 +25,12 @@ export class SidenavComponent implements OnInit {
     addPokemon() {
         this.httpService.newPokemonRequest().subscribe(pokemon => {
             this.httpService.trainer.pokemon.push(pokemon);
+
         });
     }
 
     get trainer(): Trainer {
         return this.httpService.trainer;
     }
+
 }
