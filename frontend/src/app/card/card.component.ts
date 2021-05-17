@@ -150,6 +150,14 @@ export class CardComponent implements OnInit, OnDestroy {
         });
     }
 
+    play() {
+        this.http.playPokemon(this.poke).subscribe(hap => {
+            this.poke.happiness = Math.min(this.poke.happiness + hap, 100);
+            this.poke.fatigue = Math.min(this.poke.fatigue + 20, 100);
+            this.poke.hunger = Math.min(this.poke.hunger + 10, 100);
+        });
+    }
+
     returnPokemon() {
         this.dialog.open(ReturnComponent, {
             data: {pokemon: this.poke}

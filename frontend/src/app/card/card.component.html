@@ -51,7 +51,7 @@
                     </button>
 
                     <button [disabled]="cantPlay()" class="btn actions" id="playBtn" type="button" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
+                            data-bs-placement="bottom" (click)="play()"
                             i18n-title title="Play" mat-fab color="green"
                             aria-label="Example icon button with a home icon">
                         <mat-icon>sports_soccer</mat-icon>

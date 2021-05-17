@@ -50,14 +50,20 @@ public class PokemonController {
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-
     }
 
-    @PutMapping(value = "/play")
-    public void playWithPokemon(@RequestBody Pokemon pokemon, HttpSession session) {
-        if (session.getAttribute("PokeTrainer") != null) {
-            pokemonService.playWithPokemon(pokemon);
+    @PutMapping(value = "/play/{id}")
+    public ResponseEntity<Integer> playWithPokemon(@PathVariable int id, HttpSession session) {
+        Trainer trainer = (Trainer) session.getAttribute("PokeTrainer");
+
+        if (trainer != null) {
+            int hap = pokemonService.playWithPokemon(trainer, id);
+
+            if (hap > 0) {
+                return new ResponseEntity<>(hap, HttpStatus.ACCEPTED);
+            }
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @DeleteMapping(value = "/{id}")

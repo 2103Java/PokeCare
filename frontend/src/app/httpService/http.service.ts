@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {catchError} from "rxjs/operators";
 
 export interface Pokemon {
     updateLevel: () => void;
@@ -108,6 +107,10 @@ export class HttpService {
 
     trainPokemon(pokemon: Pokemon, method: number): Observable<any> {
         return this.httpClient.put(this.pokeApiUrl + "train/" + pokemon.id + "/" + method, "");
+    }
+
+    playPokemon(pokemon: Pokemon): Observable<number> {
+        return this.httpClient.put<number>(this.pokeApiUrl + "play/" + pokemon.id, "");
     }
 
     updateFatigue(pokemon: Pokemon) {

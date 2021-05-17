@@ -72,21 +72,21 @@ public class PokemonService {
         return newPoke;
     }
 
-    public Pokemon playWithPokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-            int happUp = ThreadLocalRandom.current().nextInt(2, 5);
-            int newHapp = pokemon.getHappiness() + happUp;
+    public int playWithPokemon(Trainer trainer, int id) {
+        Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == id).findFirst().orElse(null);
 
-            if ((newHapp + happUp) <= 100) {
-                pokemon.setHappiness((pokemon.getHappiness() + happUp));
-            } else {
-                pokemon.setHappiness(100);
-            }
-
-            pokemonRepo.updatePokemon(pokemon);
-            return pokemon;
+        if (pokemon == null) {
+            return 0;
         }
-        return null;
+
+        int hap = ThreadLocalRandom.current().nextInt(10, 30);
+
+        pokemon.setHappiness(Math.min(pokemon.getHappiness() + hap, 100));
+        pokemon.setFatigue(Math.min(pokemon.getFatigue() + 20, 100));
+        pokemon.setHunger(Math.min(pokemon.getHunger() + 10, 100));
+        pokemonRepo.updatePokemon(pokemon);
+
+        return hap;
     }
 
     public boolean feedPokemon(Trainer trainer, int id) {
@@ -106,15 +106,6 @@ public class PokemonService {
         trainer.setCurrency(trainer.getCurrency() - 100);
         trainerRepo.updateTrainer(trainer);
         return true;
-    }
-
-    public Pokemon tirePokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-            pokemon.setFatigue(pokemon.getFatigue() + 5);
-            pokemonRepo.updatePokemon(pokemon);
-            return pokemon;
-        }
-        return null;
     }
 
     public boolean trainPokemon(Trainer trainer, int pokeId, int type) {
@@ -144,6 +135,7 @@ public class PokemonService {
             break;
         }
 
+        pokemon.setHappiness(Math.max(pokemon.getHappiness() - 20, 0));
         pokemonRepo.updatePokemon(pokemon);
         return true;
     }

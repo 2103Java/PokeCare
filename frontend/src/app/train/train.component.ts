@@ -32,17 +32,18 @@ export class TrainComponent {
                         this.pokemon.experience += 150;
                         break;
                     case 2:
-                        this.pokemon.hunger = 50;
-                        this.pokemon.fatigue = 50;
+                        this.pokemon.hunger = Math.min(this.pokemon.hunger + 50, 100);
+                        this.pokemon.fatigue = 50
                         this.pokemon.experience += 60;
                         break;
                     case 3:
-                        this.pokemon.hunger = 10;
+                        this.pokemon.hunger = Math.min(this.pokemon.hunger + 10, 100);
                         this.pokemon.fatigue = 10;
                         this.pokemon.experience += 30;
                         break;
                 }
 
+                this.pokemon.happiness = Math.max(this.pokemon.happiness - 20, 0);
                 this.pokemon.updateLevel();
             });
         }
