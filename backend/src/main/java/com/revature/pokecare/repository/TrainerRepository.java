@@ -4,15 +4,18 @@ import com.revature.pokecare.models.Trainer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -65,7 +68,7 @@ public class TrainerRepository {
 
     public List<Trainer> getAllTrainers() {
         Session session = sessionFactory.openSession();
-        TypedQuery<Trainer> query = session.createQuery("FROM poketrainer", Trainer.class);
+        TypedQuery<Trainer> query = session.createQuery("from poketrainer", Trainer.class);
         List<Trainer> trList = query.getResultList();
 
         session.close();
@@ -92,5 +95,82 @@ public class TrainerRepository {
         session.close();
 
         return result == 1;
+    }
+
+    public List<Trainer> findMyFriends(Trainer trainer) {
+        Session session = sessionFactory.openSession();
+        String sql = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friender and "+trainer.getId()+"= friendee and friends.status = 'ACCEPTED') where poketrainer.id != " + trainer.getId();
+        String sql2 = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friendee and "+trainer.getId()+"= friender and friends.status = 'ACCEPTED') where poketrainer.id != " + trainer.getId();
+
+        TypedQuery<Trainer> query = session.createNativeQuery(sql, Trainer.class);
+        List<Trainer> fAddedByMe = query.getResultList();
+
+        TypedQuery<Trainer> query2 = session.createNativeQuery(sql2, Trainer.class);
+        List<Trainer> fThatAddedMe = query2.getResultList();
+
+        List<Trainer> resultList = new ArrayList<Trainer>();
+        resultList.addAll(fAddedByMe);
+        resultList.addAll(fThatAddedMe);
+
+        session.close();
+        return resultList;
+    }
+
+    public List<Trainer> myFriendRequests(Trainer trainer){
+        Session session = sessionFactory.openSession();
+        String sql = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friender and "+trainer.getId()+"= friendee and friends.status = 'PENDING') where poketrainer.id != " + trainer.getId();
+        TypedQuery<Trainer> query = session.createNativeQuery(sql, Trainer.class);
+        List<Trainer> resultList = query.getResultList();
+        session.close();
+        return resultList;
+    }
+
+    public boolean sendFriendRequest(Trainer friender, Trainer friendee) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        String check = "SELECT * FROM poketrainer inner join friends on (poketrainer.id = friender and "+friender.getId()+"= friendee and friends.status = 'PENDING') where poketrainer.id != " + friender.getId();
+        TypedQuery<Trainer> qCheck = session.createNativeQuery(check, Trainer.class);
+        List<Trainer> fAddedByMe = qCheck.getResultList();
+        System.out.println(fAddedByMe.size());
+        if(fAddedByMe.size() > 1) return false;
+
+        Query query = session.createNativeQuery("INSERT INTO friends (friender,friendee,status) values ("+friender.getId()+","+friendee.getId()+",'PENDING')");
+
+        int result = 0;
+        try {
+            result = query.executeUpdate();
+        }
+        catch(PersistenceException p){
+            p.printStackTrace();
+        }
+        tx.commit();
+        session.close();
+
+        if (result != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void processFriendRequest(Trainer friender, Trainer friendee, String process){
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        String sql = "";
+
+        if(process.compareTo("ACCEPTED") == 0) sql = "UPDATE friends SET status = '"+process+"' WHERE friender = "+friender.getId()+" AND friendee = "+ friendee.getId();
+        else sql = "DELETE FROM friends WHERE friender = "+friender.getId()+" AND friendee = "+friendee.getId();
+
+        Query query = session.createNativeQuery(sql);
+
+        try {
+            query.executeUpdate();
+        }
+        catch(PersistenceException p){
+            p.printStackTrace();
+        }
+        tx.commit();
+        session.close();
+
     }
 }

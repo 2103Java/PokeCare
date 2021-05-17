@@ -101,6 +101,26 @@ export class HttpService {
         return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
     }
 
+    getMyFriends(): Observable<Array<Trainer>> {
+        return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends");
+    }
+
+    getPendingReqs(): Observable<Array<Trainer>>{
+        return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends/requests");
+    }
+
+    addFriend(username: string): Observable<number> {
+      return this.httpClient.post<number>(this.trainerApiUrl+"friends/new/"+username,"");
+    }
+
+    acceptFriend(id: number): Observable<String>{
+          return this.httpClient.put<String>(this.trainerApiUrl+"friends/update/"+id,"");
+    }
+
+    rejectFriend(id: number): Observable<String>{
+         return this.httpClient.delete<String>(this.trainerApiUrl+"friends/update/"+id);
+    }
+
     upload(pic): Observable<any> {
         const data = new FormData();
 

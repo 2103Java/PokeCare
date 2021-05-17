@@ -3,21 +3,23 @@ import {HttpService, Trainer} from "../httpService/http.service";
 import {Router} from "@angular/router";
 import {MatDialog} from '@angular/material/dialog';
 import {UploadImageComponent} from '../upload-image/upload-image.component';
+import {ReturnComponent} from "../return/return.component";
+import {FriendsComponent} from "../friends/friends.component";
+import {FRequestsComponent} from "../f-requests/f-requests.component";
+import {FAddComponent} from "../f-add/f-add.component";
 
 @Component({
     selector: 'app-sidenav',
     templateUrl: './sidenav.component.html',
     styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent {
     opened = false;
+    myFriends: Array<Trainer>;
 
     @ViewChild('profileImg') private profileImg: ElementRef;
 
     constructor(private httpService: HttpService, private router: Router, private dialog: MatDialog) {
-    }
-
-    ngOnInit(): void {
     }
 
     logout() {
@@ -40,6 +42,26 @@ export class SidenavComponent implements OnInit {
 
     get trainer(): Trainer {
         return this.httpService.trainer;
+    }
+
+    showFriends() {
+        this.httpService.getMyFriends().subscribe(friends => {
+            this.dialog.open(FriendsComponent, {
+                data: {friends: friends}
+            });
+        });
+    }
+
+    pendingRequests() {
+        this.httpService.getPendingReqs().subscribe(friends => {
+            this.dialog.open(FRequestsComponent, {
+                data: {friends: friends}
+            });
+        });
+    }
+
+    addFriend() {
+        this.dialog.open(FAddComponent);
     }
 
     fallbackImage(errorEvent: ErrorEvent) {

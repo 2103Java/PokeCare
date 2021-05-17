@@ -22,8 +22,9 @@ import {HttpService} from "./httpService/http.service";
 import {HttpClientModule} from "@angular/common/http";
 import { ReturnComponent } from './return/return.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
-
-
+import {FriendsComponent} from './friends/friends.component';
+import { FRequestsComponent } from './f-requests/f-requests.component';
+import { FAddComponent } from './f-add/f-add.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,9 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
         RegisterComponent,
         TrainComponent,
         ReturnComponent,
+        FriendsComponent,
+        FRequestsComponent,
+        FAddComponent,
         UploadImageComponent
     ],
     imports: [
