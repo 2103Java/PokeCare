@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {HttpService, Pokemon, Trainer} from "../httpService/http.service";
+import {Component, Inject} from '@angular/core';
+import {HttpService, Trainer} from "../httpService/http.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
@@ -21,4 +21,7 @@ export class FriendsComponent {
         alert(message);
     }
 
+    fallbackImage(errorEvent: ErrorEvent) {
+        errorEvent.target['src'] = "https://w7.pngwing.com/pngs/1021/743/png-transparent-ash-ketchum-and-pikachu-ash-ketchum-pokxe9mon-x-and-y-pokxe9mon-sun-and-moon-pikachu-misty-pokemon-ash-free-chibi-boy-fictional-character-thumbnail.png";
+    }
 }

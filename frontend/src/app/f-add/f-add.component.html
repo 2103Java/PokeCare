@@ -1,7 +1,5 @@
 <button class="dropdown-item" mat-button mat-dialog-close>Return</button>
 <mat-dialog-actions>
-
-        <input #username #username.value='' type="text">
-        <button class="button-container" (click)="addFriend(username.value)">Add Friend</button>
-
+    <input #username #username.value='' type="text">
+    <button class="button-container" mat-dialog-close="" (click)="addFriend(username.value)">Add Friend</button>
 </mat-dialog-actions>

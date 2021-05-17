@@ -1,26 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpService} from "../httpService/http.service";
-import { FormGroup, FormBuilder,  FormControl} from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-f-add',
-  templateUrl: './f-add.component.html',
-  styleUrls: ['./f-add.component.css']
+    selector: 'app-f-add',
+    templateUrl: './f-add.component.html'
 })
-export class FAddComponent implements OnInit {
+export class FAddComponent {
 
+    constructor(private http: HttpService) {
+    }
 
-  constructor(private http: HttpService) {
-  }
-
-  ngOnInit(): void {
-  }
-
-  addFriend(username: string){
-      this.http.addFriend(username).subscribe(data =>{
-          if(data == 1) alert("Friend Request Sent!!");
-          else alert("Failed to Send Friend Request");
-      });
-  }
-
+    addFriend(username: string) {
+        this.http.addFriend(username).subscribe(data => {
+            if (data == 1) {
+                Swal.fire("Friend Request Sent!", "Please wait for them to accept your request.", "success");
+            } else {
+                Swal.fire("Oops!", "An error occurred", "error");
+            }
+        });
+    }
 }

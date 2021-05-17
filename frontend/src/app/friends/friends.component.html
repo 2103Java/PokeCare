@@ -1,4 +1,5 @@
-<button class ="dropdown-item" mat-button mat-dialog-close>Hide Friends List</button>
+<button class="dropdown-item" mat-button mat-dialog-close>Hide Friends List</button>
 <mat-dialog-actions>
-    <button class="dropdown-item" type="button" *ngFor="let friend of friends" (click)="myFriendsStats(friend)">  {{friend.username}}</button>
+    <button class="dropdown-item" type="button" *ngFor="let friend of friends" (click)="myFriendsStats(friend)">
+        <img src="https://pokecare.s3.amazonaws.com/{{friend.id}}" alt="Profile Picture" width="75px" height="75px" (error)="fallbackImage($event)"/> {{friend.username}}</button>
 </mat-dialog-actions>
