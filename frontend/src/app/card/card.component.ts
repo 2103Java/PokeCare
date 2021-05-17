@@ -132,7 +132,8 @@ export class CardComponent implements OnInit, OnDestroy {
 
     openTraining() {
         this.dialog.open(TrainComponent, {
-            data: {pokemon: this.poke}
+            data: {pokemon: this.poke},
+            panelClass: 'trainModal'
         });
     }
 

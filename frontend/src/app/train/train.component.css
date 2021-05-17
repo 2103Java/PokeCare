@@ -17,9 +17,14 @@
 :host ::ng-deep .sr-only{
     display: none;
 }
-.cdk-overlay-pane{
-    background-image: url("../../assets/img/trainBG.png");
+::ng-deep.mat-dialog-container {
+    background-image: url("../../assets/img/trainBG.jpg");
+    color: white;
+    font-weight: bold;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
 mat-divider{
     margin-bottom: 12px;
 }
