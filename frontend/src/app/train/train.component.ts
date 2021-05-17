@@ -42,6 +42,8 @@ export class TrainComponent {
                         this.pokemon.experience += 30;
                         break;
                 }
+
+                this.pokemon.updateLevel();
             });
         }
     }

@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {catchError} from "rxjs/operators";
 
 export interface Pokemon {
+    updateLevel: () => void;
     id: number;
     poke_number: number;
     happiness: number;
