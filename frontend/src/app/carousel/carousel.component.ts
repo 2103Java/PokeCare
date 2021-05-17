@@ -26,7 +26,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     @ViewChildren('withBuilder', {read: ElementRef}) elCards: QueryList<ElementRef>;
     @ViewChild('withBuilder', {read: ElementRef}) baseCard: ElementRef;
     @ViewChild('box', {read: ElementRef}) box: ElementRef;
-    items = new Array(8); //this does not work unless this is 8
+    items = new Array();
     private speed = 400;
     private timing = this.speed + 'ms ease-out';
     private player: AnimationPlayer;
