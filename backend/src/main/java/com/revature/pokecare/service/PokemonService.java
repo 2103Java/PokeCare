@@ -34,14 +34,14 @@ public class PokemonService {
         Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == id).findFirst().orElse(null);
 
         if (pokemon != null && pokemonRepo.deletePokemon(pokemon)) {
-            int money = 100 * pokemon.getHappiness();
+            int money = pokemon.getHappiness();
+
+            if (pokemon.getExperience() > 1) {
+                money += (double) pokemon.getFatigue() / 10;
+            }
 
             if (pokemon.getHunger() > 10) {
                 money /= pokemon.getHunger();
-            }
-
-            if (pokemon.getExperience() > 1) {
-                money /= (double) pokemon.getFatigue() / 10;
             }
 
             trainer.getPokemon().remove(pokemon);
