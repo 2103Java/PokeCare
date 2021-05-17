@@ -56,6 +56,7 @@ public class TrainerService {
     }
     public boolean addFriend(Trainer pokeTrainer, String fUsername) {
         Trainer friendee = trainerRepo.findTrainerByUsername(fUsername);
+
         if (friendee != null) {
             return trainerRepo.sendFriendRequest(pokeTrainer, friendee);
         } else return false;

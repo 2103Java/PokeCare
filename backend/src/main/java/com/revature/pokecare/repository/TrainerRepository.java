@@ -127,6 +127,11 @@ public class TrainerRepository {
     public boolean sendFriendRequest(Trainer friender, Trainer friendee) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
+        //Query reqCheck = session.createNativeQuery("select * from friends where friender = "+friender.getId()+" and friendee = "+friendee.getId()+"and status = 'PENDING' OR status = 'BLOCKED'");
+        //int reqInt = 0;
+        //reqInt = reqCheck.getMaxResults();
+
+       // if(reqInt != 0) return false;
 
         Query query = session.createNativeQuery("INSERT INTO friends (friender,friendee,status) values ("+friender.getId()+","+friendee.getId()+",'PENDING')");
 

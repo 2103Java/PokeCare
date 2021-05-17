@@ -8,20 +8,18 @@ import { FormGroup, FormBuilder,  FormControl} from "@angular/forms";
   styleUrls: ['./f-add.component.css']
 })
 export class FAddComponent implements OnInit {
-    addFriendForm = this.formBuilder.group({
-        username:""
-    });
 
-  constructor(private http: HttpService,private formBuilder: FormBuilder) {
+
+  constructor(private http: HttpService) {
   }
 
   ngOnInit(): void {
   }
 
-  addFriend(){
-
-      this.http.addFriend(this.addFriendForm.value).subscribe(data =>{
-          alert(data);
+  addFriend(username: string){
+      this.http.addFriend(username).subscribe(data =>{
+          if(data == 1) alert("Friend Request Sent!!");
+          else alert("Failed to Send Friend Request");
       });
   }
 
