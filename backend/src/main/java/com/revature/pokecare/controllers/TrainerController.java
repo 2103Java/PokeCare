@@ -46,11 +46,11 @@ public class TrainerController {
                 new ResponseEntity<>(HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @PostMapping(value = "/friends/new")
-    public ResponseEntity<String> addFriend(@RequestParam String fUsername, HttpSession session) {
+    @PostMapping(value = "/friends/new/{username}")
+    public ResponseEntity<String> addFriend(@PathVariable String username, HttpSession session) {
         if (session.getAttribute("PokeTrainer") == null) return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 
-        if (trainerService.addFriend((Trainer) session.getAttribute("PokeTrainer"), fUsername))
+        if (trainerService.addFriend((Trainer) session.getAttribute("PokeTrainer"), username))
             return new ResponseEntity<String>("Friend request sent", HttpStatus.OK);
 
         return new ResponseEntity<String>("Failed to send friend request", HttpStatus.BAD_REQUEST);

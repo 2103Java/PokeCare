@@ -23,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReturnComponent} from './return/return.component';
 import {FriendsComponent} from './friends/friends.component';
 import { FRequestsComponent } from './f-requests/f-requests.component';
+import { FAddComponent } from './f-add/f-add.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { FRequestsComponent } from './f-requests/f-requests.component';
         TrainComponent,
         ReturnComponent,
         FriendsComponent,
-        FRequestsComponent
+        FRequestsComponent,
+        FAddComponent
     ],
     imports: [
         CommonModule,

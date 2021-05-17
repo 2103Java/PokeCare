@@ -1,0 +1,8 @@
+<button class="dropdown-item" mat-button mat-dialog-close>Return</button>
+<mat-dialog-actions>
+    <form [formGroup]="addFriendForm">
+        <label>Enter your friend's username</label>
+        <input type="text" formControlName="username">
+        <button class="button-container" (click)="addFriend()">Add Friend</button>
+    </form>
+</mat-dialog-actions>

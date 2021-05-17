@@ -5,6 +5,7 @@ import {ReturnComponent} from "../return/return.component";
 import {FriendsComponent} from "../friends/friends.component";
 import {MatDialog} from "@angular/material/dialog";
 import {FRequestsComponent} from "../f-requests/f-requests.component";
+import {FAddComponent} from "../f-add/f-add.component";
 
 @Component({
     selector: 'app-sidenav',
@@ -50,4 +51,7 @@ export class SidenavComponent {
         });
     }
 
+    addFriend() {
+        this.dialog.open(FAddComponent);
+    }
 }

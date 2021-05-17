@@ -109,9 +109,8 @@ export class HttpService {
         return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends/requests");
     }
 
-    addFriend(username: string) {
-    const body = new HttpParams().set('username', username);
-      return this.httpClient.post(this.trainerApiUrl+"friends/new", body.toString());
+    addFriend(username: string): Observable<String> {
+      return this.httpClient.post<String>(this.trainerApiUrl+"friends/new/"+username,"");
     }
 
     acceptFriend(id: number): Observable<String>{
