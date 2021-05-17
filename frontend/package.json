@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
+    "@ngx-translate/core": "^13.0.0",
     "bootstrap": "^5.0.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.16.7",

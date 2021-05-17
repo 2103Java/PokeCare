@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {HttpService, Pokemon} from "../httpService/http.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import Swal from "sweetalert2";
+// import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-return',
@@ -11,7 +12,7 @@ import Swal from "sweetalert2";
 export class ReturnComponent {
     pokemon: Pokemon;
 
-    constructor(private http: HttpService, @Inject(MAT_DIALOG_DATA) public data: object) {
+    constructor( private http: HttpService, @Inject(MAT_DIALOG_DATA) public data: object) {
         this.pokemon = data['pokemon'];
     }
 

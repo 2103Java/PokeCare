@@ -1,10 +1,10 @@
-<button class ="dropdown-item" mat-button mat-dialog-close>Hide Friend Requests</button>
+<button class ="dropdown-item" mat-button mat-dialog-close i18n>Hide Friend Requests</button>
 <mat-dialog-actions>
     <div  *ngFor="let friend of friends">
         <div *ngIf="friend != undefined">
             <button *ngIf="friend != undefined"  class="dropdown-item" type="button" (click)="myFriendsStats(friend)">{{friend.username}}</button>
-            <button *ngIf="friend != undefined"  class ="dropdown-item" type="button" (click)="acceptFriend(friend)">Accept</button>
-            <button *ngIf="friend != undefined" class ="dropdown-item" type="button" (click)="rejectFriend(friend)">Reject</button>
+            <button *ngIf="friend != undefined"  class ="dropdown-item" type="button" (click)="acceptFriend(friend)" i18n>Accept</button>
+            <button *ngIf="friend != undefined" class ="dropdown-item" type="button" (click)="rejectFriend(friend)" i18n>Reject</button>
         </div>
     </div>
 </mat-dialog-actions>

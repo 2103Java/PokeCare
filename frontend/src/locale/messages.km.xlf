@@ -8,7 +8,7 @@
                 <target>បន្ថែម Pokemon</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-                    <context context-type="linenumber">14</context>
+                    <context context-type="linenumber">13</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="1800141988486847570" datatype="html">
@@ -16,7 +16,7 @@
                 <target>បញ្ចូលរូបថត</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-                    <context context-type="linenumber">17</context>
+                    <context context-type="linenumber">16</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="4930506384627295710" datatype="html">
@@ -24,7 +24,23 @@
                 <target>ការកំណត់</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-                    <context context-type="linenumber">20</context>
+                    <context context-type="linenumber">19</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="7870351813533833454" datatype="html">
+                <source>My Friends</source>
+                <target>មិត្ត​របស់ខ្ញុំ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
+                    <context context-type="linenumber">22</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="330023545878846467" datatype="html">
+                <source>View Pending Requests</source>
+                <target>មើលសំណើដែលមិនទាន់សម្រេច</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
+                    <context context-type="linenumber">25</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="3797778920049399855" datatype="html">
@@ -32,33 +48,45 @@
                 <target>ចាកចេញ</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-                    <context context-type="linenumber">26</context>
+                    <context context-type="linenumber">34</context>
                 </context-group>
             </trans-unit>
 
 <!--        Pokemon card translation template      -->
-            <trans-unit id="186438646547177289" datatype="html">
-                <source>Happiness</source>
-                <target>សប្បាយរីករាយ</target>
+            <trans-unit id="3313064684800183766" datatype="html">
+                <source>Happiness <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.happiness}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></source>
+                <target>សប្បាយរីករាយ <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.happiness}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/card/card.component.html</context>
-                    <context context-type="linenumber">14</context>
+                    <context context-type="linenumber">19,23</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="2481115355110307732" datatype="html">
-                <source>Hunger</source>
-                <target>ស្រេកឃ្លាន</target>
+            <trans-unit id="8357808424477957072" datatype="html">
+                <source>Hunger <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.hunger}}&quot; i18n&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></source>
+                <target>ស្រេកឃ្លាន <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.hunger}}&quot; i18n&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/card/card.component.html</context>
-                    <context context-type="linenumber">15</context>
+                    <context context-type="linenumber">25,29</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="4821876022938668767" datatype="html">
-                <source>Fatigue</source>
-                <target>ហត់កម្លាំង</target>
+            <trans-unit id="4767110472967521819" datatype="html">
+                <source>Fatigue <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.fatigue}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></source>
+                <target>ហត់កម្លាំង <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.fatigue}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/card/card.component.html</context>
-                    <context context-type="linenumber">16</context>
+                    <context context-type="linenumber">31,35</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="4172345182949733528" datatype="html">
@@ -66,7 +94,11 @@
                 <target>ហ្វឹកហាត់</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/card/card.component.html</context>
-                    <context context-type="linenumber">22</context>
+                    <context context-type="linenumber">41</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/train/train.component.html</context>
+                    <context context-type="linenumber">4</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="642534594356440342" datatype="html">
@@ -74,7 +106,7 @@
                 <target>ចិញ្ចឹម</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/card/card.component.html</context>
-                    <context context-type="linenumber">26</context>
+                    <context context-type="linenumber">48</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="8564202903947049539" datatype="html">
@@ -82,7 +114,7 @@
                 <target>លេង</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/card/card.component.html</context>
-                    <context context-type="linenumber">30</context>
+                    <context context-type="linenumber">55</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="4187066187133719197" datatype="html">
@@ -90,77 +122,161 @@
                 <target>អោយPokemonវិញ</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/card/card.component.html</context>
-                    <context context-type="linenumber">34</context>
+                    <context context-type="linenumber">61</context>
+                </context-group>
+
+<!--                Friend component translation template -->
+            </trans-unit>
+            <trans-unit id="7286475218857509962" datatype="html">
+                <source>Return</source>
+                <target>ត្រឡប់មកវិញ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/f-add/f-add.component.html</context>
+                    <context context-type="linenumber">1</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="3459481278201043588" datatype="html">
+                <source>Add Friend</source>
+                <target>បន្ថែម​មិត្ត</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/f-add/f-add.component.html</context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
+                    <context context-type="linenumber">28</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="3724494623703889123" datatype="html">
+                <source>Hide Friend Requests</source>
+                <target>លាក់សំណើមិត្តភក្តិ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/f-requests/f-requests.component.html</context>
+                    <context context-type="linenumber">1</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="6711840422888254144" datatype="html">
+                <source>Hide Friends Requests</source>
+                <target>លាក់សំណើមិត្តភក្តិ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/friends/friends.component.html</context>
+                    <context context-type="linenumber">1</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="8905995985388209337" datatype="html">
+                <source>Accept</source>
+                <target>ទទួលយក</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/f-requests/f-requests.component.html</context>
+                    <context context-type="linenumber">6</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="7378878529334768232" datatype="html">
+                <source>Reject</source>
+                <target>បដិសេធ</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/f-requests/f-requests.component.html</context>
+                    <context context-type="linenumber">7</context>
                 </context-group>
             </trans-unit>
 
+<!--     feed and return pokemon translation template-->
+        <trans-unit id="6656004920710428190" datatype="html">
+            <source>Feed this Pokemon for ₽ 100?</source>
+            <target>អោយចំណីទៅPokemonនេះក្នុងតម្លៃ ₽ 100?</target>
+            <context-group purpose="location">
+                <context context-type="sourcefile">src/app/feed/feed.component.html</context>
+                <context context-type="linenumber">2</context>
+            </context-group>
+        </trans-unit>
+        <trans-unit id="3542042671420335679" datatype="html">
+            <source>No</source>
+            <target>អត់ទេ</target>
+            <context-group purpose="location">
+                <context context-type="sourcefile">src/app/feed/feed.component.html</context>
+                <context context-type="linenumber">8</context>
+            </context-group>
+            <context-group purpose="location">
+                <context context-type="sourcefile">src/app/return/return.component.html</context>
+                <context context-type="linenumber">6</context>
+            </context-group>
+        </trans-unit>
+        <trans-unit id="2807800733729323332" datatype="html">
+            <source>Yes</source>
+            <target>បាទ/ចាស</target>
+            <context-group purpose="location">
+                <context context-type="sourcefile">src/app/feed/feed.component.html</context>
+                <context context-type="linenumber">9</context>
+            </context-group>
+            <context-group purpose="location">
+                <context context-type="sourcefile">src/app/return/return.component.html</context>
+                <context context-type="linenumber">7</context>
+            </context-group>
+        </trans-unit>
+
 <!--        train pokemon component translation template    -->
-            <trans-unit id="1690657871131366596" datatype="html">
-                <source>Stamina: <x id="INTERPOLATION" equiv-text="{{pokeStamina}}"/>% Hunger: <x id="INTERPOLATION_1" equiv-text="{{pokeHunger}}"/>%</source>
-                <target>កម្លាំង: <x id="INTERPOLATION" equiv-text="{{pokeStamina}}"/>% ស្រេកឃ្លាន: <x id="INTERPOLATION_1" equiv-text="{{pokeHunger}}"/>%</target>
+            <trans-unit id="6314358591477464559" datatype="html">
+                <source>Fatigue: <x id="INTERPOLATION" equiv-text="{{pokemon.fatigue}}"/>% Hunger: <x id="INTERPOLATION_1" equiv-text="{{pokemon.hunger}}"/>%</source>
+                <target>ហត់កម្លាំង: <x id="INTERPOLATION" equiv-text="{{pokemon.fatigue}}"/>% ស្រេកឃ្លាន: <x id="INTERPOLATION_1" equiv-text="{{pokemon.hunger}}"/>%</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
                     <context context-type="linenumber">7</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="6607282293447456054" datatype="html">
-                <source>Training 1</source>
-                <target>ហ្វឹកហាត់ ទី១</target>
+            <trans-unit id="388016770182026258" datatype="html">
+                <source>Battle</source>
+                <target>ប្រយុទ្ធ</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
                     <context context-type="linenumber">24</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="3909690510661567617" datatype="html">
-                <source>cost: stamina = <x id="INTERPOLATION" equiv-text="{{training1 * 20}}"/>%, hunger = <x id="INTERPOLATION_1" equiv-text="{{training1 * 15}}"/>%</source>
-                <target>ចំណាយ: កម្លាំង = <x id="INTERPOLATION" equiv-text="{{training1 * 20}}"/>%, ស្រេកឃ្លាន = <x id="INTERPOLATION_1" equiv-text="{{training1 * 15}}"/>%</target>
+            <trans-unit id="213359773173996041" datatype="html">
+                <source>Cost: fatigue +100%, hunger +100%, xp +150</source>
+                <target>ចំណាយ: ហត់កម្លាំង +100%, ស្រេកឃ្លាន +100%, xp +150</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">34</context>
-                </context-group>
-                <context-group purpose="location">
-                    <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">35</context>
-                </context-group>
-                <context-group purpose="location">
-                    <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">48</context>
-                </context-group>
-                <context-group purpose="location">
-                    <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">49</context>
-                </context-group>
-                <context-group purpose="location">
-                    <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">62</context>
-                </context-group>
-                <context-group purpose="location">
-                    <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">63</context>
+                    <context context-type="linenumber">33</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="8758205142801347692" datatype="html">
-                <source>Training 2</source>
-                <target>ហ្វឹកហាត់ ទី២</target>
+            <trans-unit id="6360015671644872932" datatype="html">
+                <source>Practice Moves</source>
+                <target>ហាត់ក្បាច់ប្រយុទ្</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">38</context>
+                    <context context-type="linenumber">37</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="2725668092674686398" datatype="html">
-                <source>Training 3</source>
-                <target>ហ្វឹកហាត់ ទី៣</target>
+            <trans-unit id="5113877218346425136" datatype="html">
+                <source>Cost: fatigue +50%, hunger +50%, xp +60</source>
+                <source>ចំណាយ: ហត់កម្លាំង +50%, ស្រេកឃ្លាន +50%, xp +60</source>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">52</context>
+                    <context context-type="linenumber">46</context>
                 </context-group>
             </trans-unit>
-            <trans-unit id="3531638451908680499" datatype="html">
-                <source>Total Cost: Stamina = <x id="INTERPOLATION" equiv-text="{{totalStamina}}"/>%, Hunger = <x id="INTERPOLATION_1" equiv-text="{{totalHunger}}"/>%</source>
-                <target>ចំណាយសរុប: កម្លាំង = <x id="INTERPOLATION" equiv-text="{{totalStamina}}"/>%, ស្រេកឃ្លាន = <x id="INTERPOLATION_1" equiv-text="{{totalHunger}}"/>%</target>
+            <trans-unit id="1750521964849894851" datatype="html">
+                <source>Obedience</source>
+                <target>គោរពប្រតិបត្តិ</target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">71</context>
+                    <context context-type="linenumber">50</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="811341579770191678" datatype="html">
+                <source>Cost: fatigue +10%, hunger +10%, xp +30</source>
+                <target>ចំណាយ: ហត់កម្លាំង +10%, ស្រេកឃ្លាន +10%, xp +30</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/train/train.component.html</context>
+                    <context context-type="linenumber">59</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="882665792167069037" datatype="html">
+                <source>After Training: Fatigue = <x id="INTERPOLATION" equiv-text="{{afterFatigue}}"/>%, Hunger = <x id="INTERPOLATION_1" equiv-text="{{afterHunger}}"/>%</source>
+                <target>ក្រោយពីហ្វឹកហាត់ហើយ: ហត់កម្លាំង = <x id="INTERPOLATION" equiv-text="{{afterFatigue}}"/>%, ស្រេកឃ្លាន = <x id="INTERPOLATION_1" equiv-text="{{afterHunger}}"/>%</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/train/train.component.html</context>
+                    <context context-type="linenumber">67</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="4734269877357059733" datatype="html">
@@ -168,15 +284,7 @@
                 <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>បោះបង់ចោល<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">74</context>
-                </context-group>
-            </trans-unit>
-            <trans-unit id="7761912911226857572" datatype="html">
-                <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Reset<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
-                <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>ចាប់ផ្តើមសារឡើងវិញ<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></target>
-                <context-group purpose="location">
-                    <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">75</context>
+                    <context context-type="linenumber">70</context>
                 </context-group>
             </trans-unit>
             <trans-unit id="8659525438589412286" datatype="html">
@@ -184,7 +292,7 @@
                 <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>អនុវត្ដន៍<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></target>
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/train/train.component.html</context>
-                    <context context-type="linenumber">76</context>
+                    <context context-type="linenumber">71</context>
                 </context-group>
             </trans-unit>
 
@@ -343,6 +451,22 @@
                 <context-group purpose="location">
                     <context context-type="sourcefile">src/app/register/register.component.html</context>
                     <context context-type="linenumber">58</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="6288082678754862274" datatype="html">
+                <source>Upload Image</source>
+                <target>បញ្ចូលរូបភាព</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/upload-image/upload-image.component.html</context>
+                    <context context-type="linenumber">2</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4391289919356861627" datatype="html">
+                <source>Apply</source>
+                <target>អនុវត្ដន៍</target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/upload-image/upload-image.component.html</context>
+                    <context context-type="linenumber">12</context>
                 </context-group>
             </trans-unit>
         </body>

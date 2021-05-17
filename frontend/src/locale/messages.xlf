@@ -244,32 +244,38 @@
           <context context-type="linenumber">76,85</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="186438646547177289" datatype="html">
-        <source>Happiness</source>
+      <trans-unit id="3313064684800183766" datatype="html">
+        <source>Happiness <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.happiness}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/card/card.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">19,23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2481115355110307732" datatype="html">
-        <source>Hunger</source>
+      <trans-unit id="8357808424477957072" datatype="html">
+        <source>Hunger <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.hunger}}&quot; i18n&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/card/card.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">25,29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4821876022938668767" datatype="html">
-        <source>Fatigue</source>
+      <trans-unit id="4767110472967521819" datatype="html">
+        <source>Fatigue <x id="START_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;mat-progress-bar
+                            class=&quot;example-margin&quot;
+                            value=&quot;{{poke.fatigue}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_PROGRESS_BAR" ctype="x-mat_progress_bar" equiv-text="&lt;/mat-progress-bar&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/card/card.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">31,35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4172345182949733528" datatype="html">
         <source>Train</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/card/card.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
@@ -280,21 +286,96 @@
         <source>Feed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/card/card.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8564202903947049539" datatype="html">
         <source>Play</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/card/card.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4187066187133719197" datatype="html">
         <source>Return Pokemon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/card/card.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7286475218857509962" datatype="html">
+        <source>Return</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/f-add/f-add.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3459481278201043588" datatype="html">
+        <source>Add Friend</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/f-add/f-add.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3724494623703889123" datatype="html">
+        <source>Hide Friend Requests</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/f-requests/f-requests.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8905995985388209337" datatype="html">
+        <source>Accept</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/f-requests/f-requests.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7378878529334768232" datatype="html">
+        <source>Reject</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/f-requests/f-requests.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6656004920710428190" datatype="html">
+        <source>Feed this Pokemon for ₽ 100?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/feed/feed.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3542042671420335679" datatype="html">
+        <source>No</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/feed/feed.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/return/return.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2807800733729323332" datatype="html">
+        <source>Yes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/feed/feed.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/return/return.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6711840422888254144" datatype="html">
+        <source>Hide Friends Requests</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/friends/friends.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2336550011721758066" datatype="html">
@@ -416,129 +497,130 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3542042671420335679" datatype="html">
-        <source>No</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/return/return.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2807800733729323332" datatype="html">
-        <source>Yes</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/return/return.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="1926472880047360996" datatype="html">
         <source>Add Pokemon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1800141988486847570" datatype="html">
         <source>Upload Photo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4930506384627295710" datatype="html">
         <source>Settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7870351813533833454" datatype="html">
+        <source>My Friends</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="330023545878846467" datatype="html">
+        <source>View Pending Requests</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3797778920049399855" datatype="html">
         <source>Logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidenav/sidenav.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1690657871131366596" datatype="html">
-        <source>Stamina: <x id="INTERPOLATION" equiv-text="{{pokeStamina}}"/>% Hunger: <x id="INTERPOLATION_1" equiv-text="{{pokeHunger}}"/>%</source>
+      <trans-unit id="6314358591477464559" datatype="html">
+        <source>Fatigue: <x id="INTERPOLATION" equiv-text="{{pokemon.fatigue}}"/>% Hunger: <x id="INTERPOLATION_1" equiv-text="{{pokemon.hunger}}"/>%</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6607282293447456054" datatype="html">
-        <source>Training 1</source>
+      <trans-unit id="388016770182026258" datatype="html">
+        <source>Battle</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3909690510661567617" datatype="html">
-        <source>cost: stamina = <x id="INTERPOLATION" equiv-text="{{training1 * 20}}"/>%, hunger = <x id="INTERPOLATION_1" equiv-text="{{training1 * 15}}"/>%</source>
+      <trans-unit id="213359773173996041" datatype="html">
+        <source>Cost: fatigue +100%, hunger +100%, xp +150</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">62</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8758205142801347692" datatype="html">
-        <source>Training 2</source>
+      <trans-unit id="6360015671644872932" datatype="html">
+        <source>Practice Moves</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2725668092674686398" datatype="html">
-        <source>Training 3</source>
+      <trans-unit id="5113877218346425136" datatype="html">
+        <source>Cost: fatigue +50%, hunger +50%, xp +60</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3531638451908680499" datatype="html">
-        <source>Total Cost: Stamina = <x id="INTERPOLATION" equiv-text="{{totalStamina}}"/>%, Hunger = <x id="INTERPOLATION_1" equiv-text="{{totalHunger}}"/>%</source>
+      <trans-unit id="1750521964849894851" datatype="html">
+        <source>Obedience</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="811341579770191678" datatype="html">
+        <source>Cost: fatigue +10%, hunger +10%, xp +30</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/train/train.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="882665792167069037" datatype="html">
+        <source>After Training: Fatigue = <x id="INTERPOLATION" equiv-text="{{afterFatigue}}"/>%, Hunger = <x id="INTERPOLATION_1" equiv-text="{{afterHunger}}"/>%</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/train/train.component.html</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4734269877357059733" datatype="html">
         <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Cancel<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">74</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7761912911226857572" datatype="html">
-        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Reset<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8659525438589412286" datatype="html">
         <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Apply<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/train/train.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6288082678754862274" datatype="html">
+        <source>Upload Image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/upload-image/upload-image.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4391289919356861627" datatype="html">
+        <source>Apply</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/upload-image/upload-image.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
     </body>

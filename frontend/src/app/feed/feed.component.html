@@ -1,12 +1,12 @@
 <mat-dialog-actions>
-    <h1>Feed this Pokemon for ₽ 100?</h1>
+    <h1 i18n>Feed this Pokemon for ₽ 100?</h1>
 
     <img src="https://img.rankedboost.com/wp-content/uploads/2016/08/Pokemon-Go-Razz-Berry.png" alt="Berry"/>
 
     <div class="row" style="width: 100%;">
         <div class="col-md-6" style="text-align: right;">
-            <button mat-button mat-dialog-close>No</button>
-            <button #applyButton mat-button mat-dialog-close cdkFocusInitial (click)="feed()">Yes</button>
+            <button mat-button mat-dialog-close i18n>No</button>
+            <button #applyButton mat-button mat-dialog-close cdkFocusInitial (click)="feed()" i18n>Yes</button>
         </div>
     </div>
 </mat-dialog-actions>
