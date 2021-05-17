@@ -50,10 +50,8 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      console.log(this.emailFormControl);
         this.httpService.registerRequest(this.userNameFormControl.value, this.emailFormControl.value, this.passwordFormControl.value).subscribe(data =>{
             this.trainer = data;
-            console.log(this.trainer);
         });
     }
   }

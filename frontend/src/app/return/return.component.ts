@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {HttpService, Pokemon} from "../httpService/http.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import Swal from "sweetalert2";
 
 @Component({
     selector: 'app-return',
@@ -21,6 +22,7 @@ export class ReturnComponent {
             if (index != -1) {
                 this.http.trainer.currency += money;
                 this.http.trainer.pokemon.splice(index, 1);
+                Swal.fire("Pokemon Returned", "You returned " + this.pokemon.data.name + " to its trainer and received ₽ " + money, "success");
             }
         });
     }

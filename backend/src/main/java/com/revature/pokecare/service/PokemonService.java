@@ -30,30 +30,18 @@ public class PokemonService {
         this.trainerRepo = trainerRepo;
     }
 
-    public Pokemon findMyPokemon(int id) {
-        if (id > 0) {
-            Pokemon po = pokemonRepo.findPokemonById(id);
-
-            if (po != null) {
-                return po;
-            }
-        }
-
-        return null;
-    }
-
     public int returnPokemon(Trainer trainer, int id) {
         Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == id).findFirst().orElse(null);
 
         if (pokemon != null && pokemonRepo.deletePokemon(pokemon)) {
-            int money = 100 * pokemon.getHappiness();
+            int money = pokemon.getHappiness();
+
+            if (pokemon.getExperience() > 1) {
+                money += (double) pokemon.getFatigue() / 10;
+            }
 
             if (pokemon.getHunger() > 10) {
                 money /= pokemon.getHunger();
-            }
-
-            if (pokemon.getExperience() > 1) {
-                money /= (double) pokemon.getFatigue() / 10;
             }
 
             trainer.getPokemon().remove(pokemon);
@@ -85,84 +73,84 @@ public class PokemonService {
         return newPoke;
     }
 
-    public Pokemon playWithPokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-            int happUp = ThreadLocalRandom.current().nextInt(5, 10);
-            int newHapp = pokemon.getHappiness() + happUp;
+    public int playWithPokemon(Trainer trainer, int id) {
+        Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == id).findFirst().orElse(null);
 
-            if ((newHapp + happUp) <= 100) {
-                pokemon.setHappiness((pokemon.getHappiness() + happUp));
-            } else {
-                pokemon.setHappiness(100);
-            }
-
-            pokemonRepo.updatePokemon(pokemon);
-            return pokemon;
+        if (pokemon == null) {
+            return 0;
         }
-        return null;
+
+        int hap = ThreadLocalRandom.current().nextInt(10, 30);
+
+        pokemon.setHappiness(Math.min(pokemon.getHappiness() + hap, 100));
+        pokemon.setFatigue(Math.min(pokemon.getFatigue() + 20, 100));
+        pokemon.setHunger(Math.min(pokemon.getHunger() + 10, 100));
+        pokemonRepo.updatePokemon(pokemon);
+
+        return hap;
     }
 
-    public Pokemon feedPokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-//    		int hungDown = ThreadLocalRandom.current().nextInt(5, 10);
-
-            int newHung = pokemon.getHunger() - 5;
-            if (newHung >= 0) {
-                pokemon.setHunger(newHung);
-            } else {
-                pokemon.setHunger(0);
-            }
-
-            pokemonRepo.updatePokemon(pokemon);
-            return pokemon;
+    public boolean feedPokemon(Trainer trainer, int id) {
+        if (trainer.getCurrency() < 100) {
+            return false;
         }
-        return null;
+
+        Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == id).findFirst().orElse(null);
+
+        if (pokemon == null) {
+            return false;
+        }
+
+        pokemon.setHunger(Math.max(pokemon.getHunger() - 50, 0));
+        pokemonRepo.updatePokemon(pokemon);
+
+        trainer.setCurrency(trainer.getCurrency() - 100);
+        trainerRepo.updateTrainer(trainer);
+        return true;
     }
 
-    public Pokemon tirePokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-            pokemon.setFatigue(pokemon.getFatigue() + 5);
-            pokemonRepo.updatePokemon(pokemon);
-            return pokemon;
-        }
-        return null;
-    }
+    public boolean trainPokemon(Trainer trainer, int pokeId, int type) {
+        Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == pokeId).findFirst().orElse(null);
 
-    public Pokemon trainPokemon(Pokemon pokemon, int type) {
+        if (pokemon == null || pokemon.getHunger() >= 75 || pokemon.getFatigue() > 0 || pokemon.getHappiness() <= 20) {
+            return false;
+        }
+
         switch (type) {
         case 1:
-            pokemon.setHunger(pokemon.getHunger() + 4);
-            pokemon.setFatigue(pokemon.getFatigue() + 4);
+            pokemon.setHunger(Math.min(pokemon.getHunger() + 100, 100));
+            pokemon.setFatigue(Math.min(pokemon.getFatigue() + 100, 100));
+            pokemon.setExperience(pokemon.getExperience() + 150);
             break;
+
         case 2:
-            pokemon.setHunger(pokemon.getHunger() + 2);
-            pokemon.setFatigue(pokemon.getFatigue() + 7);
+            pokemon.setHunger(Math.min(pokemon.getHunger() + 50, 100));
+            pokemon.setFatigue(Math.min(pokemon.getFatigue() + 50, 100));
+            pokemon.setExperience(pokemon.getExperience() + 60);
             break;
+
         case 3:
-            pokemon.setHunger(pokemon.getHunger() + 7);
-            pokemon.setFatigue(pokemon.getFatigue() + 2);
+            pokemon.setHunger(Math.min(pokemon.getHunger() + 10, 100));
+            pokemon.setFatigue(Math.min(pokemon.getFatigue() + 10, 100));
+            pokemon.setExperience(pokemon.getExperience() + 30);
             break;
         }
 
-        pokemon.setExperience(pokemon.getExperience() + 5);
+        pokemon.setHappiness(Math.max(pokemon.getHappiness() - 20, 0));
         pokemonRepo.updatePokemon(pokemon);
-        return pokemon;
+        return true;
     }
 
-    public Pokemon restPokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-            pokemon.setFatigue(pokemon.getFatigue() - 5);
-            pokemonRepo.updatePokemon(pokemon);
-        }
-        return pokemon;
-    }
+    public boolean restPokemon(Trainer trainer, int pokeId, int fatigue) {
+        Pokemon pokemon = trainer.getPokemon().stream().filter(poke -> poke.getId() == pokeId).findFirst().orElse(null);
 
-    public boolean updatePokemon(Pokemon pokemon) {
-        if (pokemon != null) {
-            pokemonRepo.updatePokemon(pokemon);
-            return true;
+        if (pokemon == null || pokemon.getFatigue() < 0) {
+            return false;
         }
-        return false;
+
+        pokemon.setFatigue(fatigue);
+        pokemonRepo.updatePokemon(pokemon);
+        return true;
     }
 
     public PokemonData getPokemonData(int pokeId) {

@@ -3,13 +3,13 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common
 import {Observable, of} from 'rxjs';
 
 export interface Pokemon {
+    updateLevel: () => void;
     id: number;
     poke_number: number;
-    trainer_id: number;
     happiness: number;
     hunger: number;
     fatigue: number;
-    xp: number;
+    experience: number;
     data: PokemonData;
 }
 
@@ -97,6 +97,10 @@ export class HttpService {
         return this._trainer;
     }
 
+    feedPokemon(pokemon: Pokemon): Observable<any> {
+        return this.httpClient.put(this.pokeApiUrl + "feed/" + pokemon.id, "");
+    }
+
     returnPokemon(pokemon: Pokemon): Observable<number> {
         return this.httpClient.delete<number>(this.pokeApiUrl + pokemon.id);
     }
@@ -105,20 +109,20 @@ export class HttpService {
         return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends");
     }
 
-    getPendingReqs(): Observable<Array<Trainer>>{
+    getPendingReqs(): Observable<Array<Trainer>> {
         return this.httpClient.get<Array<Trainer>>(this.trainerApiUrl + "friends/requests");
     }
 
     addFriend(username: string): Observable<number> {
-      return this.httpClient.post<number>(this.trainerApiUrl+"friends/new/"+username,"");
+        return this.httpClient.post<number>(this.trainerApiUrl + "friends/new/" + username, "");
     }
 
-    acceptFriend(id: number): Observable<String>{
-          return this.httpClient.put<String>(this.trainerApiUrl+"friends/update/"+id,"");
+    acceptFriend(id: number): Observable<String> {
+        return this.httpClient.put<String>(this.trainerApiUrl + "friends/update/" + id, "");
     }
 
-    rejectFriend(id: number): Observable<String>{
-         return this.httpClient.delete<String>(this.trainerApiUrl+"friends/update/"+id);
+    rejectFriend(id: number): Observable<String> {
+        return this.httpClient.delete<String>(this.trainerApiUrl + "friends/update/" + id);
     }
 
     upload(pic): Observable<any> {
@@ -127,5 +131,18 @@ export class HttpService {
         data.append('pic', pic);
 
         return this.httpClient.put(this.trainerApiUrl + "profile", data, {observe: 'response'});
+    }
+
+    trainPokemon(pokemon: Pokemon, method: number): Observable<any> {
+        return this.httpClient.put(this.pokeApiUrl + "train/" + pokemon.id + "/" + method, "");
+    }
+
+    playPokemon(pokemon: Pokemon): Observable<number> {
+        return this.httpClient.put<number>(this.pokeApiUrl + "play/" + pokemon.id, "");
+    }
+
+    updateFatigue(pokemon: Pokemon) {
+        this.httpClient.put(this.pokeApiUrl + "rest/" + pokemon.id + "/" + pokemon.fatigue, "").subscribe(done => {
+        });
     }
 }
